@@ -1,5 +1,5 @@
 {
-    "name": "wia-api",
+    "name": "Piccato",
     "version": "1.0.0",
     "main": "index.js",
     "scripts": {
@@ -7,7 +7,7 @@
         "start": "node index.js"
     },
     "keywords": [],
-    "author": "Oscar Gustafsson",
+    "author": "Åsa Palholmen",
     "license": "ISC",
     "description": "",
     "dependencies": {
