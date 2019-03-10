@@ -14,7 +14,7 @@ module.exports.post = async(req, res) => {
         //Handle post
         let artwork = req.body;
 
-        //Create an instant of models Ticket
+        //Create an instant of models 
         let resp = await Artwork.create(artwork);
 
         //Send it if everything went OK

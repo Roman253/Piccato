@@ -40,6 +40,12 @@ export default new Router({
             component: () =>
                 import ('./views/User.vue')
         },
+        {
+            path: '/artworks',
+            name: 'artworks',
+            component: () =>
+                import ('./views/Artworks.vue')
+        }
 
     ]
 })
