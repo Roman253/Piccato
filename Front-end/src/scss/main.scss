@@ -28,7 +28,7 @@ body {
         top: 0;
         width: 100%;
         padding: 30px;
-        background: #60e3ff;
+        background: #008ce6;
         font-size: 1.2rem;
         a {
             transition: 0.3s;
@@ -42,7 +42,7 @@ body {
             }
         }
         a:hover {
-            color: rgb(26, 139, 225);
+            color: rgb(143, 206, 255);
             opacity: 0.6;
             transition: 0.3s;
             font-weight: 600;
@@ -65,7 +65,9 @@ h2 {
 }
 
 h3 {
+    font-family: 'Merienda One', cursive;
     margin: 40px 0 0;
+
 }
 
 ul {
