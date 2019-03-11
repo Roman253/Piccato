@@ -1,29 +1,26 @@
-/* Tickets route for where is's @ app */
+/* Booking route for where is's @ app */
 
 //Models
-let Ticket = require('../models/ticket');
-let Event = require('../models/event');
+let Booking = require('../models/bookings');
+let Artwork = require('../models/artwork');
 
 module.exports.post = async(req, res) => {
     console.log(req.body);
 
     try {
         // Get event
-        let event = await Event.findById(req.body.event);
-        let tickets = [];
+        let artwork = await Artwork.findById(req.body.artwork);
+        let booking = [];
 
-        // Loops through the amount customer wants.   
-        for (i = 0; i < req.body.amount; i++) {
-            let ticket = {
-                event: event,
-                code: uid(6),
-                used: false
+            let bookings = {
+                artwork: artwork
+                
             }
-            tickets.push(ticket);
-        }
+            booking.push(booking);
+        
 
         // Posts it into the MongoDB
-        let resp = await Ticket.create(tickets);
+        let resp = await Booking.create(bookings);
         res.status(200).send(resp);
     } catch (err) {
         res.status(500).send(err.stack);
@@ -34,8 +31,8 @@ module.exports.post = async(req, res) => {
 module.exports.get = async(req, res) => {
 
     try {
-        let tickets = await Ticket.find({});
-        res.status(200).send(tickets);
+        let bookings = await Booking.find({});
+        res.status(200).send(bookings);
 
     } catch (err) {
         res.status(500).send(err);
