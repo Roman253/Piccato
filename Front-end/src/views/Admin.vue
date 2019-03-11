@@ -4,6 +4,7 @@
 
 <h2> Admin page </h2>
 
+
       <section class="artworks">
       <table cellspacing="0">
         <thead>
@@ -20,7 +21,7 @@
           <tr>
           <td> Curios Cat  </td>
           <td> 2019-03-10 - 2019-03-11</td>
-          <td> X </td>
+          <td> </td>
 
           </tr>
 
