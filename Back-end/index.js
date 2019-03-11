@@ -7,8 +7,7 @@ let app = express();
 app.use(express.json());
 app.use(cors());
 
-
-// Connect to our DB 
+// Connect to our DB process.env.
 mongoose.connect(`mongodb+srv://Admin1:${process.env.PASSWORD}@cluster0-y175r.mongodb.net/test?retryWrites=true`, { useNewUrlParser: true })
     .then(() => {
         console.info('Connected.')
@@ -19,15 +18,15 @@ mongoose.connect(`mongodb+srv://Admin1:${process.env.PASSWORD}@cluster0-y175r.mo
 
 // Routes
 let tickets = require('./routes/tickets');
-let events = require('./routes/events');
+let artwork = require('./routes/artworks');
 let verify = require('./routes/verify');
 
 app.route('/tickets')
     .post(tickets.post);
 
-app.route('/events')
-    .post(events.post)
-    .get(events.get);
+app.route('/artworks')
+    .post(artwork.post)
+    .get(artwork.get);
 
 app.route('/verify/:code')
     .get(verify.get)

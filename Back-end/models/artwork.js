@@ -1,8 +1,11 @@
 let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
+
 /* How our DB should collect data and also needed in our vue/admin site so we send the correct data */
-let eventSchema = new Schema({
-    name: String,
+let artworkSchema = new Schema({
+    title: String,
+    artist: String, 
+    description: String,
     price: Number,
     when: {
         date: String,
@@ -16,6 +19,6 @@ let eventSchema = new Schema({
     spot: String,
 });
 
-let Event = mongoose.model('event', eventSchema);
+let Artwork = mongoose.model('artwork', artworkSchema);
 
-module.exports = Event;
+module.exports = Artwork;

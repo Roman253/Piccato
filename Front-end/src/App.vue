@@ -14,6 +14,18 @@
   </div>
 </template>
 
+<script>
+export default {
+  name: 'app', 
+
+  //before the page load this function connects to store and gets the API
+  beforeMount() {
+    this.$store.dispatch('getArtworks')
+  }
+}
+</script>
+
+
 <style lang="scss">
 @import './scss/main.scss';
 
