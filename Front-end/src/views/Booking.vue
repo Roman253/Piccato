@@ -2,7 +2,7 @@
       <div class="booking">
 
 <h2> Choose artwork to rent </h2>
-
+ <artwork-item v-for="artwork in artwork-item" :key="artwork.id" :artwork="artwork"/>
 
 <div class="media">
   <img class="media-object" src="../assets/cat1.jpeg">
@@ -47,8 +47,23 @@
 </template>
 
 <script>
-export default {
+import artworkItem from '@/components/artwork-item';
 
+export default {
+    name: 'artworks', 
+    data() {
+        return {
+            artwork: []
+        }
+    }, 
+    components: {
+        artworkItem
+    }, 
+    computed: {
+        artworks() {
+            return this.$store.state.artworks;
+        }
+    }
 }
 </script>
 
