@@ -4,6 +4,7 @@
 
 <h2> Admin page </h2>
 
+<artworkItem v-for="artwork in filterArtwork" :key="artwork.id" :artwork="artwork"/>
 
       <section class="artworks">
       <table cellspacing="0">
@@ -63,7 +64,7 @@
 export default { 
   name: 'admin',
     beforeMount() {
-    this.$store.dispatch('getArtwork');
+    this.$store.dispatch('getArtworks');
   },
   data() {
     /* Schema for DB */
@@ -81,7 +82,7 @@ export default {
 methods: {
     async createArtwork(){
       this.$store.dispatch('createArtwork', this.newArtwork);
-      this.$store.dispatch("getArtwork");
+      this.$store.dispatch("getArtworks");
     }
   },
   computed: {
@@ -91,7 +92,6 @@ methods: {
   }
 }
 </script>
-
 
 <style lang="scss">
 @import '../scss/main';

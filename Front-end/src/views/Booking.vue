@@ -6,8 +6,7 @@
     </section>
 
 <h2> Choose artwork to rent </h2>
- <!--<artwork-item v-for="artwork in artwork-item" :key="artwork.id" :artwork="artwork"/>
--->
+
 
 <artworkItem v-for="artwork in filterArtwork" :key="artwork.id" :artwork="artwork"/>
   
