@@ -12,16 +12,17 @@ export default new Vuex.Store({
     },
     mutations: {
         //update array with artworks
-        setArtwork(state, artwork) {
-            state.artworks = artwork;
+        setArtworks(state, artworks) {
+            state.artworks = artworks;
         }
 
     },
     actions: {
         //get artwork from the API
         async getArtworks(ctx) {
-            let artwork = await axios.get('http://localhost:3000/artworks');
-            ctx.commit('setArtwork', artwork.data);
+            let artworks = await axios.get('http://localhost:3000/artworks');
+            ctx.commit('setArtworks', artworks.data);
+            //console.log(artwork.data);
         }
 
     }

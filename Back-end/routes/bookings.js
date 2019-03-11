@@ -1,14 +1,14 @@
-/* Booking route for where is's @ app */
+/* Booking route */
 
 //Models
-let Booking = require('../models/bookings');
+let Booking = require('../models/booking');
 let Artwork = require('../models/artwork');
 
 module.exports.post = async(req, res) => {
     console.log(req.body);
 
     try {
-        // Get event
+        // Get artework
         let artwork = await Artwork.findById(req.body.artwork);
         let booking = [];
 
@@ -37,16 +37,4 @@ module.exports.get = async(req, res) => {
     } catch (err) {
         res.status(500).send(err);
     }
-};
-
-// Unique Ticket ID generator
-function uid(len) {
-    let chars = "ABCDEFGHIJKLMNOPQRSTVWXYZ0123456789";
-    let code = [];
-
-    for (let i = 0; i < len; i++) {
-        let rand = Math.floor(Math.random() * chars.length);
-        code.push(chars[rand]);
-    }
-    return code.join("");
 };

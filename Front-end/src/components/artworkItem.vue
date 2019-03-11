@@ -13,10 +13,19 @@
 
 <script>
 export default {
-    name: 'artwork', 
-    props: ['artwork']
+  name: 'artwork',
+  props: ['artwork'],  
 
+  methods: {
+    selectArtwork(artwork) {
+      this.$store.commit('selectArtwork', artwork);
+      //this.$router.push('/buy');
+    }
+  }
 }
+</script>
+
+
 </script>
 
 <style>
