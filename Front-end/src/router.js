@@ -39,12 +39,6 @@ export default new Router({
             name: 'user',
             component: () =>
                 import ('./views/User.vue')
-        },
-        {
-            path: '/artworks',
-            name: 'artworks',
-            component: () =>
-                import ('./views/Artworks.vue')
         }
 
     ]

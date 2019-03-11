@@ -7,16 +7,7 @@ let artworkSchema = new Schema({
     artist: String, 
     description: String,
     price: Number,
-    when: {
-        date: String,
-        start: String,
-        end: String,
-    },
-    where: {
-        location: String,
-        adress: String,
-    },
-    spot: String,
+    artwork: String
 });
 
 let Artwork = mongoose.model('artwork', artworkSchema);
