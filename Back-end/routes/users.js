@@ -1,30 +1,65 @@
+//All used dependencies are here
 const express = require('express');
-const { check, validationResult } = require('express-validator/check');
+const router = express.Router();
+const bcrypt = require('bcryptjs');
+const passport = require('passport');
+const { body } = require('express-validator/check');
 
 //Get our User Model 
 let User = require('../models/user');
 
-module.exports.post = async (req, res) => {
 
-    try {
+router.post("/register", 
 
-        check('name', 'Name is required').isEmpty();
-        check('email', 'Email is required').isEmpty();
-        check('email', 'Email is not valid').isEmail();
-        check('lastname', 'Last Name is required').isEmpty();
-        check('password', 'Password is required').isEmpty();
+    [
+    body('name')
+        .not().isEmpty().withMessage('Name is required')
+        .isLength({ min: 2 }).withMessage('Name must be at least 2 characters'),
+    body('lastname')
+        .not().isEmpty().withMessage('Last name is required')
+        .isLength({ min: 2 }).withMessage('Last name must be at least 2 characters'),
+    body('email')
+        .not().isEmpty().withMessage('Email is required')
+        .isEmail().withMessage('This is not a valid Email'),
+    body('password')
+        .not().isEmpty().withMessage('Password is required')
+        .isLength({ min: 5 }).withMessage('Password must be at least 5 characters')
+        .custom((value,{req, loc, path}) => {
+            if (value !== req.body.confirm_password) {
+                throw new Error("Passwords don't match");
+            } else {
+                return value;
+            }
+        }),
+    body('confirm_password')
+        .not().isEmpty().withMessage('Password is required')
+        .isLength({ min: 5 }).withMessage('Password must be at least 5 characters')
+    ], 
 
-        let resp = await User.create({
-            name: req.body.name,
-            lastname: req.body.lastname,
-            email: req.body.email,
-            password: req.body.password
-        });
-        res.status(200).send(resp);
+    (req, res) => {
 
-    } catch (errors) {
-        console.log(errors.message);
-        res.status(400).send(errors.message);
-    }
+        // return validation results
+        var errors = req.validationErrors();
 
-};
+        if(errors){
+
+            console.log(errors);
+            res.status(400).send(errors);
+    
+          } else {
+        
+            let resp =  User.create({
+                name: req.body.name,
+                lastname: req.body.lastname,
+                email: req.body.email,
+                password: req.body.password,
+                confirm_password: req.body.confirm_password
+            }).then(console.log("User posted to database", resp));
+    
+            res.status(200).json(({ resp }));
+            console.log(resp);
+        }
+    });
+  
+
+module.exports = router;

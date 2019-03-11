@@ -22,9 +22,7 @@ mongoose.connect(`mongodb+srv://Admin1:${process.env.PASSWORD}@cluster0-y175r.mo
 
 //Routes 
 let users = require('./routes/users');
-
-app.route('/register')
-.post(users.post)
+app.use('/users', users);
 
 app.listen(3000, () => {
     console.info('Server is running: using port 3000.')
