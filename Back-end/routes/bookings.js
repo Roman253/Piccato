@@ -1,14 +1,14 @@
 /* Booking route for where is's @ app */
 
 //Models
-let Booking = require('../models/bookings');
+let Booking = require('../models/booking');
 let Artwork = require('../models/artwork');
 
 module.exports.post = async(req, res) => {
     console.log(req.body);
 
     try {
-        // Get event
+        // Get artework
         let artwork = await Artwork.findById(req.body.artwork);
         let booking = [];
 
