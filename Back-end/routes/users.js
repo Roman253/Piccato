@@ -1,8 +1,6 @@
 //All used dependencies are here
 const express = require('express');
 const router = express.Router();
-const bcrypt = require('bcryptjs');
-const passport = require('passport');
 const { body } = require('express-validator/check');
 
 //Get our User Model 
@@ -34,11 +32,18 @@ router.post("/register",
     body('confirm_password')
         .not().isEmpty().withMessage('Password is required')
         .isLength({ min: 5 }).withMessage('Password must be at least 5 characters')
+        .custom((value,{req, loc, path}) => {
+            if (value !== req.body.password) {
+                throw new Error("Passwords don't match");
+            } else {
+                return value;
+            }
+        }),
     ], 
 
     async (req, res) => {
 
-        // return validation results
+        // return validation errors
         var errors = req.validationErrors();
 
         if(errors){

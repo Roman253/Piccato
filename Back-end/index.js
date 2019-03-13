@@ -22,6 +22,7 @@ mongoose.connect(`mongodb+srv://Admin1:${process.env.PASSWORD}@cluster0-y175r.mo
 // Routes
 let booking = require('./routes/bookings');
 let artwork = require('./routes/artworks');
+let users = require('./routes/users');
 
 app.route('/bookings')
     .post(booking.post);
@@ -30,8 +31,6 @@ app.route('/artworks')
     .post(artwork.post)
     .get(artwork.get);
 
-//Routes 
-let users = require('./routes/users');
 app.use('/users', users);
 
 app.listen(3000, () => {
