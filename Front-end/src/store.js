@@ -30,6 +30,11 @@ export default new Vuex.Store({
             }
         },
 
+        async deleteArtwork(ctx, artwork) {
+            // console.log(id)
+            await axios.delete('http://localhost:3000/artworks/', artwork);
+        },
+
 
         //get artwork from the API
         async getArtworks(ctx) {

@@ -8,6 +8,8 @@
 
     <artworkItem v-for="artwork in filterArtwork" :key="artwork.id" :artwork="artwork"/>
   
+
+
   </article>
 </template>
 
