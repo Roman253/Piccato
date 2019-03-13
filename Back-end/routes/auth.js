@@ -7,8 +7,9 @@ const User = require('../models/user');
 module.exports.post = async (req, res) => {
 
     let user = await User.findOne({ email: req.body.email });
+    console.log(user);
     let match = await bcrypt.compare(req.body.password, user.password);
-
+    
     if (match){
 
         const token = jwt.sign({ uid: user.uid }, process.env.SECRET);

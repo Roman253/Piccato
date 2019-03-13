@@ -61,8 +61,8 @@ router.post("/register",
     async (req, res) => {
 
 // Here the code will post to our databse IF there arent any errors in the validation check
-// If there any errors they will be sent to the console and even as a status code
-// Otherwise if there arent any errors the new user will be created, the password will be encrypted before posting
+// If there any errors they will be sent to the console and even as a status code but nothing will be sent to the Database
+// Otherwise if there arent any errors the new user will be createdn and POSTED to the database, the password will be encrypted before posting
 // to our database. The result is also shown in our console and sent as a status 200 to our server
 
         // return validation errors
@@ -75,7 +75,7 @@ router.post("/register",
     
           } else {
             
-            var resp =  await User.create({
+            let user =  await User.create({
                 uid: uuid(),
                 role: req.body.role,
                 name: req.body.name,
@@ -84,8 +84,8 @@ router.post("/register",
                 password: await bcrypt.hash(req.body.password, 10)
             })
     
-            res.status(200).json(({ resp }));
-            console.log(resp);
+            res.status(200).send(user);
+            console.log(user);
 
         }
     });

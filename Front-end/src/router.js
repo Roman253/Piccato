@@ -17,7 +17,16 @@ let router = new Router({
             component: () =>
                 import ('./views/Admin.vue'),
             meta: {
-                requiresAuth: true
+                requiresAuth: true,
+                requiresAdmin: true
+            },
+            beforeEnter: (to, from, next) => {
+
+                if (to.matched.some(record => record.meta.requiresAdmin) && !auth.isAdmin()) {
+                    next({ path: '/login'});
+                } else {
+                    next();
+                }
             }
         },
         {
@@ -45,6 +54,15 @@ let router = new Router({
                 import ('./views/User.vue'),
             meta: {
                 requiresAuth: true
+            },
+            beforeEnter: (to, from, next) => {
+
+                if (to.matched.some(record => record.meta.requiresAuth) && !auth.isAuthenticated()){
+                    next({ path: '/login'});
+                } 
+                else {
+                    next();
+                }
             }
         }
 
@@ -53,13 +71,8 @@ let router = new Router({
 
 });
 
-router.beforeEach((to, from, next) => {
-    if (to.matched.some(record => record.meta.requiresAuth) && !auth.isAuthenticated()){
-        next({ path: '/login'});
-    } else {
-        next();
-    }
-})
+
+
 
 export default router;
 

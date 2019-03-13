@@ -39,6 +39,8 @@
         </tbody>
       </table>
       </section>
+
+      <a href="#" class="btn" @click="logout" >Logout</a>
  
     </section>
   </main>
@@ -55,6 +57,12 @@ export default {
   computed: {
     artworks() {
       return this.$store.state.artwork;
+    }
+  },
+  methods: {
+     logout (){
+          this.$store.dispatch('logout');
+          this.$router.push('/login');
     }
   }
 }

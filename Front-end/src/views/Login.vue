@@ -2,9 +2,8 @@
       <main class="login">
         <article class="model">
           <figure>
-
           </figure>
-          <input v-model="username" type="text" class="username" placeholder="username" :class="{ valid: validUsername, rejected : rejected}">
+          <input v-model="email" type="text" class="email" placeholder="email" :class="{ valid: validUsername, rejected : rejected}">
           <input v-model="password" type="password" placeholder="password" :class="{ valid: validPassword }">
           <a href="#" class="btn" @click="login" :class="{ ready: validPassword && validUsername }">Login</a>
         </article>
@@ -17,7 +16,7 @@ export default {
     name: 'login',
     data(){
       return {
-        username: '',
+        email: '',
         password: '',
         validUsername: false,
         validPassword: false
@@ -27,13 +26,12 @@ export default {
       login(){
         if(this.validUsername && this.validPassword){
 
-          this.$store.dispatch('login', {username: this.username, password: this.password});
-          this.$router.push('/admin');
+          this.$store.dispatch('login', {email: this.email, password: this.password});
         }
       }
     },
     watch: {
-      username(val){
+      email(val){
         if(val.length > 3 ){
           this.validUsername = true;
         } else {
@@ -53,8 +51,8 @@ export default {
           return this.$store.state.rejected;
         }
     }
-
 }
+
 </script>
 
 <style>

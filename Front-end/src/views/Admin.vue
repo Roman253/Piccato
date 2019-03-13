@@ -40,6 +40,7 @@
         </tbody>
       </table>
       </section>
+       <a href="#" class="btn" @click="logout" >Logout</a>
        <section>
 
          <h3>Add new Artwork</h3>
@@ -82,6 +83,10 @@ methods: {
     async createArtwork(){
       this.$store.dispatch('createArtwork', this.newArtwork);
       this.$store.dispatch("getArtwork");
+    }, 
+    logout (){
+          this.$store.dispatch('logout');
+          this.$router.push('/login');
     }
   },
   computed: {

@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import Axios from 'axios';
+import Axios from 'axios'
+import router from './router';
 
 Vue.use(Vuex)
 
@@ -9,7 +10,7 @@ export default new Vuex.Store({
     apiUrl: 'http://localhost:3000',
     artwork:{},
     artworks: [],
-    activeUser: '',
+    activeUser: null,
     rejected: false
   },
   mutations: {
@@ -34,18 +35,24 @@ export default new Vuex.Store({
 
   async login(ctx, loginData){
 
-
     try {
 
-      let token = await Axios.post(`${ctx.state.apiUrl}/auth`, loginData);
-      
-      console.log(token);
+        await Axios.post(`${ctx.state.apiUrl}/auth`, loginData)
+        .then(response => {
 
-      sessionStorage.setItem('loginToken', token.data.authToken);
+          console.log(response.data);
+          console.log(loginData);
+          ctx.commit('setActiveUser', response.data.email);
+          sessionStorage.setItem('loginToken', response.data.authToken );
 
-      ctx.commit('setActiveUser', token.username);
 
-      ctx.dispatch('getItems');
+          if(response.data.role === 'admin') {
+            sessionStorage.setItem('isAdmin', response.data.role );
+            router.push('/admin');
+          } else {
+            router.push('/user');
+          }
+      })
 
     } catch(err) {
 
@@ -56,6 +63,14 @@ export default new Vuex.Store({
 
         console.error(err);
     }
+  },
+
+   async logout (ctx){
+
+    sessionStorage.clear();
+
+    ctx.commit('setActiveUser', null);
+
   }
 
   }
