@@ -1,7 +1,10 @@
 //All used dependencies are here
 const express = require('express');
 const router = express.Router();
+const bcrypt = require('bcrypt');
+const uuid = require('uuid/v4');
 const { body } = require('express-validator/check');
+
 
 //Get our User Model 
 let User = require('../models/user');
@@ -54,11 +57,12 @@ router.post("/register",
           } else {
             
             var resp =  await User.create({
+                uid: uuid(),
+                role: req.body.role,
                 name: req.body.name,
                 lastname: req.body.lastname,
                 email: req.body.email,
-                password: req.body.password,
-                confirm_password: req.body.confirm_password
+                password: await bcrypt.hash(req.body.password, 10)
             })
     
             res.status(200).json(({ resp }));
