@@ -31,6 +31,7 @@ app.listen(3000, () => {
 let booking = require('./routes/bookings');
 let artwork = require('./routes/artworks');
 let users = require('./routes/users');
+let auth = require('./routes/auth');
 
 app.route('/bookings')
     .post(booking.post);
@@ -39,5 +40,19 @@ app.route('/artworks')
     .post(artwork.post)
     .get(artwork.get);
 
+app.route('/auth')
+    .post(auth.post)
+
 app.use('/users', users);
+
+app.use((req, res, next) => {
+    
+    console.log(req.headers);
+
+    if(auth.verifyToken(req.headers.authorization)){
+        next()
+    } else {
+        res.status(403).send('Access denied')
+    }
+})
 

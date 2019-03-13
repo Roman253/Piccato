@@ -1,10 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
+import auth from './auth';
 
 Vue.use(Router)
 
-export default new Router({
+let router = new Router({
     routes: [{
             path: '/',
             name: 'home',
@@ -14,7 +15,10 @@ export default new Router({
             path: '/admin',
             name: 'admin',
             component: () =>
-                import ('./views/Admin.vue')
+                import ('./views/Admin.vue'),
+            meta: {
+                requiresAuth: true
+            }
         },
         {
             path: '/booking',
@@ -38,8 +42,25 @@ export default new Router({
             path: '/user',
             name: 'user',
             component: () =>
-                import ('./views/User.vue')
+                import ('./views/User.vue'),
+            meta: {
+                requiresAuth: true
+            }
         }
 
-    ]
+    ],
+
+
+});
+
+router.beforeEach((to, from, next) => {
+    if (to.matched.some(record => record.meta.requiresAuth) && !auth.isAuthenticated()){
+        next({ path: '/login'});
+    } else {
+        next();
+    }
 })
+
+export default router;
+
+

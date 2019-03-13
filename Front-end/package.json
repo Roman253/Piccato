@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "cors": "^2.8.5",
     "v-calendar": "^0.9.7",
     "vue": "^2.6.6",
     "vue-router": "^3.0.1",
@@ -31,7 +32,7 @@
       "node": true
     },
     "extends": [
-      "plugin:vue/recommended",
+      "plugin:vue/essential",
       "eslint:recommended"
     ],
     "parserOptions": {
