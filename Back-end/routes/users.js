@@ -21,11 +21,18 @@ router.post("/register",
         .isLength({ min: 2 }).withMessage('Last name must be at least 2 characters'),
     body('email')
         .not().isEmpty().withMessage('Email is required')
-        .isEmail().withMessage('This is not a valid Email'),
-    body('password')
+        .isEmail().withMessage('This is not a valid Email')
+        .custom( value => {
+            return User.findOne({email: value}).then(user => {
+              if (user) {
+                return Promise.reject('E-mail already in use');
+              } 
+            });
+        }),
+         body('password')
         .not().isEmpty().withMessage('Password is required')
         .isLength({ min: 5 }).withMessage('Password must be at least 5 characters')
-        .custom((value,{req, loc, path}) => {
+        .custom((value, {req}) => {
             if (value !== req.body.confirm_password) {
                 throw new Error("Passwords don't match");
             } else {
@@ -35,13 +42,13 @@ router.post("/register",
     body('confirm_password')
         .not().isEmpty().withMessage('Password is required')
         .isLength({ min: 5 }).withMessage('Password must be at least 5 characters')
-        .custom((value,{req, loc, path}) => {
+        .custom((value, {req}) => {
             if (value !== req.body.password) {
                 throw new Error("Passwords don't match");
             } else {
                 return value;
             }
-        }),
+        })
     ], 
 
     async (req, res) => {
