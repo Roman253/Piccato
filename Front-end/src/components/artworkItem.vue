@@ -1,40 +1,49 @@
 <template>
   <div class="media">
-    <img class="media-object" :src="url" />
-    <p>{{artwork.title}}</p>
-    <artworkDesc
-      class="artworksDesc"
-      v-for="artwork in artworkDesc"
-     
-      :key="artwork.id"
-      :artwork="artwork"
-    />
+    <img
+      class="media-object"
+      :src="getImgUrl(artwork)"
+      v-bind:alt="artwork.title"
+      @click="$router.push(`/artworkItem/${artwork._id}/artworkDesc/`)"
+    >
+    <router-view/>
   </div>
 </template>
 
 <script>
-// @click="$router.push(`/artworkItem/${artwork.id}/artworkDesc/${artworkDesc.id}`)"
+import artworkDesc from "@/components/artworkDesc";
+
 export default {
   name: "artwork",
-  props: ["artwork"], 
-  data: {
-    url : this.$store.state.artworks.artwork
-  },      
-
+  props: ['artwork'],
   methods: {
     selectArtwork(artwork) {
-      this.$store.commit("selectArtwork", artwork);
-      //this.$router.push('/buy');
+      //this.$store.commit("selectArtwork", artwork);
+    },
+    getImgUrl(artwork) {
+      //an if - if the img are Url ore in assets
+      return this.artwork.artworkUrl;
+      //return require('../assets/'+artwork.artworkUrl+".jpeg");
     }
+  } 
+  ,
+
+  computed: {
+    
+    artworkInfo(){
+      return this.$store.getters.artwork;
+    }
+    
   }
-};
+
+}
 </script>
 
 <style>
 .media {
   display: flex;
   align-items: flex-start;
-  background: #f6f3eb;
+  background: #d9fbff;
   padding: 1em;
   border-radius: 10px;
   color: black;
@@ -44,7 +53,17 @@ export default {
   margin-bottom: 10px;
 }
 .media-object {
-  margin: 1em;
+  margin-right: 1em;
   width: 100%;
 }
+.media-body {
+  flex: 1;
+}
+.media-heading {
+  margin: 0 0 0.5em;
+}
+.media-p {
+  max-width: 100%;
+}
 </style>
+

@@ -23,13 +23,13 @@ export default new Router({
         children:
             [
                 {
-                    path: 'artworkItem/:id',
+                    path: 'artworkItem/:_id',
                     name: 'artworkItem',
                     component: () => import('./components/artworkItem.vue'),
                     children:
                         [
                             {
-                                path: 'artworkDesc/:artworkDescId',
+                                path: 'artworkDesc/:_id',
                                 name: 'artworkDesc',
                                 component: () => import('./components/artworkDesc.vue')
                             }

@@ -1,6 +1,8 @@
 <template>
   <div class="media-body">
-    <h3 class="media-heading">Title: {{artwork.title}}</h3>
+    <h3 class="media-heading">
+      Title: {{artwork.title}}
+    </h3>
     <p class="media-p">
       Artist: {{artwork.artist}}
       <br>
@@ -8,22 +10,24 @@
       <br>
       Description: {{artwork.description}}
     </p>
+     <p>Button</p> 
   </div>
 </template>
 
 <script>
 export default {
-    name:'desc',
-    computed: {
-        desc() {
-            return this.$store.getters.getDescById(this.$route.params.descId);
-        }
+  name: "artworkDesc",
+  prop: ['artworkDesc'],
+  computed: {
+    artworkDesc() {
+      return this.$store.getters.getArtworkDescById(this.$route.params.descId);
     }
+  }
 };
 </script>
 
 <style>
-.media-body {
+.media-body1 {
   flex: 1;
   background: red;
 }

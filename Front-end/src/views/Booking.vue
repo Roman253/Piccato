@@ -1,25 +1,15 @@
 <template>
   <article id="booking">
     <h2>Choose artwork to rent</h2>
-
     <section class="search">
       <input class="inputsearch" type="text" v-model="search" placeholder="Search for Artwork">
     </section>
-
-    <artworkItem
-      class="artworks"
-      v-for="artwork in filterArtwork"
-      @click="$router.push(`/artworkItem/${artwork.id}`)"
-      :key="artwork.id"
-      :artwork="artwork"
-    />
-    <router-view/>
+    <artworkItem v-for="artwork in filterArtwork" :key="artwork.id" :artwork="artwork"/>
   </article>
 </template>
 
 <script>
 import artworkItem from "@/components/artworkItem";
-
 export default {
   name: "artworks",
   data() {
@@ -46,7 +36,6 @@ export default {
 
 <style lang="scss">
 @import "../scss/main.scss";
-
 #booking {
   input {
     font-size: 1.1rem;
@@ -56,11 +45,17 @@ export default {
     border: none;
     border-radius: 10px;
   }
-
   .search {
     margin: 1.3rem;
   }
 }
 </style>
+
+
+
+
+
+
+
 
 
