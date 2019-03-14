@@ -45,7 +45,8 @@ export default new Router({
             name: 'buy',
             component: () =>
                 import ('./views/Buy.vue')
-        }
+        },
+
 
     ]
 })
