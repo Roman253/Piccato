@@ -4,56 +4,57 @@
       class="media-object"
       :src="getImgUrl(artwork)"
       v-bind:alt="artwork.title"
-      @click="$router.push(`/artworkItem/${artwork._id}/artworkDesc/`)"
+      @click="showArtworkInfo(artworkInfo)"
     >
-    <router-view/>
-            <ul><button class="buybutton" @click="selectArtwork(artwork)">Rent this artwork</button></ul>
-
-
+    <artworkinfo class="showArtInfo"/>
+    <router-view/><br>
+    <ul>
+      <div class="buybutton" @click="selectArtwork(artworkInfo)">Rent this artwork</div>
+    </ul>
   </div>
 </template>
 
 <script>
-import artworkDesc from "@/components/artworkDesc";
+//, $router.push(`/booking/artworkItem/${artwork._id}`)
+import artworkinfo from "@/components/artworkInfo";
 
 export default {
   name: "artwork",
-  props: ['artwork'],
+  props: ["artwork"],
+  components: {
+    artworkinfo
+  },
   computed: {
     artworks() {
       return this.$store.state.artworks;
+    },
+    artworkInfo() {
+      return this.$store.getters.getArtworkInfoById(this.$route.params.id)[0];
     }
   },
-
-
   methods: {
     selectArtwork(artwork) {
       this.$store.commit("selectArtwork", artwork);
-      this.$router.push('/buy');
+      this.$router.push("/buy");
     },
     getImgUrl(artwork) {
       //an if - if the img are Url ore in assets
       return this.artwork.artworkUrl;
       //return require('../assets/'+artwork.artworkUrl+".jpeg");
+    }, 
+    showArtworkInfo(artworkInfo) {
+      console.log('hej');
+      showArtInfo:true;
     }
-  } 
-  ,
-
-  computed: {
-    
-    artworkInfo(){
-      return this.$store.getters.artwork;
-    
   }
-
-}
+};
 </script>
 
 <style>
 .media {
   display: flex;
   align-items: flex-start;
-    background: #D9FBFF;;
+  background: #d9fbff;
   padding: 1em;
   border-radius: 10px;
   color: black;
@@ -64,7 +65,7 @@ export default {
 }
 .media-object {
   margin-right: 1em;
-  width: 100%;
+  width: 80%;
 }
 .media-body {
   flex: 1;
@@ -76,22 +77,19 @@ export default {
   max-width: 100%;
 }
 
-   .buybutton {
-    background-color: #008ce6;
-    border: none;
-    border-radius: 6px;
-    font-size: 1rem;
-    font-family: 'Avenir', sans-serif;
-    padding: 5px 12px;
-    color: #fff;
-    cursor: pointer;      
+.buybutton {
+  background-color: #008ce6;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: "Avenir", sans-serif;
+  padding: 5px 12px;
+  color: #fff;
+  cursor: pointer;
 }
 
-   .buybutton:hover {
-    background-color: rgb(36, 172, 196);
-      }
-
-
-
+.buybutton:hover {
+  background-color: rgb(36, 172, 196);
+}
 </style>
 

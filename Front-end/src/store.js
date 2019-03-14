@@ -54,18 +54,14 @@ export default new Vuex.Store({
     artworks(state) {
       return state.artworks;
     },
-
-    /*
     getArtworkById(state) {
       return (artworkId) => {
         return state.artworks.filter(artwork => artwork.id == artworkId);
       }
     },
-    */
-
-    getArtworkDescById(state){
+    getArtworkInfoById(state){
       return (artworkId) => {
-        return state.artwork.filter(artwork => artwork.id == artworkId);
+        return state.artworks.filter(artwork => artwork.id == artworkId);
       }
     }
 

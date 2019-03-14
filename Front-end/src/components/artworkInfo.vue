@@ -1,8 +1,6 @@
 <template>
-  <div class="media-body">
-    <h3 class="media-heading">
-      Title: {{artwork.title}}
-    </h3>
+  <div class="media-body1">
+    <h3 class="media-heading">Title: {{artwork.title}}</h3>
     <p class="media-p">
       Artist: {{artwork.artist}}
       <br>
@@ -10,17 +8,17 @@
       <br>
       Description: {{artwork.description}}
     </p>
-     <p>Button</p> 
+    <p>Button</p>
   </div>
 </template>
 
 <script>
 export default {
-  name: "artworkDesc",
-  prop: ['artworkDesc'],
+  name: "artworkinfo",
+  prop: ["artworkinfo"],
   computed: {
-    artworkDesc() {
-      return this.$store.getters.getArtworkDescById(this.$route.params.descId);
+    artwork() {
+      return this.$store.state.artwork;
     }
   }
 };

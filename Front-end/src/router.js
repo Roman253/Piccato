@@ -26,15 +26,7 @@ export default new Router({
                     path: 'artworkItem/:_id',
                     name: 'artworkItem',
                     component: () => import('./components/artworkItem.vue'),
-                    children:
-                        [
-                            {
-                                path: 'artworkDesc/:_id',
-                                name: 'artworkDesc',
-                                component: () => import('./components/artworkDesc.vue')
-                            }
-                        ]
-
+                    
                 }
 
             ]
@@ -56,12 +48,12 @@ export default new Router({
         name: 'user',
         component: () =>
             import('./views/User.vue')
-        },
-        {
-            path: '/buy',
-            name: 'buy',
-            component: () =>
-                import ('./views/Buy.vue')
+    },
+    {
+        path: '/buy',
+        name: 'buy',
+        component: () =>
+            import('./views/Buy.vue')
     }
 
     ]

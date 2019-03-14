@@ -6,8 +6,8 @@ let bookingSchema = new Schema({
     artwork: Object,
     user: Object,
     booking: {
-        from: String,
-        to: String
+        start: String,
+        end: String
     }
 });
 

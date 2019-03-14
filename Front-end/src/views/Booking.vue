@@ -5,8 +5,6 @@
       <input class="inputsearch" type="text" v-model="search" placeholder="Search for Artwork">
     </section>
     <artworkItem v-for="artwork in filterArtwork" :key="artwork.id" :artwork="artwork"/>
-
-
   </article>
 </template>
 
