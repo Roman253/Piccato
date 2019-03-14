@@ -1,0 +1,65 @@
+$baseline: 1.8rem;
+
+$green: rgb(39, 155, 101);
+$red: rgb(209, 62, 62);
+$white: #EEF0F2;
+
+%center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+%buttons {
+    height: $baseline *1.8;
+    background: $red;
+    color: rgba($color: #FFF, $alpha: .6);
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 1.2rem;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    margin-top: 0.8rem;
+
+    &.ready {
+        background: $green;
+        color: rgba($color: #FFF, $alpha: 1);
+    }
+}
+
+%inputs {
+
+    padding: 1rem;
+    border: none;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+    transition: background .2s ease;
+
+    &:focus {
+        outline: none;
+        background: rgba($color: $white, $alpha: .9);
+    }
+
+    &.valid {
+        background: rgba($color: $green, $alpha: .4);
+    }
+}
+
+// Transition effects
+
+.fade-enter-active,
+.fade-leave-active {
+    transition-property: opacity;
+    transition-duration: .25s;
+}
+
+.fade-enter-active {
+    transition-delay: .25s;
+}
+
+.fade-enter,
+.fade-leave-active {
+    opacity: 0
+}
+
+// Transition effects
