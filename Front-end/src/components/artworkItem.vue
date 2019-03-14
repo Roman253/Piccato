@@ -5,7 +5,8 @@
       <h3 class="media-heading">Title: {{artwork.title}}</h3>
       <p class="media-p">Artist: {{artwork.artist}}<br>
       Price: {{artwork.price}}:- <br>
-      Description: {{artwork.description}} 
+      Description: {{artwork.description}} <br>
+
       </p>
     </div>
   </div>
@@ -20,7 +21,8 @@ export default {
     selectArtwork(artwork) {
       this.$store.commit('selectArtwork', artwork);
       //this.$router.push('/buy');
-    }
+    },
+
   }
 }
 </script>
@@ -29,7 +31,7 @@ export default {
   .media {
     display: flex;
     align-items: flex-start;
-    background: #F6F3EB;
+    background: #D9FBFF;;
     padding: 1em;
     border-radius: 10px;
     color: black;
