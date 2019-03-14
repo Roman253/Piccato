@@ -45,8 +45,14 @@ let router = new Router({
             path: '/login',
             name: 'login',
             component: () =>
-                import ('./views/Login.vue')
+                import ('./views/Login.vue'),
+    
         },
+        {
+            path: '/registration', 
+            name: 'registration',
+            component: () => import('./components/Registration.vue'),
+          },
         {
             path: '/user',
             name: 'user',

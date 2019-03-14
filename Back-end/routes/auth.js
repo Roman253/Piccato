@@ -6,20 +6,29 @@ const User = require('../models/user');
 
 module.exports.post = async (req, res) => {
 
-    let user = await User.findOne({ email: req.body.email });
-    console.log(user);
-    let match = await bcrypt.compare(req.body.password, user.password);
-    
-    if (match){
+        let user = await User.findOne({ email: req.body.email });
+        console.log(user);
 
-        const token = jwt.sign({ uid: user.uid }, process.env.SECRET);
+        if(!user){
+            
+            res.status(402).send("The user does not exist");
+            console.log("The user does not exist");
 
-        res.status(200).send({ email: user.email, role: user.role, authToken: token});
+        } if(user){
 
-    } else {
+            var match = await bcrypt.compare(req.body.password, user.password);
 
-        res.status(402).send('Authentication failed!')
-    }
+            if (match){
+
+                const token = jwt.sign({ uid: user.uid }, process.env.SECRET);
+                res.status(200).send({ email: user.email, role: user.role, authToken: token});
+
+            } else {
+
+                res.status(402).send("Password is not valid");
+                console.log("Password is not valid");
+            }
+        } 
 }
 
 module.exports.isAdmin = async (authtoken) => {

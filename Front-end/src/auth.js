@@ -17,5 +17,4 @@ module.exports.isAdmin = () => {
         console.log('No admin');
         return false;
     }
-    
 }
