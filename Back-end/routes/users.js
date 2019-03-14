@@ -36,7 +36,7 @@ router.post("/register",
         .isLength({ min: 5 }).withMessage('Password must be at least 5 characters')
     ], 
 
-    (req, res) => {
+    async (req, res) => {
 
         // return validation results
         var errors = req.validationErrors();
@@ -47,17 +47,18 @@ router.post("/register",
             res.status(400).send(errors);
     
           } else {
-        
-            let resp =  User.create({
+            
+            var resp =  await User.create({
                 name: req.body.name,
                 lastname: req.body.lastname,
                 email: req.body.email,
                 password: req.body.password,
                 confirm_password: req.body.confirm_password
-            }).then(console.log("User posted to database", resp));
+            })
     
             res.status(200).json(({ resp }));
             console.log(resp);
+
         }
     });
   
