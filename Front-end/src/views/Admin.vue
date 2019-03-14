@@ -3,6 +3,8 @@
     <h2> Admin </h2>
 
 
+
+<h3>  Manage bookings </h3>
       <section class="artworklist">
       <table cellspacing="0">
         <thead>
@@ -18,7 +20,28 @@
           <tr v-for="artwork in artworks" :key="artwork._title" :artwork="artwork">
           <td> {{artwork.title}}  </td>
           <td> {{artwork.artist}} </td>
-          <td> <button @click="artwork; deleteArtwork()">X</button> </td>
+          <td> <button @click="deleteArtwork(artwork, artwork._id)">X</button> </td>
+          </tr>
+
+        </tbody>
+      </table>
+      </section>
+
+<h3> Manage Artworks </h3>
+            <section class="artworklist">
+      <table cellspacing="0">
+        <thead>
+          <tr>
+            <th>Artwork</th>
+            <th>Remove Artwork</th>
+
+          </tr>
+        </thead>
+        <!-- Import artworks from DB -->
+        <tbody> 
+          <tr v-for="artwork in artworks" :key="artwork._title" :artwork="artwork">
+          <td> {{artwork.title}}  </td>
+          <td> <button @click="deleteArtwork(artwork._id)">X</button> </td>
           </tr>
 
         </tbody>
@@ -35,9 +58,9 @@
           <input type="text" placeholder="Artist" v-model="newArtwork.artist">
           <input type="text" placeholder="Price" v-model="newArtwork.price">
           <input type="text" placeholder="Description" v-model="newArtwork.description">
-          <input type="text" placeholder="Image URL" v-model="newArtwork.imgurl">
+          <input type="text" placeholder="Image URL" v-model="newArtwork.artworkUrl">
 
-          <a href="#" class="btnAddArt" @click="createArtwork">Add artwork</a>
+          <a href="#" class="btnAddArt" @click="createArtwork">Add Artwork</a>
         </section>
       </section>
 
@@ -60,10 +83,10 @@ export default {
             search: "",
     newArtwork: {
         title: "",
+        artworkUrl: "",
         artist: "",
         price: "",
-        imgurl: "",
-        size: "",
+        description: "",
 
         }
         }
@@ -75,8 +98,11 @@ methods: {
       this.$store.dispatch("getArtworks");
     },
 
-          deleteArtwork() {
-           this.$store.dispatch('deleteArtwork', this.artwork);
+          deleteArtwork(id) {
+          this.$store.dispatch('deleteArtwork', id);
+          this.$store.dispatch('getArtworks');
+          this.$router.push("/Admin");
+
       }
   },
 
@@ -108,6 +134,7 @@ margin: 0 auto;
     display: grid;
     background: rgb(91, 217, 255);
     padding: 2rem;
+    margin-top: -10px;
 
   }
 

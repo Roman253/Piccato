@@ -15,7 +15,10 @@ export default new Vuex.Store({
         //update array with artworks
         setArtworks(state, artworks) {
             state.artworks = artworks;
-        }
+        },
+        selectArtwork(state, artwork) {
+            state.artwork = artwork;
+        },
 
     },
     actions: {
@@ -30,9 +33,9 @@ export default new Vuex.Store({
             }
         },
 
-        async deleteArtwork(ctx, artwork) {
+        async deleteArtwork(ctx, id) {
             // console.log(id)
-            await axios.delete('http://localhost:3000/artworks/', artwork);
+            await axios.delete(`http://localhost:3000/artworks/${id}`);
         },
 
 

@@ -7,7 +7,7 @@ let artworkSchema = new Schema({
     artist: String,
     description: String,
     price: Number,
-    artwork: String
+    artworkUrl: String,
 });
 
 let Artwork = mongoose.model('artwork', artworkSchema);

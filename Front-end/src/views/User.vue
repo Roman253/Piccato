@@ -1,11 +1,10 @@
 <template>
-  <main id="user">
-    <section class="container">
+  <article id="user">
+    <h2> User </h2>
+    <h3> Manage your bookings </h3>
 
-<h2> User page </h2>
-<h3>See your bookings and rentals here </h3>
 
-      <section class="artworks">
+      <section class="artworklist">
       <table cellspacing="0">
         <thead>
           <tr>
@@ -17,80 +16,72 @@
         </thead>
         <!-- Import artworks from DB -->
         <tbody> 
-          <tr>
-          <td> Curios Cat  </td>
-          <td> 2019-03-10 - 2019-03-11 </td>
-          <td> X </td>
-          </tr>
-
-          <tr>
-          <td> Curios Cat  </td>
-          <td> 2019-03-22 - 2019-03-24 </td>
-          <td> X </td>
-          </tr>
-
-
-
           <tr v-for="artwork in artworks" :key="artwork._title" :artwork="artwork">
-            <td>{{artwork.title}}</td>
-            <td>{{booked.date}} </td>
-
+          <td> {{artwork.title}}  </td>
+          <td> {{artwork.artist}} </td>
+          <td> <button @click="artwork; deleteBooking()">X</button> </td>
           </tr>
+
         </tbody>
       </table>
       </section>
- 
-    </section>
-  </main>
+
+
+  
+  </article>
 </template>
 
-<!-- Functions -->
 <script>
-export default { 
-  name: 'user',
+
+export default {
+    name: 'artworks', 
+    props: ['artwork'],
     beforeMount() {
-    this.$store.dispatch('getArtwork');
+    this.$store.dispatch('getArtworks');
+    },
+    
+    data() {
+        return {
+            artwork: [], 
+            search: "",
+        }
+    }, 
+
+methods: {
+
+      deleteBooking() {
+     this.$store.dispatch('deleteBooking', this.artwork);
+      }
   },
 
-  computed: {
-    artworks() {
-      return this.$store.state.artwork;
-    }
+    computed: {
+        artworks() {
+            return this.$store.state.artworks;
+        }, 
   }
 }
 </script>
 
-
 <style lang="scss">
-@import '../scss/main';
-$baseline: 2.5rem;
-#user {
-  color: black;
-  @extend %center;
+@import '../scss/main.scss';
 
 
-  .container {
-    max-width: 1000px;
-    width:100%;
-
-    h3 {
-      font-size: 1.2rem;
-      color: black;
-      margin-bottom: 1rem;
-    }
-    
-    .artworks {
+    .artworklist {
       background: rgb(91, 217, 255);
       border-radius: 3px;
       padding: 1rem;
       color: black;
+      width: 50%;
+      margin: 0 auto;
+
+    }
       
     table {
       width: 100%;
 
       thead {
         tr {
-          color: rgb(86, 115, 245);
+          color: rgb(101, 90, 255);
           text-transform: uppercase;
 
           th {
@@ -99,7 +90,7 @@ $baseline: 2.5rem;
           }
         }
       }
-    }
+    
     tbody {
 
       tr {
@@ -107,15 +98,35 @@ $baseline: 2.5rem;
           color: black;
            padding: 1rem 0;
            font-size: 1rem;
+           border-bottom: 1px solid rgb(30, 192, 232);
+
 
            }
 
       }
-    }
-  
-  
+    } }
+    
 
-    }}} 
-    
-    
-    </style>
+
+@media only screen and (max-width: 400px) {
+
+.artworklist  {
+  width: 100%;
+}
+
+table {
+  font-size: .7rem;
+  text-align: left;
+}
+
+td {
+  font-size: .5rem;
+}
+
+}
+
+
+
+</style>
+
+
