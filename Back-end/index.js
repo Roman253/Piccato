@@ -24,11 +24,20 @@ let booking = require('./routes/bookings');
 let artwork = require('./routes/artworks');
 
 app.route('/bookings')
-    .post(booking.post);
+    .post(booking.post)
+    .get(booking.get)
+    // .delete(booking.delete)
 
 app.route('/artworks')
     .post(artwork.post)
-    .get(artwork.get);
+    .get(artwork.get)
+    //   .delete(artwork.delete)
+
+app.route('/artworks/:artworkId')
+    //  .delete(artwork.delete)
+
+
+
 
 //Routes 
 let users = require('./routes/users');

@@ -7,6 +7,9 @@
       @click="$router.push(`/artworkItem/${artwork._id}/artworkDesc/`)"
     >
     <router-view/>
+            <ul><button class="buybutton" @click="selectArtwork(artwork)">Rent this artwork</button></ul>
+
+
   </div>
 </template>
 
@@ -16,9 +19,17 @@ import artworkDesc from "@/components/artworkDesc";
 export default {
   name: "artwork",
   props: ['artwork'],
+  computed: {
+    artworks() {
+      return this.$store.state.artworks;
+    }
+  },
+
+
   methods: {
     selectArtwork(artwork) {
-      //this.$store.commit("selectArtwork", artwork);
+      this.$store.commit("selectArtwork", artwork);
+      this.$router.push('/buy');
     },
     getImgUrl(artwork) {
       //an if - if the img are Url ore in assets
@@ -32,7 +43,6 @@ export default {
     
     artworkInfo(){
       return this.$store.getters.artwork;
-    }
     
   }
 
@@ -43,7 +53,7 @@ export default {
 .media {
   display: flex;
   align-items: flex-start;
-  background: #d9fbff;
+    background: #D9FBFF;;
   padding: 1em;
   border-radius: 10px;
   color: black;
@@ -65,5 +75,23 @@ export default {
 .media-p {
   max-width: 100%;
 }
+
+   .buybutton {
+    background-color: #008ce6;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-family: 'Avenir', sans-serif;
+    padding: 5px 12px;
+    color: #fff;
+    cursor: pointer;      
+}
+
+   .buybutton:hover {
+    background-color: rgb(36, 172, 196);
+      }
+
+
+
 </style>
 
