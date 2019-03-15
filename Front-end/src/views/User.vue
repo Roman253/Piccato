@@ -26,9 +26,8 @@
       </table>
       </section>
 
-
-  
-  </article>
+      <a href="#" class="btn" @click="logout" >Logout</a>
+ </article>
 </template>
 
 <script>
@@ -54,10 +53,16 @@ methods: {
       }
   },
 
-    computed: {
-        artworks() {
-            return this.$store.state.artworks;
-        }, 
+  computed: {
+    artworks() {
+      return this.$store.state.artwork;
+    }
+  },
+  methods: {
+     logout (){
+          this.$store.dispatch('logout');
+          this.$router.push('/login');
+    }
   }
 }
 </script>

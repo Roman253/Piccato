@@ -45,6 +45,7 @@
         </tbody>
       </table>
     </section>
+       <a href="#" class="btn" @click="logout" >Logout</a>
 
     <section class="addArt">
       <h3>Add new Artwork</h3>
@@ -85,17 +86,19 @@ export default {
     };
   },
 
-  methods: {
-    async createArtwork() {
-      this.$store.dispatch("createArtwork", this.newArtwork);
+methods: {
+    async createArtwork(){
+      this.$store.dispatch('createArtwork', this.newArtwork);
       this.$store.dispatch("getArtworks");
+    }, 
+    logout (){
+          this.$store.dispatch('logout');
+          this.$router.push('/login');
     },
-
-    deleteArtwork(id) {
+        deleteArtwork(id) {
       this.$store.dispatch("deleteArtwork", id);
       this.$store.dispatch("getArtworks");
       this.$router.push("/Admin");
-    }
   },
 
   computed: {
@@ -107,8 +110,8 @@ export default {
         return artwork.title.toLowerCase().match(this.search.toLowerCase());
       });
     }
-  }
-};
+  },
+} }
 </script>
 
 <style lang="scss">

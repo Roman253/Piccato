@@ -6,9 +6,6 @@
       <router-link to="/booking">Booking</router-link> 
       <router-link to="/user">User</router-link> 
       <router-link to="/admin">Admin</router-link> 
-
-
-
     </div>
     <router-view/>
   </div>
@@ -21,12 +18,17 @@ export default {
   //before the page load this function connects to store and gets the API
   beforeMount() {
     this.$store.dispatch('getArtworks')
+  },
+  computed: {
+
+    user(){
+      return this.$store.state.activeUser;
+    }
   }
 }
 </script>
 
 
 <style lang="scss">
-@import './scss/main.scss';
-
+  @import './scss/main.scss';
 </style>

@@ -18,7 +18,6 @@ module.exports.post = async(req, res) => {
             }
             booking.push(booking);
         
-
         // Posts it into the MongoDB
         let resp = await Booking.create(bookings);
         res.status(200).send(resp);
