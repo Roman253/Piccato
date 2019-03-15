@@ -11,19 +11,19 @@ const UserSchema = mongoose.Schema({
         required: true,
         enum: ['admin', 'user']
     },
-    name:{
+    name: {
         type: String,
         required: true
     },
-    lastname:{
+    lastname: {
         type: String,
         required: true
     },
-    email:{
+    email: {
         type: String,
         required: true
     },
-    password:{
+    password: {
         type: String,
         required: true
     }

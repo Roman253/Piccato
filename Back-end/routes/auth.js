@@ -6,7 +6,9 @@ const User = require('../models/user');
 
 module.exports.post = async(req, res) => {
 
-    let user = await User.findOne({ email: req.body.email });
+    let user = await User.findOne({
+        email: req.body.email
+    });
     console.log(user);
 
     if (!user) {
@@ -21,8 +23,14 @@ module.exports.post = async(req, res) => {
 
         if (match) {
 
-            const token = jwt.sign({ uid: user.uid }, process.env.SECRET);
-            res.status(200).send({ email: user.email, role: user.role, authToken: token });
+            const token = jwt.sign({
+                uid: user.uid
+            }, process.env.SECRET);
+            res.status(200).send({
+                email: user.email,
+                role: user.role,
+                authToken: token
+            });
 
         } else {
 
@@ -36,11 +44,17 @@ module.exports.isAdmin = async(authtoken) => {
 
     let token = await jwt.verify(authtoken.substring(7), process.env.SECRET);
 
-    let user = await User.findOne({ uid: token.uid });
+    let user = await User.findOne({
+        uid: token.uid
+    });
 
     if (user.role === 'admin') {
 
         res.status(200).send({ email: user.email, role: user.role });
+        res.status(200).send({
+            email: user.email,
+            role: user.role
+        });
 
         return true;
 

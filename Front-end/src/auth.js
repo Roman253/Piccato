@@ -1,6 +1,6 @@
 module.exports.isAuthenticated = () => {
-    
-    if(sessionStorage.getItem('loginToken')) {
+
+    if (sessionStorage.getItem('loginToken')) {
 
         return true;
     } else {
@@ -10,7 +10,7 @@ module.exports.isAuthenticated = () => {
 
 module.exports.isAdmin = () => {
 
-    if(sessionStorage.getItem('isAdmin')) {
+    if (sessionStorage.getItem('isAdmin')) {
         console.log('The admin is here bois');
         return true;
     } else {

@@ -7,7 +7,9 @@ const jsonwebtoken = require('jsonwebtoken');
 
 
 // Connect to our DB 
-mongoose.connect(`mongodb+srv://Admin1:${process.env.PASSWORD}@cluster0-y175r.mongodb.net/konstlagret?retryWrites=true`, { useNewUrlParser: true })
+mongoose.connect(`mongodb+srv://Admin1:${process.env.PASSWORD}@cluster0-y175r.mongodb.net/konstlagret?retryWrites=true`, {
+        useNewUrlParser: true
+    })
     .then(() => {
         console.info('Connected to database.')
     })
@@ -36,15 +38,15 @@ let auth = require('./routes/auth');
 app.route('/bookings')
     .post(booking.post)
     .get(booking.get)
-    // .delete(booking.delete)
+// .delete(booking.delete)
 
 app.route('/artworks')
     .post(artwork.post)
     .get(artwork.get)
-    //   .delete(artwork.delete)
+//   .delete(artwork.delete)
 
 app.route('/artworks/:artworkId')
-    //  .delete(artwork.delete)
+//  .delete(artwork.delete)
 
 
 
@@ -55,13 +57,12 @@ app.route('/auth')
 app.use('/users', users);
 
 app.use((req, res, next) => {
-    
+
     console.log(req.headers);
 
-    if(auth.verifyToken(req.headers.authorization)){
+    if (auth.verifyToken(req.headers.authorization)) {
         next()
     } else {
         res.status(403).send('Access denied')
     }
 })
-

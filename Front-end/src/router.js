@@ -23,7 +23,9 @@ let router = new Router({
             beforeEnter: (to, from, next) => {
 
                 if (to.matched.some(record => record.meta.requiresAdmin) && !auth.isAdmin()) {
-                    next({ path: '/login' });
+                    next({
+                        path: '/login'
+                    });
                 } else {
                     next();
                 }
@@ -40,12 +42,6 @@ let router = new Router({
             name: 'calendar',
             component: () =>
                 import ('./views/Calendar.vue')
-        },
-        {
-            path: '/buy',
-            name: 'buy',
-            component: () =>
-                import ('./views/Buy.vue')
         },
         {
             path: '/login',
@@ -71,7 +67,9 @@ let router = new Router({
             beforeEnter: (to, from, next) => {
 
                 if (to.matched.some(record => record.meta.requiresAuth) && !auth.isAuthenticated()) {
-                    next({ path: '/login' });
+                    next({
+                        path: '/login'
+                    });
                 } else {
                     next();
                 }

@@ -1,6 +1,6 @@
 let Artwork = require('../models/artwork');
 
-module.exports.get = async(req, res) => {
+module.exports.get = async (req, res) => {
     try {
         let artwork = await Artwork.find({});
         res.status(200).send(artwork);
@@ -9,7 +9,7 @@ module.exports.get = async(req, res) => {
     }
 };
 
-module.exports.post = async(req, res) => {
+module.exports.post = async (req, res) => {
     try {
         //Handle post
         let artwork = req.body;

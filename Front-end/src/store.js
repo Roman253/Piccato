@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import Vue from 'vue'
 import Vuex from 'vuex'
-import axios from 'axios'
+import Axios from 'axios'
 import router from './router';
 
 Vue.use(Vuex)
@@ -17,8 +17,10 @@ export default new Vuex.Store({
         registrationMessage: '',
         loginError: '',
         thereIsError: true,
+        rejected: false
     },
     mutations: {
+        //update array with artworks
         //update array with artworks
         setArtworks(state, artworks) {
             state.artworks = artworks;
@@ -43,10 +45,10 @@ export default new Vuex.Store({
         }
     },
     actions: {
-
+        //get artwork from the API
         async createArtwork(ctx, artwork) {
             try {
-                await axios.post("http://localhost:3000/artworks", artwork);
+                await Axios.post("http://localhost:3000/artworks", artwork);
                 ctx.dispatch("getArtworks");
             } catch (err) {
                 // eslint-disable-next-line no-console
@@ -55,12 +57,12 @@ export default new Vuex.Store({
         },
         async deleteArtwork(ctx, id) {
             // console.log(id)
-            await axios.delete(`http://localhost:3000/artworks/${id}`);
+            await Axios.delete(`http://localhost:3000/artworks/${id}`);
         },
 
         //get artwork from the API
         async getArtworks(ctx) {
-            let artworks = await axios.get('http://localhost:3000/artworks');
+            let artworks = await Axios.get('http://localhost:3000/artworks');
             ctx.commit('setArtworks', artworks.data);
             //console.log(artwork.data);
         },
@@ -69,7 +71,7 @@ export default new Vuex.Store({
 
             try {
 
-                await axios.post(`${ctx.state.apiUrl}/auth`, loginData)
+                await Axios.post(`${ctx.state.apiUrl}/auth`, loginData)
                     .then(response => {
 
                         console.log(response.data);
@@ -111,6 +113,7 @@ export default new Vuex.Store({
 
             try {
                 await axios.post(`${ctx.state.apiUrl}/users/register`, registrationData)
+                await Axios.post(`${ctx.state.apiUrl}/users/register`, registrationData)
                     .then(response => {
                         console.log(response.data);
                         console.log('Registration successful');

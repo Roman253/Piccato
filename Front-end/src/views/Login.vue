@@ -110,8 +110,8 @@ export default {
     @extend %center;
     text-decoration: none;
     font-size: 1.2rem;
-	color: #fff;
-	margin-top: 0.6rem;
+    color: #fff;
+    margin-top: 0.6rem;
   }
 }
 </style>
