@@ -8,7 +8,9 @@
       <br>
       Description: {{artwork.description}}
     </p>
-    <p>Button</p>
+       
+      <div class="buybutton" @click="selectArtwork(artworkInfo)">Rent this artwork</div>
+
   </div>
 </template>
 
@@ -24,10 +26,12 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+@import '../scss/components';
+
 .media-body1 {
   flex: 1;
-  background: red;
+  background: rgb(142, 135, 226);
 }
 .media-heading {
   margin: 0 0 0.5em;

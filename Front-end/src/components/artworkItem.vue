@@ -1,16 +1,17 @@
 <template>
   <div class="media">
-    <img
-      class="media-object"
-      :src="getImgUrl(artwork)"
-      v-bind:alt="artwork.title"
-      @click="showArtworkInfo(artworkInfo)"
-    >
-    <artworkinfo class="showArtInfo"/>
-    <router-view/><br>
-    <ul>
-      <div class="buybutton" @click="selectArtwork(artworkInfo)">Rent this artwork</div>
-    </ul>
+    <section>
+      <img
+        class="media-object"
+        :src="getImgUrl(artwork)"
+        v-bind:alt="artwork.title"
+        @click="showArtworkInfo(artworkInfo)"
+      >
+    </section>
+    <section>
+      <artworkinfo class="showArtInfo"/>
+      <router-view/>
+    </section>
   </div>
 </template>
 
@@ -41,16 +42,16 @@ export default {
       //an if - if the img are Url ore in assets
       return this.artwork.artworkUrl;
       //return require('../assets/'+artwork.artworkUrl+".jpeg");
-    }, 
+    },
     showArtworkInfo(artworkInfo) {
-      console.log('hej');
-      showArtInfo:true;
+      console.log("hej");
+      showArtInfo: true;
     }
   }
 };
 </script>
 
-<style>
+<style lang="scss">
 .media {
   display: flex;
   align-items: flex-start;
@@ -62,34 +63,20 @@ export default {
   text-align: left;
   margin: 0 auto;
   margin-bottom: 10px;
-}
-.media-object {
-  margin-right: 1em;
-  width: 80%;
-}
-.media-body {
-  flex: 1;
-}
-.media-heading {
-  margin: 0 0 0.5em;
-}
-.media-p {
-  max-width: 100%;
-}
 
-.buybutton {
-  background-color: #008ce6;
-  border: none;
-  border-radius: 6px;
-  font-size: 1rem;
-  font-family: "Avenir", sans-serif;
-  padding: 5px 12px;
-  color: #fff;
-  cursor: pointer;
-}
-
-.buybutton:hover {
-  background-color: rgb(36, 172, 196);
+  .media-object {
+    margin-right: 1em;
+    width: 92%;
+  }
+  .media-body {
+    flex: 1;
+  }
+  .media-heading {
+    margin: 0 0 0.5em;
+  }
+  .media-p {
+    max-width: 100%;
+  }
 }
 </style>
 

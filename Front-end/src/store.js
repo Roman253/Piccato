@@ -84,15 +84,6 @@ export default new Vuex.Store({
             if (response.data.role === 'admin') {
               sessionStorage.setItem('isAdmin', response.data.role);
               router.push('/admin');
-  }, 
-  getters: {
-    
-    artworks(state) {
-      return state.artworks;
-    },
-    getArtworkById(state) {
-      return (artworkId) => {
-        return state.artworks.filter(artwork => artwork.id == artworkId);
             } else {
               router.push('/user');
             }
@@ -137,13 +128,25 @@ export default new Vuex.Store({
       ctx.commit('setLoginError', '');
     }
   }
+
+  ,
+  getters: {
+
+    artworks(state) {
+      return state.artworks;
     },
-    getArtworkInfoById(state){
+    getArtworkById(state) {
+      return (artworkId) => {
+        return state.artworks.filter(artwork => artwork.id == artworkId);
+      }
+    },
+    getArtworkInfoById(state) {
       return (artworkId) => {
         return state.artworks.filter(artwork => artwork.id == artworkId);
       }
     }
 
   }
+
 
 })

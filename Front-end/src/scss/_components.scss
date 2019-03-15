@@ -1,0 +1,60 @@
+%center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+a {
+    &.btn {
+      width: 100%;
+      background: #008ce6;
+      @extend %center;
+      height: 3rem;
+      text-decoration: none;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: white;
+      border-radius: 5px;
+      
+      &:active {
+        background: #3b94af;
+      }
+
+    }
+
+    &.smallbtn {
+        background-color: #15a4cf;
+        border: solid white 2px;
+        color: white;
+        text-decoration: none;
+        padding: .5rem;
+        border-radius: 5px;
+    }
+}
+
+.buybutton {
+    background-color: #008ce6;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-family: "Avenir", sans-serif;
+    padding: 5px 12px;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .buybutton:hover {
+    background-color: rgb(36, 172, 196);
+  }
+
+  
+.infotxt {
+    padding: 0 0.8rem;
+    margin: 1.2rem;
+    border-radius: 10px;
+    background-color: #20b179;
+    border: solid white 2px;
+    max-width: 300px;
+    
+  }
+
