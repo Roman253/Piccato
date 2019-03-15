@@ -4,7 +4,7 @@
 let Booking = require('../models/booking');
 let Artwork = require('../models/artwork');
 
-module.exports.post = async(req, res) => {
+module.exports.post = async (req, res) => {
     console.log(req.body);
 
     try {
@@ -12,12 +12,11 @@ module.exports.post = async(req, res) => {
         let artwork = await Artwork.findById(req.body.artwork);
         let booking = [];
 
-            let bookings = {
-                artwork: artwork
-                
-            }
-            booking.push(booking);
-        
+        let bookings = {
+            artwork: artwork
+
+        }
+        booking.push(booking);
 
         // Posts it into the MongoDB
         let resp = await Booking.create(bookings);
@@ -28,7 +27,7 @@ module.exports.post = async(req, res) => {
 };
 
 //GET
-module.exports.get = async(req, res) => {
+module.exports.get = async (req, res) => {
 
     try {
         let bookings = await Booking.find({});

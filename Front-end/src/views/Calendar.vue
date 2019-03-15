@@ -4,9 +4,6 @@
 
     <div class="calendar">
       <v-date-picker mode="range" v-model="selectedDate" :min-date="new Date()" show-caps></v-date-picker>
-
-
-
     </div>
   </div>
 </template>

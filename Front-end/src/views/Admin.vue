@@ -44,6 +44,7 @@
           </tr>
         </tbody>
       </table>
+      <a href="#" class="btn" @click="logout">Logout</a>
     </section>
 
     <section class="addArt">
@@ -95,6 +96,10 @@ export default {
       this.$store.dispatch("deleteArtwork", id);
       this.$store.dispatch("getArtworks");
       this.$router.push("/Admin");
+    },
+    logout() {
+      this.$store.dispatch("logout");
+      this.$router.push("/login");
     }
   },
 

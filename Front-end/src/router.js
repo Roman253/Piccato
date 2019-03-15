@@ -1,10 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
+import auth from './auth';
 
 Vue.use(Router)
 
-export default new Router({
+let router = new Router({
     routes: [{
         path: '/',
         name: 'home',
@@ -14,7 +15,21 @@ export default new Router({
         path: '/admin',
         name: 'admin',
         component: () =>
-            import('./views/Admin.vue')
+                import('./views/Admin.vue'),
+            meta: {
+                requiresAuth: true,
+                requiresAdmin: true
+            },
+            beforeEnter: (to, from, next) => {
+
+                if (to.matched.some(record => record.meta.requiresAdmin) && !auth.isAdmin()) {
+                    next({
+                        path: '/login'
+                    });
+                } else {
+                    next();
+                }
+            }
     },
     {
         path: '/booking',
@@ -35,26 +50,46 @@ export default new Router({
         path: '/calendar',
         name: 'calendar',
         component: () =>
-            import('./views/Calendar.vue')
+                import('./views/Calendar.vue')
     },
     {
         path: '/login',
         name: 'login',
         component: () =>
-            import('./views/Login.vue')
+                import('./views/Login.vue'),
+
+        },
+        {
+            path: '/registration',
+            name: 'registration',
+            component: () => import('./components/Registration.vue'),
     },
     {
         path: '/user',
         name: 'user',
         component: () =>
-            import('./views/User.vue')
-    },
-    {
-        path: '/buy',
-        name: 'buy',
-        component: () =>
-            import('./views/Buy.vue')
+                import('./views/User.vue'),
+            meta: {
+                requiresAuth: true
+            },
+            beforeEnter: (to, from, next) => {
+
+                if (to.matched.some(record => record.meta.requiresAuth) && !auth.isAuthenticated()) {
+                    next({
+                        path: '/login'
+                    });
+                } else {
+                    next();
+                }
+            }
     }
 
-    ]
-})
+    ],
+
+
+});
+
+
+
+
+export default router;
