@@ -10,6 +10,13 @@ $white: #EEF0F2;
     align-items: center;
 }
 
+%globalFont {
+    // font-family: 'Merienda One', cursive;
+    // font-family: 'Do Hyeon', sans-serif;
+    // font-family: 'Oleo Script', cursive;
+    font-family: 'Monda', sans-serif;
+}
+
 %buttons {
     height: $baseline *1.8;
     background: $red;
@@ -34,10 +41,12 @@ $white: #EEF0F2;
     font-size: 1rem;
     margin-top: 0.5rem;
     transition: background .2s ease;
+    color: black;
+    font-weight: bolder;
 
     &:focus {
         outline: none;
-        background: rgba($color: $white, $alpha: .9);
+        background: rgba($color: $red, $alpha: .6);
     }
 
     &.valid {
@@ -61,5 +70,21 @@ $white: #EEF0F2;
 .fade-leave-active {
     opacity: 0
 }
+
+
+.slide-enter-active {
+    transition: all .7s ease;
+}
+
+.slide-leave-active {
+    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+
+.slide-enter,
+.slide-leave-to {
+    transform: translateX(10px);
+    opacity: 0;
+}
+
 
 // Transition effects

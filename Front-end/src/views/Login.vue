@@ -3,6 +3,8 @@
     <main class="login">
       <section class="container">
         <h2>Log in</h2>
+        <p class="error" v-if="checkForError">{{ getLoginError }}</p>
+        <h3 v-if="checkForRegSuccess">Registration succesful! Please log in:</h3>
         <input
           v-model="email"
           type="text"
@@ -16,14 +18,16 @@
           placeholder="password"
           :class="{ valid: validPassword }"
         >
-        <router-link class="register" to="/registration">Not a user? Register here</router-link>
+        <section id="registerQuestion">
+          <span id="notUser">Not a user?</span>
+          <router-link class="register" to="/registration">Register here</router-link>
+        </section>
         <a
           href="#"
           class="btn"
           @click="login"
           :class="{ ready: validPassword && validUsername }"
         >Login</a>
-        <p v-show="this.checkForError">{{ getLoginError }}</p>
       </section>
     </main>
   </transition>
@@ -78,6 +82,17 @@ export default {
     },
     checkForError() {
       return this.$store.state.thereIsError;
+    },
+    checkForRegSuccess() {
+      return this.$store.state.success;
+    },
+    getActiveUser() {
+      return this.$store.state.activeUser;
+    }
+  },
+  mounted: function() {
+    if (sessionStorage.getItem("recentRegister")) {
+      this.email += sessionStorage.getItem("recentRegister");
     }
   },
   destroyed: function() {
@@ -109,9 +124,25 @@ export default {
   .register {
     @extend %center;
     text-decoration: none;
-    font-size: 1.2rem;
-    color: #fff;
-    margin-top: 0.6rem;
+    color: blue;
+  }
+
+  .error {
+    color: $red;
+    font-weight: bold;
+    margin: 0rem 0rem 0.6rem;
+  }
+  #notUser {
+    pointer-events: none;
+    margin-right: 0.2rem;
+  }
+
+  #registerQuestion {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin: 0.6rem 0rem 0rem;
+    font-size: 1.3rem;
   }
 }
 </style>

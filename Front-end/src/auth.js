@@ -11,10 +11,10 @@ module.exports.isAuthenticated = () => {
 module.exports.isAdmin = () => {
 
     if (sessionStorage.getItem('isAdmin')) {
-        console.log('The admin is here bois');
+        console.log('Admin account logged in');
         return true;
     } else {
-        console.log('No admin');
+        console.log('User account logged in');
         return false;
     }
 }
