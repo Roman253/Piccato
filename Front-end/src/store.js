@@ -112,7 +112,7 @@ export default new Vuex.Store({
         async register(ctx, registrationData) {
 
             try {
-                await axios.post(`${ctx.state.apiUrl}/users/register`, registrationData)
+                await Axios.post(`${ctx.state.apiUrl}/users/register`, registrationData)
                 await Axios.post(`${ctx.state.apiUrl}/users/register`, registrationData)
                     .then(response => {
                         console.log(response.data);
