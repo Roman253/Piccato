@@ -6,6 +6,8 @@
       <h3>Choose number of days</h3>
 
       <div class="calendarDate">
+       <button class="search-btn" v-on:click="search"> Console dates </button>
+
         <v-date-picker mode="range" v-model="selectedDate" :min-date="new Date()" show-caps></v-date-picker>
       </div>
 
@@ -63,8 +65,13 @@ export default {
         artwork: this.artwork._id,
         amount: this.amount
       });
-      this.$router.push("/user");
-    }
+      this.$router.push("/userbooked");
+    },
+
+   search: function () {
+   console.log(this.selectedDate.start);
+   console.log(this.selectedDate.end);
+}
   }
 };
 </script>
