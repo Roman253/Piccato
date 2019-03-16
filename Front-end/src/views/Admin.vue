@@ -1,6 +1,6 @@
 <template>
   <article id="admin">
-    <h2>Admin</h2>
+    <h2>Welcome {{ getActiveUser.name }}</h2>
 
     <h3>Manage bookings</h3>
     <section class="artworklist">
@@ -111,6 +111,9 @@ export default {
       return this.artworks.filter(artwork => {
         return artwork.title.toLowerCase().match(this.search.toLowerCase());
       });
+    },
+    getActiveUser() {
+      return this.$store.state.activeUser;
     }
   }
 };

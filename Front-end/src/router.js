@@ -15,7 +15,7 @@ let router = new Router({
         path: '/admin',
         name: 'admin',
         component: () =>
-                import('./views/Admin.vue'),
+                import ('./views/Admin.vue'),
             meta: {
                 requiresAuth: true,
                 requiresAdmin: true
@@ -50,31 +50,50 @@ let router = new Router({
         path: '/calendar',
         name: 'calendar',
         component: () =>
-                import('./views/Calendar.vue')
-    },
-    {
-        path: '/login',
-        name: 'login',
-        component: () =>
-                import('./views/Login.vue'),
-
+                import ('./views/Calendar.vue')
         },
         {
-            path: '/registration',
-            name: 'registration',
-            component: () => import('./components/Registration.vue'),
-    },
-    {
-        path: '/user',
-        name: 'user',
-        component: () =>
-                import('./views/User.vue'),
+            path: '/login',
+            name: 'login',
+            component: () =>
+                import('./views/Login.vue'),
             meta: {
                 requiresAuth: true
             },
             beforeEnter: (to, from, next) => {
 
-                if (to.matched.some(record => record.meta.requiresAuth) && !auth.isAuthenticated()) {
+                if (to.matched.some(record => record.meta.requiresAuth) && auth.isAuthenticated()) {
+                    next({
+                        path: '/user'
+                    });
+                } else {
+                    next();
+                }
+            }
+
+        },
+        {
+            path: '/registration',
+            name: 'registration',
+            component: () =>
+                import ('./components/Registration.vue'),
+    },
+    {
+        path: '/user',
+        name: 'user',
+        component: () =>
+                import ('./views/User.vue'),
+            meta: {
+                requiresUser: true,
+                requiresAuth: true
+            },
+            beforeEnter: (to, from, next) => {
+
+                if (to.matched.some(record => record.meta.requiresUser) && auth.isAdmin()) {
+                    next({
+                        path: '/admin'
+                    });
+                } else if (to.matched.some(record => record.meta.requiresAuth) && !auth.isAuthenticated()) {
                     next({
                         path: '/login'
                     });

@@ -4,7 +4,7 @@ const User = require('../models/user');
 
 // GET REQUEST
 
-module.exports.post = async (req, res) => {
+module.exports.post = async(req, res) => {
 
     let user = await User.findOne({
         email: req.body.email
@@ -29,7 +29,8 @@ module.exports.post = async (req, res) => {
             res.status(200).send({
                 email: user.email,
                 role: user.role,
-                authToken: token
+                authToken: token,
+                name: user.name
             });
 
         } else {
@@ -40,7 +41,7 @@ module.exports.post = async (req, res) => {
     }
 }
 
-module.exports.isAdmin = async (authtoken) => {
+module.exports.isAdmin = async(authtoken) => {
 
     let token = await jwt.verify(authtoken.substring(7), process.env.SECRET);
 
@@ -50,6 +51,7 @@ module.exports.isAdmin = async (authtoken) => {
 
     if (user.role === 'admin') {
 
+        res.status(200).send({ email: user.email, role: user.role });
         res.status(200).send({
             email: user.email,
             role: user.role
@@ -65,7 +67,7 @@ module.exports.isAdmin = async (authtoken) => {
     }
 }
 
-module.exports.verifyToken = async (token) => {
+module.exports.verifyToken = async(token) => {
 
     try {
 

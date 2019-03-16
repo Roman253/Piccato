@@ -1,10 +1,19 @@
 @import url('https://fonts.googleapis.com/css?family=Homemade+Apple|Merienda+One');
+@import url("https://fonts.googleapis.com/css?family=Do+Hyeon");
+@import url('https://fonts.googleapis.com/css?family=Oleo+Script');
 @import './typography';
 
+@import url('https://fonts.googleapis.com/css?family=Monda');
+
+@import "../scss/variables";
 
 :root {
+
+    @extend %globalFont;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-image: url("http://i68.tinypic.com/zmefer.jpg");
+    background-size: cover;
 
 }
 %center {
@@ -62,6 +71,9 @@ body {
     }
 }
 
+    @extend %globalFont;
+
+    @extend %globalFont;
 
 ul {
     list-style-type: none;
