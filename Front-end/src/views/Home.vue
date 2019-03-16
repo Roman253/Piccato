@@ -7,7 +7,7 @@
       <img src="https://placekitten.com/100/100" alt="logo">
     </section>
     <section class="infotxt">
-      <p>Make a the teacher Umbridge happy.
+      <p>Make your workers happy.
         <br>This is the Kommunala kattkonstlagret, where you can rent artwork of cats.
         <br>Login to rent our art today.
       </p>
