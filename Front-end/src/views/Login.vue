@@ -130,7 +130,7 @@ export default {
   .error {
     color: $red;
     font-weight: bold;
-    margin: 0rem 0rem 0.6rem;
+    margin: 0.6rem 0rem;
   }
   #notUser {
     pointer-events: none;
@@ -141,7 +141,7 @@ export default {
     display: flex;
     justify-content: center;
     align-content: center;
-    margin: 0.6rem 0rem 0rem;
+    margin: 0.6rem 0rem;
     font-size: 1.3rem;
   }
 }

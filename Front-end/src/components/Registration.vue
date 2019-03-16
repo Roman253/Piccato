@@ -141,12 +141,20 @@ export default {
     display: flex;
     justify-content: center;
     align-content: center;
-    margin: 0.6rem 0rem 0rem;
+    margin: 0.6rem 0rem;
     font-size: 1.3rem;
 
     span {
       pointer-events: none;
       margin-right: 4px;
+    }
+  }
+
+  @media only screen and (max-width: 780px) {
+    #loginQuestion {
+      display: flex;
+      flex-direction: column;
+      margin: 0.4rem 0rem;
     }
   }
 }

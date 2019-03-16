@@ -87,8 +87,7 @@ let router = new Router({
                     next({
                         path: '/login'
                     });
-                } 
-                else{
+                } else {
                     next();
                 }
             }
