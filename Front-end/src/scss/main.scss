@@ -1,7 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Homemade+Apple|Merienda+One');
+@import url("https://fonts.googleapis.com/css?family=Do+Hyeon");
+@import url('https://fonts.googleapis.com/css?family=Oleo+Script');
+@import url('https://fonts.googleapis.com/css?family=Monda');
+
+@import "../scss/variables";
 
 :root {
-    font-family: 'Merienda One', sans-serif;
+
+    @extend %globalFont;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: #83e7f2;
@@ -66,14 +72,15 @@ h1 {
 }
 
 h2 {
-    font-family: 'Merienda One', cursive;
+    @extend %globalFont;
     font-size: 2.5rem;
     margin: 10px 0px 10px 0px;
     color: black;
 }
 
 h3 {
-    font-family: 'Merienda One', cursive;
+
+    @extend %globalFont;
     margin: 15px 0px 10px 0px;
     color: black;
 }

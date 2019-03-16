@@ -47,14 +47,20 @@ let router = new Router({
             path: '/login',
             name: 'login',
             component: () =>
-                import ('./views/Login.vue'),
+                import('./views/Login.vue'),
+            meta: {
+                requiresAuth: true
+            },
+            beforeEnter: (to, from, next) => {
 
-        },
-        {
-            path: '/buy',
-            name: 'buy',
-            component: () =>
-                import ('./views/Buy.vue'),
+                if (to.matched.some(record => record.meta.requiresAuth) && auth.isAuthenticated()) {
+                    next({
+                        path: '/user'
+                    });
+                } else {
+                    next();
+                }
+            }
 
         },
         {
@@ -69,11 +75,16 @@ let router = new Router({
             component: () =>
                 import ('./views/User.vue'),
             meta: {
+                requiresUser: true,
                 requiresAuth: true
             },
             beforeEnter: (to, from, next) => {
 
-                if (to.matched.some(record => record.meta.requiresAuth) && !auth.isAuthenticated()) {
+                if (to.matched.some(record => record.meta.requiresUser) && auth.isAdmin()) {
+                    next({
+                        path: '/admin'
+                    });
+                } else if (to.matched.some(record => record.meta.requiresAuth) && !auth.isAuthenticated()) {
                     next({
                         path: '/login'
                     });

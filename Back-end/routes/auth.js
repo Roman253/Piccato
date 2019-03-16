@@ -29,7 +29,8 @@ module.exports.post = async(req, res) => {
             res.status(200).send({
                 email: user.email,
                 role: user.role,
-                authToken: token
+                authToken: token,
+                name: user.name
             });
 
         } else {
