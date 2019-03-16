@@ -1,6 +1,6 @@
 <template>
   <article id="booking">
-    <h2>Choose artwork to rent</h2>
+    <h2>Click on  the artwork for more info</h2>
     <section class="search">
       <input class="inputsearch" type="text" v-model="search" placeholder="Search for Artwork">
     </section>
@@ -44,9 +44,18 @@ export default {
     background-color: rgb(29, 29, 29);
     border: none;
     border-radius: 10px;
+
+    &:focus {
+      outline: none;
+    }
   }
   .search {
     margin: 1.3rem;
+  }
+  h2 {
+    font-size: 1.5rem;
+    padding: 0 1rem;
+    margin: 0;
   }
 }
 </style>

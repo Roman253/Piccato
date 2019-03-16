@@ -173,18 +173,9 @@ export default new Vuex.Store({
   ,
   getters: {
 
+
     artworks(state) {
       return state.artworks;
-    },
-    getArtworkById(state) {
-      return (artworkId) => {
-        return state.artworks.filter(artwork => artwork.id == artworkId);
-      }
-    },
-    getArtworkInfoById(state) {
-      return (artworkId) => {
-        return state.artworks.filter(artwork => artwork.id == artworkId);
-      }
     }
 
   }

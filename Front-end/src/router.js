@@ -15,92 +15,83 @@ let router = new Router({
         path: '/admin',
         name: 'admin',
         component: () =>
-                import ('./views/Admin.vue'),
-            meta: {
-                requiresAuth: true,
-                requiresAdmin: true
-            },
-            beforeEnter: (to, from, next) => {
+            import('./views/Admin.vue'),
+        meta: {
+            requiresAuth: true,
+            requiresAdmin: true
+        },
+        beforeEnter: (to, from, next) => {
 
-                if (to.matched.some(record => record.meta.requiresAdmin) && !auth.isAdmin()) {
-                    next({
-                        path: '/login'
-                    });
-                } else {
-                    next();
-                }
+            if (to.matched.some(record => record.meta.requiresAdmin) && !auth.isAdmin()) {
+                next({
+                    path: '/login'
+                });
+            } else {
+                next();
             }
+        }
     },
     {
         path: '/booking',
         name: 'booking',
         component: () => import('./views/Booking.vue'),
-        children:
-            [
-                {
-                    path: 'artworkItem/:_id',
-                    name: 'artworkItem',
-                    component: () => import('./components/artworkItem.vue'),
-                    
-                }
 
-            ]
     },
     {
         path: '/calendar',
         name: 'calendar',
         component: () =>
-                import ('./views/Calendar.vue')
+            import('./views/Calendar.vue')
+    },
+    {
+        path: '/login',
+        name: 'login',
+        component: () =>
+            import('./views/Login.vue'),
+        meta: {
+            requiresAuth: true
         },
-        {
-            path: '/login',
-            name: 'login',
-            component: () =>
-                import('./views/Login.vue'),
-            meta: {
-                requiresAuth: true
-            },
-            beforeEnter: (to, from, next) => {
+        beforeEnter: (to, from, next) => {
 
-                if (to.matched.some(record => record.meta.requiresAuth) && auth.isAuthenticated()) {
-                    next({
-                        path: '/user'
-                    });
-                } else {
-                    next();
-                }
+            if (to.matched.some(record => record.meta.requiresAuth) && auth.isAuthenticated()) {
+                next({
+                    path: '/user'
+                });
+            } else {
+                next();
             }
+        }
 
-        },
-        {
-            path: '/registration',
-            name: 'registration',
-            component: () =>
-                import ('./components/Registration.vue'),
+    },
+    {
+        path: '/registration',
+        name: 'registration',
+        component: () =>
+            import('./components/Registration.vue'),
     },
     {
         path: '/user',
         name: 'user',
         component: () =>
-                import ('./views/User.vue'),
-            meta: {
-                requiresUser: true,
-                requiresAuth: true
-            },
-            beforeEnter: (to, from, next) => {
+            import('./views/User.vue'),
+        meta: {
+            requiresUser: true,
+            requiresAuth: true
+        },
+        beforeEnter: (to, from, next) => {
 
-                if (to.matched.some(record => record.meta.requiresUser) && auth.isAdmin()) {
-                    next({
-                        path: '/admin'
-                    });
-                } else if (to.matched.some(record => record.meta.requiresAuth) && !auth.isAuthenticated()) {
-                    next({
-                        path: '/login'
-                    });
-                } else {
-                    next();
-                }
+            if (to.matched.some(record => record.meta.requiresUser) && auth.isAdmin()) {
+                next({
+                    path: '/admin'
+                });
+            } else if (to.matched.some(record => record.meta.requiresAuth) && !auth.isAuthenticated()) {
+                next({
+                    path: '/login'
+                });
+            } else {
+                next();
             }
+        }
     }
 
     ],

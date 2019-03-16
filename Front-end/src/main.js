@@ -2,9 +2,10 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-Vue.prototype.$eventHub = new Vue();
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+
+Vue.prototype.$eventHub = new Vue();
 
 Vue.use(VueAxios, axios)
 Vue.config.productionTip = false

@@ -1,26 +1,22 @@
 <template>
   <div id="hello">
     <section>
-      <a href="#" class="smallbtn" @click="$router.push('/login')">Log In</a>
-    </section>
-    <section>
       <h1>Piccato</h1>
     </section>
     <section>
-      <img src="https://placekitten.com/150/150" alt="logo">
+      <img src="https://placekitten.com/100/100" alt="logo">
     </section>
     <section class="infotxt">
-      <p>Make a socialworkers happy!
+      <p>Make a the teacher Umbridge happy.
         <br>This is the Kommunala kattkonstlagret, where you can rent artwork of cats.
-        <br>Login to book our art.
+        <br>Login to rent our art today.
       </p>
     </section>
     <section>
-      <a href="#" @click="$router.push('/booking')">
+      <a href="#" @click="$router.push('/booking')" class="btn">
         <h2>Rent an artwork!</h2>
       </a>
     </section>
-
     <!-- // will only show up if your logged 
     <section>
       <a href="#" @click="$router.push('/listRentedArt')">
@@ -40,6 +36,7 @@ export default {
 @import "../scss/main.scss";
 @import "../scss/components.scss";
 
+
 #hello {
   display: grid;
   height: 100%;
@@ -47,10 +44,6 @@ export default {
   justify-content: center;
 
   section {
-    &:first-child {
-      margin: 1.5rem;
-      text-align: right;
-    }
 
     &:last-child {
       display: flex;
@@ -58,6 +51,7 @@ export default {
       align-items: flex-end;
       margin-bottom: 1rem;
     }
+    
     img {
       border-radius: 10px;
       border: solid white 2px;
@@ -68,4 +62,6 @@ export default {
     }
   }
 }
+
+
 </style>

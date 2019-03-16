@@ -9,7 +9,7 @@
 
 :root {
 
-    @extend %globalFont;
+    //@extend %globalFont;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-image: url("http://i68.tinypic.com/zmefer.jpg");
@@ -24,8 +24,6 @@
 
 body {
     margin: 0;
-    background-color: #83e7f2;  /* For browsers that do not support gradients */
-    background-image: linear-gradient(#83e7f2, #8bc0fd, #83e7f2); 
     
     #app {
         -webkit-font-smoothing: antialiased;
@@ -45,8 +43,9 @@ body {
     #nav {
         top: 0;
         width: 100%;
-        padding: 30px;
-        background: #008ce6;
+        padding: 10px 0;
+        background-image: linear-gradient(#008ce6, #77b5fc, #008ce6); 
+        border-bottom: white solid 2px;
         font-size: 1.2rem;
 
         a {
@@ -58,34 +57,35 @@ body {
             text-transform: uppercase;
 
             &.router-link-exact-active {
-                color: #00afc6;
+                color: #444444;
             }
         }
 
         a:hover {
-            color: rgb(143, 206, 255);
+            color: rgb(8, 50, 90);
             opacity: 0.6;
             transition: 0.3s;
             font-weight: 600;
         }
     }
 }
-
+/*
     @extend %globalFont;
 
     @extend %globalFont;
-
+*/
 ul {
     list-style-type: none;
     padding: 0;
 }
-/*
+
 li {
     display: inline-block;
     margin: 0 10px;
 }
-*/
+
 @media only screen and (max-width: 400px) {
+
     .media {
         width: 100%;
         border-radius: 0px;
@@ -102,6 +102,11 @@ li {
     }
 
     #nav a {
-        font-size: .7rem;
+        font-size: .8rem;
+    }
+    body {  
+        #app {
+            cursor: pointer;
+        }
     }
 }
