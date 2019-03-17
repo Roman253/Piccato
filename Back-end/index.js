@@ -38,15 +38,15 @@ let auth = require('./routes/auth');
 app.route('/bookings')
     .post(booking.post)
     .get(booking.get)
-// .delete(booking.delete)
+    // .delete(booking.delete)
 
 app.route('/artworks')
     .post(artwork.post)
     .get(artwork.get)
-//   .delete(artwork.delete)
+    //   .delete(artwork.delete)
 
-app.route('/artworks/:artworkId')
-//  .delete(artwork.delete)
+app.route('/artworks/:id')
+    // .delete(artwork.delete)
 
 
 

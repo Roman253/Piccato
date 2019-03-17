@@ -38,6 +38,12 @@ let router = new Router({
                 import ('./views/Booking.vue')
         },
         {
+            path: '/buy',
+            name: 'buy',
+            component: () =>
+                import ('./views/Buy.vue')
+        },
+        {
             path: '/calendar',
             name: 'calendar',
             component: () =>
@@ -47,7 +53,7 @@ let router = new Router({
             path: '/login',
             name: 'login',
             component: () =>
-                import('./views/Login.vue'),
+                import ('./views/Login.vue'),
             meta: {
                 requiresAuth: true
             },
