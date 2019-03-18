@@ -18,7 +18,7 @@
             <td>{{artwork.title}}</td>
             <td>{{artwork.artist}}</td>
             <td>
-              <button @click="deleteArtwork(artwork, artwork._id)">X</button>
+              <div id="btnRemove" @click="deleteArtwork(artwork, artwork._id)">X</div>
             </td>
           </tr>
         </tbody>
@@ -39,7 +39,7 @@
           <tr v-for="artwork in artworks" :key="artwork._title" :artwork="artwork">
             <td>{{artwork.title}}</td>
             <td>
-              <button @click="deleteArtwork(artwork._id)">X</button>
+              <button @click="deleteArtwork(artwork, artwork._id)">delete</button>
             </td>
           </tr>
         </tbody>
@@ -93,6 +93,7 @@ export default {
     },
 
     async deleteArtwork(id) {
+      console.log(id);
       this.$store.dispatch("deleteArtwork", id);
       await this.$store.dispatch("getArtworks");
     },
@@ -124,7 +125,18 @@ export default {
 .addArt {
   width: 50%;
   margin: 0 auto;
+  margin-bottom: 1rem;
 }
+
+#btnRemove {
+color: white;
+background: #a20000;
+border-radius: 10px;
+display: inline;
+padding: 0px 10px 0px 10px;
+cursor: pointer;
+}
+
 
 .form {
   display: grid;

@@ -61,8 +61,8 @@ export default new Vuex.Store({
         },
 
         async deleteArtwork(ctx, id) {
-            // console.log(id)
-            await Axios.delete(`http://localhost:3000/artworks/${id}`);
+            console.log(id._id)
+            await Axios.delete(`http://localhost:3000/artworks/${id._id}`);
         },
 
 
@@ -170,15 +170,15 @@ export default new Vuex.Store({
         }
     }
 
-  ,
-  getters: {
+    /*  ,
+      getters: {
 
 
-    artworks(state) {
-      return state.artworks;
-    }
+          artworks(state) {
+              return state.artworks;
+          }
 
-  }
+      } */
 
 
 })
