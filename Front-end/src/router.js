@@ -38,6 +38,12 @@ let router = new Router({
 
     },
     {
+            path: '/buy',
+            name: 'buy',
+            component: () =>
+                import ('./views/Buy.vue')
+        },
+        {
         path: '/calendar',
         name: 'calendar',
         component: () =>

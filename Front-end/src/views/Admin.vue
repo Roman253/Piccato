@@ -92,10 +92,9 @@ export default {
       this.$store.dispatch("getArtworks");
     },
 
-    deleteArtwork(id) {
+    async deleteArtwork(id) {
       this.$store.dispatch("deleteArtwork", id);
-      this.$store.dispatch("getArtworks");
-      this.$router.push("/Admin");
+      await this.$store.dispatch("getArtworks");
     },
     logout() {
       this.$store.dispatch("logout");
