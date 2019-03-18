@@ -19,7 +19,6 @@ export default new Vuex.Store({
     },
     mutations: {
         //update array with artworks
-        //update array with artworks
         setArtworks(state, artworks) {
             state.artworks = artworks;
         },
@@ -169,16 +168,5 @@ export default new Vuex.Store({
             ctx.commit('setActiveUser', JSON.parse(sessionStorage.getItem('userData')));
         }
     }
-
-    /*  ,
-      getters: {
-
-
-          artworks(state) {
-              return state.artworks;
-          }
-
-      } */
-
 
 })
