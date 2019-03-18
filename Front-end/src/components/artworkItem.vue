@@ -1,84 +1,75 @@
 <template>
   <div class="media">
-    <img class="media-object" v-bind:src="artwork.artworkUrl" width="200px">
-    <div class="media-body">
+    <section>
+      <img
+        class="media-object"
+        :src="getImgUrl(artwork)"
+        v-bind:alt="artwork.title"
+        @click="seen = !seen"
+      >
+    </section>
+
+    <section class="media-body" v-if="seen">
       <h3 class="media-heading">Title: {{artwork.title}}</h3>
-      <p class="media-p">Artist: {{artwork.artist}}<br>
-      Price: {{artwork.price}}:- <br>
-      Description: {{artwork.description}} <br>
-
-            <ul><button class="buybutton" @click="selectArtwork(artwork)">Rent this artwork</button></ul>
-
-
+      <p class="media-p">
+        Artist: {{artwork.artist}}
+        <br>
+        Price: {{artwork.price}}:-
+        <br>
+        Description: {{artwork.description}}
       </p>
-    </div>
+      <div class="buybutton" @click="selectArtwork">Rent this artwork</div>
+    </section>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'artwork',
-  props: ['artwork'],  
-
+  name: "artwork",
+  props: ["artwork"],
+  data() {
+    return { seen: false };
+  },
   computed: {
     artworks() {
       return this.$store.state.artworks;
     }
   },
-
-
   methods: {
     selectArtwork(artwork) {
-      this.$store.commit('selectArtwork', artwork);
-      this.$router.push('/buy');
+      this.$store.commit("selectArtwork", artwork);
+      this.$router.push("/buy");
     },
-
+    getImgUrl(artwork) {
+      return this.artwork.artworkUrl;
+    }
   }
-}
+};
 </script>
 
-<style>
-  .media {
-    display: flex;
-    align-items: flex-start;
-    background: #D9FBFF;;
-    padding: 1em;
-    border-radius: 10px;
-    color: black;
-    width: 40%;
-    text-align: left;
-    margin: 0 auto;
-    margin-bottom: 10px;
-  }
+<style lang="scss">
+.media {
+  max-width: 620px;
+  background: rgb(59, 59, 59);
+  border-radius: 10px;
+  color: black;
+  text-align: left;
+  margin: 0 auto;
+  margin-bottom: 10px;
+
   .media-object {
-    margin-right: 1em;
-    width: 50%;
+    width: 90%;
+    padding: 5% 0 4% 5%;
   }
   .media-body {
-    flex: 1;
+    padding: 0 0 5% 7%;
+    width: 80%;
+    color: white;
   }
   .media-heading {
-    margin: 0 0 .5em;
+    color: white;
+    margin: 0 0 0.5em;
   }
-    .media-p {
-    max-width: 100%;
-  }
-
-   .buybutton {
-    background-color: #008ce6;
-    border: none;
-    border-radius: 6px;
-    font-size: 1rem;
-    font-family: 'Avenir', sans-serif;
-    padding: 5px 12px;
-    color: #fff;
-    cursor: pointer;      
 }
-
-   .buybutton:hover {
-    background-color: rgb(36, 172, 196);
-      }
-
-
-
 </style>
+

@@ -170,4 +170,15 @@ export default new Vuex.Store({
         }
     }
 
+  ,
+  getters: {
+
+
+    artworks(state) {
+      return state.artworks;
+    }
+
+  }
+
+
 })

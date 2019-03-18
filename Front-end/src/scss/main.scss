@@ -1,20 +1,21 @@
 @import url('https://fonts.googleapis.com/css?family=Homemade+Apple|Merienda+One');
 @import url("https://fonts.googleapis.com/css?family=Do+Hyeon");
 @import url('https://fonts.googleapis.com/css?family=Oleo+Script');
+@import './typography';
+
 @import url('https://fonts.googleapis.com/css?family=Monda');
 
 @import "../scss/variables";
 
 :root {
 
-    @extend %globalFont;
+    //@extend %globalFont;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: #83e7f2;
     background-image: url("http://i68.tinypic.com/zmefer.jpg");
     background-size: cover;
-}
 
+}
 %center {
     display: flex;
     justify-content: center;
@@ -23,23 +24,28 @@
 
 body {
     margin: 0;
-    height: 100vh;
-    width: 100vw;
-
+    
     #app {
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         text-align: center;
         color: #ffffff;
-        height: inherit;
-        width: inherit;
+        height: 100vh;
+        width: 100vw;
+        flex-direction: column;
+        display: flex;
+    }
+
+    a {
+        text-decoration: none;
     }
 
     #nav {
         top: 0;
         width: 100%;
-        padding: 30px;
-        background: #008ce6;
+        padding: 10px 0;
+        background-image: linear-gradient(#008ce6, #77b5fc, #008ce6); 
+        border-bottom: white solid 2px;
         font-size: 1.2rem;
 
         a {
@@ -51,40 +57,23 @@ body {
             text-transform: uppercase;
 
             &.router-link-exact-active {
-                color: #00afc6;
+                color: #444444;
             }
         }
 
         a:hover {
-            color: rgb(143, 206, 255);
+            color: rgb(8, 50, 90);
             opacity: 0.6;
             transition: 0.3s;
             font-weight: 600;
         }
     }
 }
-
-h1 {
-    font-family: 'Homemade Apple', cursive;
-    font-size: 4rem;
-    margin: 0;
-    color: black;
-}
-
-h2 {
+/*
     @extend %globalFont;
-    font-size: 2.5rem;
-    margin: 10px 0px 10px 0px;
-    color: black;
-}
-
-h3 {
 
     @extend %globalFont;
-    margin: 15px 0px 10px 0px;
-    color: black;
-}
-
+*/
 ul {
     list-style-type: none;
     padding: 0;
@@ -95,11 +84,8 @@ li {
     margin: 0 10px;
 }
 
-a {
-    color: #42b983;
-}
-
 @media only screen and (max-width: 400px) {
+
     .media {
         width: 100%;
         border-radius: 0px;
@@ -116,6 +102,11 @@ a {
     }
 
     #nav a {
-        font-size: .7rem;
+        font-size: .8rem;
+    }
+    body {  
+        #app {
+            cursor: pointer;
+        }
     }
 }

@@ -1,11 +1,12 @@
 <template>
   <div id="app">
-    <login-bar></login-bar>
     <div id="nav">
       <router-link to="/">Home</router-link>
       <router-link to="/calendar">Calendar</router-link>
-      <router-link to="/booking">Booking</router-link>
+      <router-link to="/booking">Art</router-link>
     </div>
+    <login-bar alt="login"></login-bar>
+
     <transition appear name="fade">
       <router-view/>
     </transition>
@@ -16,6 +17,7 @@
 import LoginBar from "./components/LoginBar.vue";
 export default {
   name: "app",
+  
   components: {
     loginBar: LoginBar
   },
