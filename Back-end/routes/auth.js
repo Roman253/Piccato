@@ -30,7 +30,8 @@ module.exports.post = async (req, res) => {
                 email: user.email,
                 role: user.role,
                 authToken: token,
-                name: user.name
+                name: user.name,
+                uid: user.uid
             });
 
         } else {

@@ -29,11 +29,11 @@
         <article class="num-days">{{ amount }}</article>
         <article class="increase" @click=" amount++ ">+</article>
       </section>
-      <a href="#" class="btnbuy" @click="buy">Confirm</a>
+      <a href="#" class="btnbuy" @click="bookArtwork">Confirm</a>
     </section>
     <section class="content" v-if="!artwork">
       <p>No dates selected.</p>
-      <a href="#" class="btn" @click="$router.push('/booking')">Go to artwork list</a>
+      <a href="#" class="btn" @click="buy">Go to artwork list</a>
     </section>
   </main>
 </template>
@@ -44,8 +44,6 @@ export default {
   data() {
     return {
       amount: 1,
-      selectedValue: new Date(),
-
       selectedDate: {
         start: new Date(),
         end: new Date()
@@ -55,15 +53,24 @@ export default {
   computed: {
     artwork() {
       return this.$store.state.artwork;
+    },
+    activeUser() {
+      return this.$store.state.activeUser;
     }
   },
   methods: {
-    buy() {
-      this.$store.dispatch("buy", {
-        artwork: this.artwork._id,
-        amount: this.amount
-      });
-      this.$router.push("/user");
+
+    bookArtwork() {
+      if (this.activeUser){
+        this.$store.dispatch("bookArtwork", {
+          artwork: this.artwork._id,
+          selectedDate: this.selectedDate,
+          user: this.activeUser
+        });
+        console.log("Success!")
+      } else {
+      this.$router.push({ name: 'login', query: { redirect: '/book' } });
+      }
     }
   }
 };

@@ -4,10 +4,10 @@ let Schema = mongoose.Schema;
 // Create schema
 let bookingSchema = new Schema({
     artwork: Object,
-    user: Object,
-    booking: {
-        from: String,
-        to: String
+    userID: String,
+    selectedDate: {
+        start: String,
+        end: String
     }
 });
 

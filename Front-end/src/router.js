@@ -38,6 +38,12 @@ let router = new Router({
                 import('./views/Booking.vue')
         },
         {
+            path: '/book',
+            name: 'book',
+            component: () => 
+                import('./views/Book.vue')
+        },
+        {
             path: '/calendar',
             name: 'calendar',
             component: () =>
@@ -47,21 +53,23 @@ let router = new Router({
             path: '/login',
             name: 'login',
             component: () =>
-                import('./views/Login.vue'),
+                import('./components/Login.vue'),
             meta: {
-                requiresAuth: true
+                requiresAuth: false
             },
+            props: (route) => ({
+                to: route.query.to
+            }),
             beforeEnter: (to, from, next) => {
 
-                if (to.matched.some(record => record.meta.requiresAuth) && auth.isAuthenticated()) {
+                if (to.matched.some(record => !record.meta.requiresAuth) && !auth.isAuthenticated()) {
+                    next();
+                } else {
                     next({
                         path: '/user'
                     });
-                } else {
-                    next();
                 }
             }
-
         },
         {
             path: '/registration',

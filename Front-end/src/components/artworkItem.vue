@@ -6,10 +6,7 @@
       <p class="media-p">Artist: {{artwork.artist}}<br>
       Price: {{artwork.price}}:- <br>
       Description: {{artwork.description}} <br>
-
             <ul><button class="buybutton" @click="selectArtwork(artwork)">Rent this artwork</button></ul>
-
-
       </p>
     </div>
   </div>
@@ -30,7 +27,7 @@ export default {
   methods: {
     selectArtwork(artwork) {
       this.$store.commit('selectArtwork', artwork);
-      this.$router.push('/buy');
+      this.$router.push('/book');
     },
 
   }

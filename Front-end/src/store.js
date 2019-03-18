@@ -72,6 +72,23 @@ export default new Vuex.Store({
       //console.log(artwork.data);
     },
 
+    async bookArtwork(ctx, bookingData) {
+      
+      try {
+        await Axios.post(`${ctx.state.apiUrl}/book`, bookingData)
+        .then(response => {
+
+        })
+
+
+      } catch (err) {
+
+
+      }
+      
+
+    },
+
     async login(ctx, loginData) {
 
       try {
@@ -79,24 +96,15 @@ export default new Vuex.Store({
         await Axios.post(`${ctx.state.apiUrl}/auth`, loginData)
           .then(response => {
 
-            console.log(response.data);
-            console.log(loginData);
             ctx.commit('setActiveUser', response.data);
-            sessionStorage.setItem('loginToken', response.data.authToken);
             sessionStorage.setItem('currentUser', response.data.email);
             sessionStorage.setItem('userData', JSON.stringify(response.data));
-            if (response.data.role === 'admin') {
-              sessionStorage.setItem('isAdmin', response.data.role);
-              router.push('/admin');
-            } else {
-              router.push('/user');
-            }
-          })
+
+          })  
 
       } catch (err) {
 
         ctx.commit('changeError', true);
-        ctx.commit('toggleRejected');
         console.error(err.response.data);
         ctx.commit('setLoginError', err.response.data);
       }
