@@ -3,14 +3,11 @@
     <h2>Choose dates</h2>
 
     <div class="calendar">
-
-      <button class="search-btn" v-on:click="search"> TEST </button>
+      <button class="search-btn" v-on:click="search">TEST</button>
 
       <v-date-picker mode="range" v-model="selectedDate" :min-date="new Date()" show-caps></v-date-picker>
-           
     </div>
-               <br>
-           
+    <br>
 
     <div class="calendar">
       <v-date-picker mode="range" v-model="selectedDate" :min-date="new Date()" show-caps></v-date-picker>
@@ -30,11 +27,12 @@ export default {
       }
     };
   },
-methods: {
-  search: function () {
-   console.log(this.selectedDate.start);
-   console.log(this.selectedDate.end);
-}}
+  methods: {
+    search: function() {
+      console.log(this.selectedDate.start);
+      console.log(this.selectedDate.end);
+    }
+  }
 };
 </script>
 

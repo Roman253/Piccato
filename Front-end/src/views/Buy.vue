@@ -6,11 +6,10 @@
       <h3>Choose number of days</h3>
 
       <div class="calendarDate">
-       <button class="search-btn" v-on:click="search"> Console dates </button>
-
         <v-date-picker mode="range" v-model="selectedDate" :min-date="new Date()" show-caps></v-date-picker>
       </div>
-
+      <div class="btn" @click="nrOfDates()">Click here</div>
+      <p>{{amount}}</p>
       <h3>{{ artwork.title }}</h3>
       <p class="artist">
         Artist: {{ artwork.artist }}
@@ -25,12 +24,6 @@
       <br>
       <article class="price">Your total price: {{ artwork.price * amount }} sek</article>
       <br>
-
-      <section class="counter">
-        <article class="decrease" @click=" amount--" v-show="amount > 1">-</article>
-        <article class="num-days">{{ amount }}</article>
-        <article class="increase" @click=" amount++ ">+</article>
-      </section>
       <a href="#" class="btnbuy" @click="buy">Confirm</a>
     </section>
     <section class="content" v-if="!artwork">
@@ -45,8 +38,7 @@ export default {
   name: "buy",
   data() {
     return {
-      amount: 1,
-      selectedValue: new Date(),
+      amount: 0,
 
       selectedDate: {
         start: new Date(),
@@ -68,10 +60,11 @@ export default {
       this.$router.push("/userbooked");
     },
 
-   search: function () {
-   console.log(this.selectedDate.start);
-   console.log(this.selectedDate.end);
-}
+    nrOfDates() {
+      let diff = this.selectedDate.end - this.selectedDate.start;
+      let amount = Math.round(diff / 86400000);
+      console.log(amount);
+    }
   }
 };
 </script>
@@ -79,6 +72,7 @@ export default {
 <!-- -->
 <style lang="scss">
 @import "../scss/main";
+@import "../scss/components";
 
 .contentBuy {
   @extend %center;

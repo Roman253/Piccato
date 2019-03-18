@@ -18,7 +18,7 @@
         <br>
         Description: {{artwork.description}}
       </p>
-      <div class="buybutton" @click="selectArtwork">Rent this artwork</div>
+      <div class="buybutton" @click="selectArtwork(artwork)">Rent this artwork</div>
     </section>
   </div>
 </template>
