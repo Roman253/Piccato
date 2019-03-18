@@ -43,12 +43,10 @@ app.route('/bookings')
 app.route('/artworks')
     .post(artwork.post)
     .get(artwork.get)
-    //   .delete(artwork.delete)
+    //.delete(artwork.delete)
 
 app.route('/artworks/:id')
-    // .delete(artwork.delete)
-
-
+    .delete(artwork.delete)
 
 
 app.route('/auth')
