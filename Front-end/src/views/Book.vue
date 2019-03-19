@@ -2,7 +2,7 @@
   <main id="buy">
     <section class="contentBuy" v-if="artwork">
       <h3>Choose number of days</h3>
-      <calendar alt="calendar"></calendar>
+      <calendar class="calendar" alt="calendar"></calendar>
       <div class="media">
         <img class="media-object" v-bind:src="artwork.artworkUrl" width="200px">
         <div class="media-body">
@@ -141,7 +141,7 @@ export default {
     background-color: rgb(9, 126, 126);
   }
 
-  .calendarDate {
+  calendar {
     margin: 0 auto;
     margin-bottom: 300px;
     margin-left: 35%;
