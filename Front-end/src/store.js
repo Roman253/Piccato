@@ -75,13 +75,13 @@ export default new Vuex.Store({
     async bookArtwork(ctx, bookingData) {
 
       try {
-        await Axios.post(`${ctx.state.apiUrl}/book`, bookingData)
+        await Axios.post(`${ctx.state.apiUrl}/bookings`, bookingData)
           .then(response => {
-
+            console.log(response);
           })
 
       } catch (err) {
-
+        console.error(err);
       }
     },
     async login(ctx, loginData) {

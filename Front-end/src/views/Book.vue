@@ -60,26 +60,30 @@ export default {
   },
   methods: {
 
+
     bookArtwork() {
       if (this.activeUser){
         this.$store.dispatch("bookArtwork", {
-          artwork: this.artwork._id,
-          selectedDate: this.selectedDate,
-          user: this.activeUser
+          artworkID: this.artwork._id,
+          userUID: this.activeUser.uid,
+          selectedDate: this.selectedDate
+          
         });
-        console.log("Success!")
+        console.log("Success!");
+
       } else {
       this.$router.push({ name: 'login', query: { redirect: '/book' } });
+      
+      }
+    },
+
     nrOfDates() {
       let diff = this.selectedDate.end - this.selectedDate.start;
       let amount = Math.round(diff / 86400000);
       this.amount = amount;
-     
-      
-
     }
   }
-};
+}
 </script>
 
 <!-- -->
