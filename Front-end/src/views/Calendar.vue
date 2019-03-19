@@ -2,17 +2,11 @@
   <div class="maincalendar">
     <h2>Choose dates</h2>
 
-    <div class="calendar">
-
-      <button class="search-btn" v-on:click="search"> TEST </button>
-
-      <v-date-picker mode="range" v-model="selectedDate" :min-date="new Date()" show-caps></v-date-picker>
-           
-    </div>
-               <br>
            
 
     <div class="calendar">
+            <button class="search-btn" v-on:click="search"> TEST </button>
+
       <v-date-picker mode="range" v-model="selectedDate" :min-date="new Date()" show-caps></v-date-picker>
     </div>
   </div>

@@ -24,16 +24,10 @@
       <article class="price">Your total price: {{ artwork.price * amount }} sek</article>
       <br>
 
-      <section class="counter">
-        <article class="decrease" @click=" amount--" v-show="amount > 1">-</article>
-        <article class="num-days">{{ amount }}</article>
-        <article class="increase" @click=" amount++ ">+</article>
-      </section>
-      <a href="#" class="btnbuy" @click="bookArtwork">Confirm</a>
-    </section>
     <section class="content" v-if="!artwork">
       <p>No dates selected.</p>
       <a href="#" class="btn" @click="buy">Go to artwork list</a>
+    </section>
     </section>
   </main>
 </template>
