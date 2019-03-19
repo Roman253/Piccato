@@ -1,4 +1,4 @@
-%center{
+%center {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -6,44 +6,39 @@
 
 a {
     &.btn {
-      padding: 0.5rem;
-      background: rgba(69, 117, 146, 0.459);
-      @extend %center;
-      height: 3rem;
-      text-decoration: none;
-      font-weight: 600;
-      color: white;
-      border-radius: 10px;
-      border: solid white 2px;
-      
-      &:active {
-        background: #3b94af;
-      }
-
+        padding: 0.5rem;
+        background: rgba(69, 117, 146, 0.459);
+        @extend %center;
+        height: 3rem;
+        text-decoration: none;
+        font-weight: 600;
+        color: white;
+        border-radius: 10px;
+        border: solid white 2px;
+        &:active {
+            background: #3b94af;
+        }
     }
-
 }
 
 .buybutton {
-  max-width: 200px;
-  background-color: #008ce6;
-  border: none;
-  border-radius: 6px;
-  padding: 5px 12px;
-  color: #fff;
+    max-width: 28%;
+    background-color: #008ce6;
+    border: none;
+    border-radius: 6px;
+    padding: 5px 12px;
+    color: #fff;
+    cursor: pointer;
 }
 
 .buybutton:hover {
-  background-color: rgb(36, 172, 196);
-  
-}
-  
-.infotxt {
-  padding: 0 0.8rem;
-  margin: 1rem;
-  border-radius: 10px;
-  background-color:rgba(37, 22, 22, 0.507);
-  max-width: 300px;
-  
+    background-color: rgb(36, 172, 196);
 }
 
+.infotxt {
+    padding: 0 0.8rem;
+    margin: 1rem;
+    border-radius: 10px;
+    background-color: rgba(37, 22, 22, 0.507);
+    max-width: 300px;
+}

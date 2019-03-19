@@ -2,7 +2,35 @@
   <article id="admin">
     <h2>Welcome {{ getActiveUser.name }}</h2>
 
+
+
+    <h3>Manage Artworks</h3>
+    <section class="artworklist">
+      <table cellspacing="0">
+        <thead>
+          <tr>
+            <th>Artwork</th>
+            <th>Remove Artwork</th>
+            <th>Edit Artwork</th>
+
+          </tr>
+        </thead>
+        <!-- Import artworks from DB -->
+        <tbody>
+          <tr v-for="artwork in artworks" :key="artwork._title" :artwork="artwork">
+            <td>{{artwork.title}}</td>
+            <td>
+              <div id="btnRemove" @click="deleteArtwork(artwork, artwork._id)">X</div>
+            </td> 
+            <td>
+      <div id="btnEditArt" @click="selectArtwork(artwork)">Edit</div> </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
     <h3>Manage bookings</h3>
+
     <section class="artworklist">
       <table cellspacing="0">
         <thead>
@@ -10,6 +38,7 @@
             <th>Artwork</th>
             <th>Dates booked</th>
             <th>Cancel booking</th>
+
           </tr>
         </thead>
         <!-- Import artworks from DB -->
@@ -19,33 +48,14 @@
             <td>{{artwork.artist}}</td>
             <td>
               <div id="btnRemove" @click="deleteArtwork(artwork, artwork._id)">X</div>
-            </td>
+            </td> 
+
           </tr>
         </tbody>
       </table>
     </section>
 
-    <h3>Manage Artworks</h3>
-    <section class="artworklist">
-      <table cellspacing="0">
-        <thead>
-          <tr>
-            <th>Artwork</th>
-            <th>Remove Artwork</th>
-          </tr>
-        </thead>
-        <!-- Import artworks from DB -->
-        <tbody>
-          <tr v-for="artwork in artworks" :key="artwork._title" :artwork="artwork">
-            <td>{{artwork.title}}</td>
-            <td>
-              <button @click="deleteArtwork(artwork, artwork._id)">delete</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <a href="#" class="btn" @click="logout">Logout</a>
-    </section>
+
 
     <section class="addArt">
       <h3>Add new Artwork</h3>
@@ -60,6 +70,8 @@
         <a href="#" class="btnAddArt" @click="createArtwork">Add Artwork</a>
       </section>
     </section>
+
+
   </article>
 </template>
 
@@ -92,8 +104,12 @@ export default {
       this.$store.dispatch("getArtworks");
     },
 
+    selectArtwork(artwork) {
+      this.$store.commit("selectArtwork", artwork);
+      this.$router.push("/adminedit");
+    },
+
     async deleteArtwork(id) {
-      console.log(id);
       this.$store.dispatch("deleteArtwork", id);
       await this.$store.dispatch("getArtworks");
     },
@@ -128,13 +144,17 @@ export default {
   margin-bottom: 1rem;
 }
 
-#btnRemove {
+#btnRemove, #btnEditArt {
 color: white;
 background: #a20000;
 border-radius: 10px;
 display: inline;
 padding: 0px 10px 0px 10px;
 cursor: pointer;
+}
+
+#btnEditArt {
+background: #0d008c;
 }
 
 
