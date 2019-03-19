@@ -65,7 +65,7 @@ export default {
         artwork: this.artwork._id,
         amount: this.amount
       });
-      this.$router.push("/userbooked");
+      this.$router.push("/user");
     },
 
    search: function () {
