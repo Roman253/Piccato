@@ -38,7 +38,7 @@ export default {
   methods: {
     selectArtwork(artwork) {
       this.$store.commit("selectArtwork", artwork);
-      this.$router.push("/buy");
+      this.$router.push("/book");
     },
     getImgUrl(artwork) {
       return this.artwork.artworkUrl;

@@ -50,7 +50,7 @@ export default {
         this.$store.dispatch("login", {
           email: this.email,
           password: this.password
-        });
+        })
       } catch (err) {
         this.thereIsError = true;
         console.log(err);

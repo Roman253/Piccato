@@ -5,10 +5,12 @@ let Booking = require('../models/booking');
 let Artwork = require('../models/artwork');
 
 module.exports.post = async (req, res) => {
+
     console.log(req.body);
 
     try {
-        // Get artework
+
+        // Get artwork
         let artwork = await Artwork.findById(req.body.artwork);
         let booking = [];
 
@@ -20,8 +22,13 @@ module.exports.post = async (req, res) => {
 
         // Posts it into the MongoDB
         let resp = await Booking.create(bookings);
+
+
         res.status(200).send(resp);
+
     } catch (err) {
+
+        console.error(err);
         res.status(500).send(err.stack);
     }
 };
