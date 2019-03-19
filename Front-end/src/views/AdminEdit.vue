@@ -27,26 +27,16 @@
 <script>
 export default {
   name: "buy",
-  data() {
-    return {
-      sendEditArtworkData: {
-        /*  title: "",
-        artworkUrl: "",
-        artist: "",
-        price: "",
-        description: "" */
-      }
-    };
-  },
+
   computed: {
     artwork() {
       return this.$store.state.artwork;
     }
   },
   methods: {
-    async sendEditArtwork(id) {
-      this.$store.dispatch("sendEditArtwork", id);
-      this.$store.dispatch("getArtworks");
+    async sendEditArtwork(artwork, id) {
+      this.$store.dispatch("sendEditArtwork", this.artwork);
+      this.$router.push("/admin");
     }
   }
 };
@@ -77,6 +67,7 @@ export default {
   padding: 2rem;
   margin-top: -10px;
 }
+
 
 #adminedit input {
   font-size: 1.1rem;

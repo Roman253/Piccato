@@ -23,7 +23,7 @@
               <div id="btnRemove" @click="deleteArtwork(artwork, artwork._id)">X</div>
             </td> 
             <td>
-      <div id="btnRemove" @click="selectArtwork(artwork)">Edit</div> </td>
+      <div id="btnEditArt" @click="selectArtwork(artwork)">Edit</div> </td>
           </tr>
         </tbody>
       </table>
@@ -144,13 +144,17 @@ export default {
   margin-bottom: 1rem;
 }
 
-#btnRemove {
+#btnRemove, #btnEditArt {
 color: white;
 background: #a20000;
 border-radius: 10px;
 display: inline;
 padding: 0px 10px 0px 10px;
 cursor: pointer;
+}
+
+#btnEditArt {
+background: #0d008c;
 }
 
 

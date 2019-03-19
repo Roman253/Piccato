@@ -67,7 +67,7 @@ export default new Vuex.Store({
 
         async sendEditArtwork(ctx, artwork) {
             try {
-                await Axios.put(`http://localhost:3000/artworks/`, artwork);
+                await Axios.put(`http://localhost:3000/artworks`, artwork);
                 ctx.dispatch("getArtworks");
             } catch (err) {
                 // eslint-disable-next-line no-console
