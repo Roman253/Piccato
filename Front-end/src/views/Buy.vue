@@ -57,11 +57,11 @@ export default {
   },
   methods: {
     buy() {
-      this.$store.dispatch("buy", {
+    /*  this.$store.dispatch("buy", {
         artwork: this.artwork._id,
         amount: this.amount
-      });
-      this.$router.push("/userbooked");
+      });*/
+      this.$router.push("/user");
     },
 
     nrOfDates() {
