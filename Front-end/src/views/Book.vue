@@ -43,6 +43,7 @@ export default {
   name: "buy",
   data() {
     return {
+      bookedDates,
       amount: 0,
       selectedDate: {
         start: new Date(),
@@ -59,17 +60,23 @@ export default {
     }
   },
   methods: {
-
+    
+    //get bookedDates for this artwork
 
     bookArtwork() {
       if (this.activeUser){
+
+        //if (selectedDate  == bookedDates ) {
+          //The date you have chosen are already booked. from start - end
+         //} else {
+           
         this.$store.dispatch("bookArtwork", {
           artworkID: this.artwork._id,
           userUID: this.activeUser.uid,
           selectedDate: this.selectedDate
-          
         });
-        console.log("Success!");
+
+      //}
 
       } else {
       this.$router.push({ name: 'login', query: { redirect: '/book' } });
