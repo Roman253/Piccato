@@ -8,8 +8,8 @@ const jsonwebtoken = require('jsonwebtoken');
 
 // Connect to our DB 
 mongoose.connect(`mongodb+srv://Admin1:${process.env.PASSWORD}@cluster0-y175r.mongodb.net/konstlagret?retryWrites=true`, {
-        useNewUrlParser: true
-    })
+    useNewUrlParser: true
+})
     .then(() => {
         console.info('Connected to database.')
     })
@@ -38,14 +38,14 @@ let auth = require('./routes/auth');
 app.route('/bookings')
     .post(booking.post)
     .get(booking.get)
-    // .delete(booking.delete)
 
 app.route('/artworks')
     .post(artwork.post)
     .get(artwork.get)
-    //.delete(artwork.delete)
+    .put(artwork.put)
 
 app.route('/artworks/:id')
+    .put(artwork.put)
     .delete(artwork.delete)
 
 
