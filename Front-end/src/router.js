@@ -44,12 +44,6 @@ let router = new Router({
             import('./views/Book.vue')
     },
     {
-        path: '/calendar',
-        name: 'calendar',
-        component: () =>
-            import('./views/Calendar.vue')
-    },
-    {
         path: '/adminedit',
         name: 'adminedit',
         component: () =>
@@ -76,6 +70,12 @@ let router = new Router({
                 });
             }
         }
+    },
+    {
+        path: '/calendar',
+        name: 'calendar',
+        component: () =>
+            import('./components/Calendar.vue'),
     },
     {
         path: '/registration',

@@ -1,14 +1,11 @@
 <template>
   <div class="maincalendar">
     <h2>Choose dates</h2>
-
     <div class="calendar">
       <button class="search-btn" v-on:click="search">TEST</button>
-
       <v-date-picker mode="range" v-model="selectedDate" :min-date="new Date()" show-caps></v-date-picker>
     </div>
     <br>
-
     <div class="calendar">
       <v-date-picker mode="range" v-model="selectedDate" :min-date="new Date()" show-caps></v-date-picker>
     </div>
@@ -16,7 +13,11 @@
 </template>
 
 <script>
+import VCalendar from 'v-calendar'
+import 'v-calendar/lib/v-calendar.min.css'
+
 export default {
+  name: "calendar",
   data() {
     return {
       selectedValue: new Date(),
