@@ -5,7 +5,7 @@
         <a href="#" v-if="this.getActiveUser" @click="checkUser" class="user">Logged in as:
           <span>{{ getActiveUser.email }}</span>
         </a>
-        <a href="#" v-if="this.getActiveUser" class="btn" @click="logout">
+        <a href="#" v-if="this.getActiveUser" @click="logout">
           <img src="../assets/logout.svg">
         </a>
         <router-link v-if="!this.getActiveUser" to="/login">

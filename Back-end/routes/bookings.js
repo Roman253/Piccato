@@ -8,22 +8,14 @@ module.exports.post = async (req, res) => {
 
     console.log(req.body);
 
-    try {
-
-        // Get artwork
-        let artwork = await Artwork.findById(req.body.artwork);
-        let booking = [];
-
-        let bookings = {
-            artwork: artwork
-
-        }
-        booking.push(booking);
-
+    try {         
         // Posts it into the MongoDB
-        let resp = await Booking.create(bookings);
-
-
+        let resp = await Booking.create( {
+            artworkID: req.body.artworkID,
+            userUID: req.body.userUID,
+            selectedDate: req.body.selectedDate
+        });
+      
         res.status(200).send(resp);
 
     } catch (err) {

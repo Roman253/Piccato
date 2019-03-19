@@ -3,12 +3,9 @@ let Schema = mongoose.Schema;
 
 // Create schema
 let bookingSchema = new Schema({
-    artwork: Object,
+    artworkID: String,
     userUID: String,
-    selectedDate: {
-        start: String,
-        end: String
-    }
+    selectedDate: Object
 });
 
 // A model based on the schema
