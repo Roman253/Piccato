@@ -45,17 +45,13 @@ export default {
     };
   },
   methods: {
-    async login() {
-      try {
+     login() {
         this.$store.dispatch("login", {
           email: this.email,
           password: this.password
-        })
-      } catch (err) {
-        this.thereIsError = true;
-        console.log(err);
-      }
-    }
+        });
+        this.$router.push(this.$route.query.redirect || '/');
+   }
   },
   watch: {
     email(val) {

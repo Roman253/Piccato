@@ -12,12 +12,14 @@ module.exports.isAuthenticated = () => {
 
 module.exports.isAdmin = () => {
 
-    let userData = JSON.parse(sessionStorage.getItem('userData'));
-    if (userData.role == 'admin') {
-        console.log('Admin account logged in');
-        return true;
-    } else {
-        console.log('User account logged in');
-        return false;
+    if (sessionStorage.getItem('userData')) {
+        let userData = JSON.parse(sessionStorage.getItem('userData'));
+        if (userData.role == 'admin') {
+            console.log('Admin account logged in');
+            return true;
+        } else {
+            console.log('User account logged in');
+            return false;
+        }
     }
 }
