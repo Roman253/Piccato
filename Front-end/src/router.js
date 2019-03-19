@@ -15,7 +15,7 @@ let router = new Router({
             path: '/admin',
             name: 'admin',
             component: () =>
-                import('./views/Admin.vue'),
+                import ('./views/Admin.vue'),
             meta: {
                 requiresAuth: true,
                 requiresAdmin: true
@@ -35,25 +35,31 @@ let router = new Router({
             path: '/booking',
             name: 'booking',
             component: () =>
-                import('./views/Booking.vue')
+                import ('./views/Booking.vue')
         },
         {
             path: '/book',
             name: 'book',
-            component: () => 
-                import('./views/Book.vue')
+            component: () =>
+                import ('./views/Book.vue')
         },
         {
             path: '/calendar',
             name: 'calendar',
             component: () =>
-                import('./views/Calendar.vue')
+                import ('./views/Calendar.vue')
+        },
+        {
+            path: '/adminedit',
+            name: 'adminedit',
+            component: () =>
+                import ('./views/AdminEdit.vue')
         },
         {
             path: '/login',
             name: 'login',
             component: () =>
-                import('./components/Login.vue'),
+                import ('./components/Login.vue'),
             meta: {
                 requiresAuth: false
             },
@@ -74,13 +80,14 @@ let router = new Router({
         {
             path: '/registration',
             name: 'registration',
-            component: () => import('./components/Registration.vue'),
+            component: () =>
+                import ('./components/Registration.vue'),
         },
         {
             path: '/user',
             name: 'user',
             component: () =>
-                import('./views/User.vue'),
+                import ('./views/User.vue'),
             meta: {
                 requiresUser: true,
                 requiresAuth: true
