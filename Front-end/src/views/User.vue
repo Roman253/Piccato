@@ -1,6 +1,8 @@
 <template>
   <article id="user">
     <h2>Welcome {{ getActiveUser.name }}</h2>
+     <a href="#" class="btn" @click="$router.push('/booking')">Rent a artwork</a>
+
     <h3>Manage your bookings</h3>
 
     <section class="artworklist">
@@ -12,7 +14,7 @@
             <th>Cancel booking</th>
           </tr>
         </thead>
-        <!-- Import artworks from DB -->
+        <!-- Import bookings from DB -->
         <tbody>
           <tr v-for="artwork in artworks" :key="artwork._title" :artwork="artwork">
             <td>{{artwork.title}}</td>
@@ -30,16 +32,16 @@
 
 <script>
 export default {
-  name: "artworks",
-  props: ["artwork"],
+  name: "bookings",
+  props: ["bookings"],
   beforeMount() {
     this.$store.dispatch("getArtworks");
   },
 
   data() {
     return {
-      artwork: [],
-      search: ""
+      artwork: []
+      
     };
   },
 
@@ -65,7 +67,7 @@ export default {
 
 <style lang="scss">
 @import "../scss/main.scss";
-@import "../scss/_variables.scss";
+@import "../scss/components.scss";
 
 #user {
   display: grid;
@@ -73,16 +75,19 @@ export default {
 
   .btn {
     margin: auto;
-    width: 7rem;
+    width: 9rem;
     margin-top: 2rem;
     @extend %center;
-
-    @extend %buttons;
+   // @extend %buttons;
   }
 
+  h2 {
+    font-size: 2rem;
+    margin: 0;
+  }
   .artworklist {
-    background: rgb(91, 217, 255);
-    border-radius: 3px;
+    background-image:linear-gradient(rgb(47, 248, 248), rgb(91, 217, 255));
+    border-radius: 10px;
     padding: 1rem;
     color: black;
     width: 50%;

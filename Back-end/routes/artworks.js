@@ -1,6 +1,6 @@
 let Artwork = require('../models/artwork');
 
-module.exports.get = async(req, res) => {
+module.exports.get = async (req, res) => {
     try {
         let artwork = await Artwork.find({});
         res.status(200).send(artwork);
@@ -9,7 +9,7 @@ module.exports.get = async(req, res) => {
     }
 };
 
-module.exports.post = async(req, res) => {
+module.exports.post = async (req, res) => {
     try {
         //Handle post
         let artwork = req.body;
@@ -27,7 +27,7 @@ module.exports.post = async(req, res) => {
 
 //DELETE
 
-module.exports.delete = async(req, res) => {
+module.exports.delete = async (req, res) => {
     try {
         res.status(200).send(await Artwork.deleteOne({ _id: req.params.id }))
     } catch (err) {
@@ -35,7 +35,7 @@ module.exports.delete = async(req, res) => {
     }
 }
 
-module.exports.put = async(req, res) => {
+module.exports.put = async (req, res) => {
     try {
         res.status(200).send(await Artwork.findOneAndUpdate({ _id: req.body._id },
             req.body))

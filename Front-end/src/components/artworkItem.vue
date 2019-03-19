@@ -1,5 +1,5 @@
 <template>
-  <div class="media">
+  <div id="media">
     <section>
       <img
         class="media-object"
@@ -14,7 +14,7 @@
       <p class="media-p">
         Artist: {{artwork.artist}}
         <br>
-        Price: {{artwork.price}}:-
+        Price: {{artwork.price}}:- /day
         <br>
         Description: {{artwork.description}}
       </p>
@@ -48,7 +48,7 @@ export default {
 </script>
 
 <style lang="scss">
-.media {
+#media {
   max-width: 620px;
   background: rgb(59, 59, 59);
   border-radius: 10px;

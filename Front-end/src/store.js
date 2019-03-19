@@ -20,7 +20,6 @@ export default new Vuex.Store({
     },
     mutations: {
         //update array with artworks
-        //update array with artworks
         setArtworks(state, artworks) {
             state.artworks = artworks;
         },
@@ -66,9 +65,9 @@ export default new Vuex.Store({
             await Axios.delete(`http://localhost:3000/artworks/${id._id}`);
         },
 
-        async sendEditArtwork(ctx, id) {
+        async sendEditArtwork(ctx, artwork) {
             try {
-                await Axios.put(`http://localhost:3000/artworks/${id._id}`);
+                await Axios.put(`http://localhost:3000/artworks`, artwork);
                 ctx.dispatch("getArtworks");
             } catch (err) {
                 // eslint-disable-next-line no-console
@@ -86,13 +85,13 @@ export default new Vuex.Store({
         async bookArtwork(ctx, bookingData) {
 
             try {
-                await Axios.post(`${ctx.state.apiUrl}/book`, bookingData)
+                await Axios.post(`${ctx.state.apiUrl}/bookings`, bookingData)
                     .then(response => {
-
+                        console.log(response);
                     })
 
             } catch (err) {
-
+                console.error(err);
             }
         },
         async login(ctx, loginData) {

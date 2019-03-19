@@ -2,7 +2,7 @@
   <div class="maincalendar">
     <h2>Choose dates</h2>
 
-           
+
 
     <div class="calendar">
             <button class="search-btn" v-on:click="search"> TEST </button>
@@ -24,11 +24,12 @@ export default {
       }
     };
   },
-methods: {
-  search: function () {
-   console.log(this.selectedDate.start);
-   console.log(this.selectedDate.end);
-}}
+  methods: {
+    search: function() {
+      console.log(this.selectedDate.start);
+      console.log(this.selectedDate.end);
+    }
+  }
 };
 </script>
 

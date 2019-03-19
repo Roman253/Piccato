@@ -1,8 +1,8 @@
 <template>
   <article id="booking">
-    <h2>Click on  the artwork for more info</h2>
     <section class="search">
-      <input class="inputsearch" type="text" v-model="search" placeholder="Search for Artwork">
+     <input class="inputsearch" type="text" v-model="search" placeholder="Search for Artwork">
+        Click on the artwork for more info. 
     </section>
     <artworkItem v-for="artwork in filterArtwork" :key="artwork.id" :artwork="artwork"/>
   </article>
@@ -37,6 +37,7 @@ export default {
 <style lang="scss">
 @import "../scss/main.scss";
 #booking {
+
   input {
     font-size: 1.1rem;
     padding: 0.5rem 1rem;
