@@ -1,16 +1,19 @@
 module.exports.isAuthenticated = () => {
-
-    if (sessionStorage.getItem('loginToken')) {
-
-        return true;
-    } else {
-        return false;
+    
+    if (sessionStorage.getItem('userData')) {
+        let userData = JSON.parse(sessionStorage.getItem('userData'));
+        if (userData.authToken) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
 
 module.exports.isAdmin = () => {
 
-    if (sessionStorage.getItem('isAdmin')) {
+    let userData = JSON.parse(sessionStorage.getItem('userData'));
+    if (userData.role == 'admin') {
         console.log('Admin account logged in');
         return true;
     } else {

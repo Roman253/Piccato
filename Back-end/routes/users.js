@@ -3,9 +3,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const uuid = require('uuid/v4');
-const {
-    body
-} = require('express-validator/check');
+const { body } = require('express-validator/check');
 const Auth = require('./auth');
 
 
