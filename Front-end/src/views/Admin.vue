@@ -42,16 +42,16 @@
           </tr>
         </thead>
         <!-- Import artworks from DB -->
-        <tbody>
+        <!-- <tbody>
           <tr v-for="artwork in artworks" :key="artwork._title" :artwork="artwork">
             <td>{{artwork.title}}</td>
             <td>{{artwork.artist}}</td>
             <td>
               <div id="btnRemove" @click="deleteArtwork(artwork, artwork._id)">X</div>
-            </td> 
-
+            </td>  -->
+<!-- 
           </tr>
-        </tbody>
+        </tbody> -->
       </table>
     </section>
 
@@ -76,10 +76,15 @@
 </template>
 
 <script>
+
 export default {
   name: "artworks",
   props: ["artwork"],
   name: "admin",
+    components: {
+  BookedItems: BookedItems
+
+  },
   beforeMount() {
     this.$store.dispatch("getArtworks");
   },

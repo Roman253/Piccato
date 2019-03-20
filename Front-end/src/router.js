@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
-import auth from './auth';
+import auth from './auth'
 
 Vue.use(Router)
 
@@ -70,12 +70,6 @@ let router = new Router({
                 });
             }
         }
-    },
-    {
-        path: '/calendar',
-        name: 'calendar',
-        component: () =>
-            import('./components/Calendar.vue'),
     },
     {
         path: '/registration',

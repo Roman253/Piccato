@@ -1,7 +1,9 @@
 <template>
   <div class="maincalendar">
     <div class="calendar">
-      <v-date-picker mode="range" is-inline v-model="selectedDate" :min-date="new Date()" show-caps></v-date-picker>
+      <v-date-picker mode="range" is-inline v-model="selectedDate" 
+          :min-date="new Date()" is-double-paned :attributes='attributes' show-caps>
+      </v-date-picker>
     </div>
   </div>
 </template>
@@ -12,7 +14,6 @@ export default {
   data() {
     return {
       selectedValue: new Date(),
-
       selectedDate: {
         start: new Date(),
         end: new Date()
@@ -24,8 +25,31 @@ export default {
       console.log(this.selectedDate.start);
       console.log(this.selectedDate.end);
     }
+  },
+  computed: {
+     attributes() {
+       return this.bookedDates.map(t => ({
+          key: `t.artworkID`,
+          highlight: {
+            backgroundColor: 'red',
+            borderColor: '#ff6666',
+            borderWidth: '2px',
+            borderStyle: 'solid',
+          },
+          contentStyle: {
+            color: 'white'
+          },
+          dates: t.selectedDate,
+          customData: t,
+        }));
+
+      },
+        bookedDates() {
+            return this.$store.state.booking;
+        }
+    }
+
   }
-};
 </script>
 
 <style lang="scss">

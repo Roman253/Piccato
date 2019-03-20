@@ -31,8 +31,9 @@ module.exports.get = async (req, res) => {
     try {
         let bookings = await Booking.find({});
         res.status(200).send(bookings);
-
-    } catch (err) {
+        console.log(bookings);
+        }
+     catch (err) {
         res.status(500).send(err);
     }
 };
