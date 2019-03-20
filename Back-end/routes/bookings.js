@@ -32,8 +32,15 @@ module.exports.get = async(req, res) => {
         let bookings = await Booking.find({});
         res.status(200).send(bookings);
         console.log(bookings);
-        }
-     catch (err) {
+    } catch (err) {
         res.status(500).send(err);
     }
 };
+
+module.exports.delete = async(req, res) => {
+    try {
+        res.status(200).send(await Booking.deleteOne({ _id: req.params.id }))
+    } catch (err) {
+        res.status(500).send(err.stack);
+    }
+}

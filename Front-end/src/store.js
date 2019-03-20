@@ -31,7 +31,7 @@ export default new Vuex.Store({
             state.activeUser = user;
         },
         setBookings(state, bookings) {
-            state.booking = bookings
+            state.bookings = bookings
         },
         toggleRejected(state) {
             state.rejected = !state.rejected;
@@ -50,10 +50,8 @@ export default new Vuex.Store({
         },
         success(state, message) {
             state.success = message
-        },
-        setBookings(state, bookings) {
-            state.bookings = bookings;
-        },
+        }
+
     },
     actions: {
 
@@ -75,6 +73,12 @@ export default new Vuex.Store({
             console.log(id._id)
             await Axios.delete(`http://localhost:3000/artworks/${id._id}`);
         },
+
+        async deleteBooking(ctx, id) {
+            console.log(id._id)
+            await Axios.delete(`http://localhost:3000/bookings/${id._id}`);
+        },
+
 
         async sendEditArtwork(ctx, artwork) {
             try {
@@ -98,12 +102,16 @@ export default new Vuex.Store({
                 console.log(err);
             }
         },
+
+
         //get artwork from the API
         async getArtworks(ctx) {
             let artworks = await Axios.get('http://localhost:3000/artworks');
             ctx.commit('setArtworks', artworks.data);
             //console.log(artwork.data);
         },
+
+
         async bookArtwork(ctx, bookingData) {
 
             try {
