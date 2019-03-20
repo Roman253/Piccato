@@ -2,20 +2,17 @@
 @import url("https://fonts.googleapis.com/css?family=Do+Hyeon");
 @import url('https://fonts.googleapis.com/css?family=Oleo+Script');
 @import './typography';
-
 @import url('https://fonts.googleapis.com/css?family=Monda');
-
 @import "../scss/variables";
-
 :root {
-
     //@extend %globalFont;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-image: url("http://i68.tinypic.com/zmefer.jpg");
+    background-image: url("http://i64.tinypic.com/2cr9k3n.jpg");
     background-size: cover;
-
+    background-attachment: fixed;
 }
+
 %center {
     display: flex;
     justify-content: center;
@@ -24,7 +21,6 @@
 
 body {
     margin: 0;
-    
     #app {
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
@@ -35,19 +31,16 @@ body {
         flex-direction: column;
         display: flex;
     }
-
     a {
         text-decoration: none;
     }
-
     #nav {
         top: 0;
         width: 100%;
         padding: 10px 0;
-        background-image: linear-gradient(#008ce6, #77b5fc, #008ce6); 
+        background-image: linear-gradient(#008ce6, #77b5fc, #008ce6);
         border-bottom: white solid 2px;
         font-size: 1.2rem;
-
         a {
             transition: 0.3s;
             font-weight: bold;
@@ -55,12 +48,10 @@ body {
             color: white;
             text-decoration: none;
             text-transform: uppercase;
-
             &.router-link-exact-active {
                 color: #444444;
             }
         }
-
         a:hover {
             color: rgb(8, 50, 90);
             opacity: 0.6;
@@ -69,11 +60,14 @@ body {
         }
     }
 }
+
+
 /*
     @extend %globalFont;
 
     @extend %globalFont;
 */
+
 ul {
     list-style-type: none;
     padding: 0;
@@ -85,26 +79,22 @@ li {
 }
 
 @media only screen and (max-width: 400px) {
-
     .media {
         width: 100%;
         border-radius: 0px;
     }
-
     h2 {
         font-size: 1.3rem;
     }
-
     #nav {
         width: 100%;
         margin: 0 auto;
         text-align: left;
     }
-
     #nav a {
         font-size: .8rem;
     }
-    body {  
+    body {
         #app {
             cursor: pointer;
         }

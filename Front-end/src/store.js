@@ -12,7 +12,8 @@ export default new Vuex.Store({
         apiUrl: 'http://localhost:3000',
         artwork: {},
         artworks: [],
-        booking: [],
+        booking: {},
+        bookings: [],
         activeUser: '',
         loginError: null,
         thereIsError: false,
@@ -46,9 +47,16 @@ export default new Vuex.Store({
         },
         success(state, message) {
             state.success = message
-        }
+        },
+        setBookings(state, bookings) {
+            state.bookings = bookings;
+        },
     },
     actions: {
+
+
+        //ARTWORK
+
         //get artwork from the API
         async createArtwork(ctx, artwork) {
             try {
@@ -75,7 +83,6 @@ export default new Vuex.Store({
             }
         },
 
-
         //get artwork from the API
         async getArtworks(ctx) {
             let artworks = await Axios.get('http://localhost:3000/artworks');
@@ -94,6 +101,22 @@ export default new Vuex.Store({
                 console.error(err);
             }
         },
+
+
+        //BOOKINGS
+
+
+        //get bookings from the API
+        async getBookings(ctx) {
+            let bookings = await Axios.get('http://localhost:3000/bookings');
+            ctx.commit('setBookings', bookings.data);
+            console.log(booking.data);
+        },
+
+
+
+        //LOGIN
+
         async login(ctx, loginData) {
 
             try {

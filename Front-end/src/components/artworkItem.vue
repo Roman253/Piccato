@@ -50,16 +50,15 @@ export default {
 <style lang="scss">
 #media {
   max-width: 620px;
-  background: rgb(59, 59, 59);
-  border-radius: 10px;
   color: black;
-  text-align: left;
   margin: 0 auto;
   margin-bottom: 10px;
+  box-shadow: 12px 0px 43px 2px #0ff;
+  background: rgb(36, 36, 36);
 
   .media-object {
     width: 90%;
-    padding: 5% 0 4% 5%;
+    padding: 1rem;
   }
   .media-body {
     padding: 0 0 5% 7%;

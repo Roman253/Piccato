@@ -65,11 +65,11 @@ export default {
     .user {
       margin: 0.6rem 0.8rem;
       font-weight: bold;
-      color: black;
+      color: white;
     }
 
     span {
-      color: blue;
+      color: rgb(112, 210, 255);
     }
   }
 }

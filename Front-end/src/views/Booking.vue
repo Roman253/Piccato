@@ -2,7 +2,7 @@
   <article id="booking">
     <section class="search">
      <input class="inputsearch" type="text" v-model="search" placeholder="Search for Artwork">
-        Click on the artwork for more info. 
+          Click on the artwork for more info. 
     </section>
     <artworkItem v-for="artwork in filterArtwork" :key="artwork.id" :artwork="artwork"/>
   </article>
