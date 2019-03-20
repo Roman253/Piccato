@@ -4,7 +4,7 @@
       <h1>Piccato</h1>
     </section>
     <section>
-      <img src="https://placekitten.com/100/100" alt="logo">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/c/c6/IdeaLab_space_cat.svg" alt="logo">
     </section>
     <section class="infotxt">
       <p>Make your workers happy.

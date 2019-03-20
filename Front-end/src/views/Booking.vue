@@ -37,7 +37,9 @@ export default {
 <style lang="scss">
 @import "../scss/main.scss";
 #booking {
-
+  .inputsearch {
+    margin: 0 1rem;
+  }
   input {
     font-size: 1.1rem;
     padding: 0.5rem 1rem;
@@ -51,7 +53,7 @@ export default {
     }
   }
   .search {
-    margin: 1.3rem;
+    margin: 1rem;
   }
   h2 {
     font-size: 1.5rem;
