@@ -1,5 +1,6 @@
 <template>
   <main id="buy">
+    <section class="wrapperBuy">
     <section class="contentBuy" v-if="artwork">
       <h3>Choose number of days</h3>
       <calendar class="calendar" alt="calendar"></calendar>
@@ -30,6 +31,8 @@
     <section class="content" v-if="!artwork">
       <p>No dates selected.</p>
       <a href="#" class="btn" @click="buy">Go to artwork list</a>
+    </section>
+
     </section>
   </main>
 </template>
@@ -117,7 +120,7 @@ export default {
   .contentBuy {
     @extend %center;
     flex-direction: column;
-    background-color: #5bd9ff;
+    background: rgb(33, 2, 43);
     width: 80%;
     margin: 0 auto;
     padding: 10px;

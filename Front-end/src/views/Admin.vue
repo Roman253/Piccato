@@ -165,7 +165,7 @@ background: #8400ff;
 
 .form {
   display: grid;
-  background: #21022b;
+  background: rgba(33, 2, 43, 0.8);
   padding: 2rem;
   margin-top: -10px;
 }
@@ -201,13 +201,12 @@ background: #8400ff;
 }
 
 .artworklist {
-  background: rgb(33, 2, 43);
+  background: rgba(33, 2, 43, 0.8);
   border-radius: 3px;
   padding: 1rem;
   color: white;
   width: 50%;
   margin: 0 auto;
-  opacity: 0.8;
 }
 
 table {
