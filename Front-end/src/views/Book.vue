@@ -46,7 +46,6 @@ export default {
   },
   data() {
     return {
-      bookedDates,
       amount: 0,
       selectedDate: {
         start: new Date(),

@@ -51,7 +51,7 @@
             </td> 
 
           </tr>
-        </tbody>
+        </tbody> -->
       </table>
     </section>
 
@@ -76,10 +76,15 @@
 </template>
 
 <script>
+
 export default {
   name: "artworks",
   props: ["artwork"],
   name: "admin",
+    components: {
+  BookedItems: BookedItems
+
+  },
   beforeMount() {
     this.$store.dispatch("getArtworks");
   },

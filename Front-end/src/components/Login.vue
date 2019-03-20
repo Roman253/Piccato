@@ -51,7 +51,7 @@ export default {
           password: this.password
         });
         this.$router.push(this.$route.query.redirect || '/');
-   }
+   },
   },
   watch: {
     email(val) {
