@@ -28,6 +28,7 @@ export default {
   name: "artwork",
   props: ["artwork"],
   data() {
+    //toogle to se more info
     return { seen: false };
   },
   computed: {
@@ -36,10 +37,12 @@ export default {
     }
   },
   methods: {
+    //when you click on book, sending artwork to next page and rederict to book.
     selectArtwork(artwork) {
       this.$store.commit("selectArtwork", artwork);
       this.$router.push("/book");
     },
+    //return method to get imgURL
     getImgUrl(artwork) {
       return this.artwork.artworkUrl;
     }
@@ -55,6 +58,7 @@ export default {
   margin-bottom: 10px;
   box-shadow: 12px 0px 43px 2px #0ff;
   background: rgb(36, 36, 36);
+  cursor: pointer;
 
   .media-object {
     width: 90%;

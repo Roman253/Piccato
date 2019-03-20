@@ -67,14 +67,13 @@ export default {
   margin: 0 auto;
 }
 
+.calendarDate {
+  margin: 0 auto;
+  margin-bottom: 300px;
+  margin-left: 35%;
+}
 
-  .calendarDate {
-    margin: 0 auto;
-    margin-bottom: 300px;
-    margin-left: 35%;
-  }
-
-  .popover-container[data-v-1ad2436f] {
-    margin: 0 auto;
-  }
+.popover-container[data-v-1ad2436f] {
+  margin: 0 auto;
+}
 </style>

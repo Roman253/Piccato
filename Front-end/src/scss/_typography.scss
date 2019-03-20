@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Homemade+Apple|Merienda+One');
 @import url('https://fonts.googleapis.com/css?family=Raleway');
+
 :root {
     font-family: 'Merienda One', sans-serif;
 }
@@ -8,7 +9,7 @@ h1 {
     font-family: 'Homemade Apple', cursive;
     font-size: 4rem;
     margin: 0;
-    color: black;
+    color: #f9a11e;
 }
 
 h2 {
@@ -24,9 +25,18 @@ h3 {
     color: white;
 }
 
+h4 {
+    font-family: 'Homemade Apple', cursive;
+    font-size: 1.4rem;
+    margin: 0;
+    color: #f9a11e;
+    padding-top: 20px;
+}
+
 p {
     font-family: 'Raleway', sans-serif;
     font-size: 1rem;
     line-height: 1.5;
     text-align: left;
+    color: white;
 }

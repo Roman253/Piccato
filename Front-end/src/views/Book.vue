@@ -1,23 +1,23 @@
 <template>
   <main id="buy" @mousemove="getEvent">
     <section class="wrapperBuy">
-    <section class="contentBuy" v-if="artwork">
-      <h3>Choose number of days</h3>
-      <calendar class="calendar" alt="calendar"></calendar>
-      <div class="media">
-        <img class="media-object" v-bind:src="artwork.artworkUrl" width="200px">
-        <div class="media-body">
-          <h3 class="media-heading">Title: {{artwork.title}}</h3>
-          <p class="media-p">
-            Artist: {{artwork.artist}}
-            <br>
-            Price: {{artwork.price}}:-/day
-            <br>
-            Description: {{artwork.description}}
-            <br>
-          </p>
+      <section class="contentBuy" v-if="artwork">
+        <h3>Choose number of days</h3>
+        <calendar class="calendar" alt="calendar"></calendar>
+        <div class="media">
+          <img class="media-object" v-bind:src="artwork.artworkUrl" width="200px">
+          <div class="media-body">
+            <h3 class="media-heading">Title: {{artwork.title}}</h3>
+            <p class="media-p">
+              Artist: {{artwork.artist}}
+              <br>
+              Price: {{artwork.price}}:-/day
+              <br>
+              Description: {{artwork.description}}
+              <br>
+            </p>
+          </div>
         </div>
-      </div>
 
       <div class="buybutton" @click="nrOfDates()">
         <p>Calculate the price</p>
@@ -58,8 +58,6 @@ export default {
     }
   },
   methods: {
-    
-    //get bookedDates for this artwork
     bookArtwork() {
       if (this.activeUser) {
         this.$store.dispatch("bookArtwork", {
@@ -92,7 +90,6 @@ export default {
 };
 </script>
 
-<!-- -->
 <style lang="scss">
 @import "../scss/main";
 @import "../scss/components";
@@ -101,14 +98,15 @@ export default {
   .media {
     display: flex;
     align-items: flex-start;
-    background: #d9fbff;
+    background:rgba(0, 228, 255, 0.6);
     padding: 1em;
     border-radius: 10px;
-    color: black;
+    color: white;
     width: 80%;
     text-align: left;
     margin: 0 auto;
     margin-bottom: 10px;
+    margin-top: 10px;
   }
   .media-object {
     margin-right: 1rem;
@@ -117,25 +115,25 @@ export default {
   }
   .media-body {
     width: 40%;
-    color: black;
+    color: white;
   }
   .media-heading {
     margin: 1rem 0 0.5em;
     font-size: 1rem;
-    color: black;
+    color: white;
   }
 
   .contentBuy {
     @extend %center;
     flex-direction: column;
-    background: rgb(33, 2, 43);
+  background: rgba(33, 2, 43, 0.7);
     width: 80%;
     margin: 0 auto;
     padding: 10px;
     font-size: 1.3rem;
     margin-top: 1rem;
     margin-bottom: 2rem;
-    color: black;
+    color: white;
   }
 
   .btnbuy {

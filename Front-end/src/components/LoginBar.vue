@@ -1,8 +1,25 @@
 <template>
   <transition appear name="fade" mode="in-out">
     <main id="main">
+      <section class="homeContent">
+        <a href="/home">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/c/c6/IdeaLab_space_cat.svg"
+            alt="home"
+            width="70px"
+          >
+        </a>
+      </section>
+
+      <section class="homeContentText">
+        <a href="/home">
+          <h4>Piccato</h4>
+        </a>
+      </section>
+
       <section class="content">
-        <a href="#" v-if="this.getActiveUser" @click="checkUser" class="user">Logged in as:
+        <a href="#" v-if="this.getActiveUser" @click="checkUser" class="user">
+          Logged in as:
           <span>{{ getActiveUser.email }}</span>
         </a>
         <a href="#" v-if="this.getActiveUser" @click="logout">
@@ -49,9 +66,27 @@ export default {
 @import "../scss/variables";
 
 #main {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 100px 50px 1fr;
+  grid-template-areas: "homecontent text content";
+  margin-left: 2rem;
+  margin-top: 1rem;
+
+  .homeContent {
+    grid-area: homecontent;
+  }
+
+  .homeContentText {
+    grid-area: text;
+    justify-content: flex-end;
+  }
+
   .content {
     display: flex;
     justify-content: flex-end;
+    grid-area: content;
+    margin-top: 1rem;
 
     a {
       text-decoration: none;
@@ -85,6 +120,10 @@ export default {
       .user {
         font-weight: 700;
       }
+    }
+
+    .homeContentText {
+      display: none;
     }
   }
 }

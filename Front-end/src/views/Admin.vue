@@ -2,8 +2,6 @@
   <article id="admin">
     <h2>Welcome {{ getActiveUser.name }}</h2>
 
-
-
     <h3>Manage Artworks</h3>
     <section class="artworklist">
       <table cellspacing="0">
@@ -12,18 +10,18 @@
             <th>Artwork</th>
             <th>Remove Artwork</th>
             <th>Edit Artwork</th>
-
           </tr>
         </thead>
         <!-- Import artworks from DB -->
         <tbody>
-          <tr v-for="artwork in artworks" :key="artwork._title" :artwork="artwork">
+          <tr v-for="artwork in artworks" :key="artwork._id" :artwork="artwork">
             <td>{{artwork.title}}</td>
             <td>
               <div id="btnRemove" @click="deleteArtwork(artwork, artwork._id)">X</div>
-            </td> 
+            </td>
             <td>
-      <div id="btnEditArt" @click="selectArtwork(artwork)">Edit</div> </td>
+              <div id="btnEditArt" @click="selectArtwork(artwork)">Edit</div>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -37,25 +35,30 @@
           <tr>
             <th>Artwork</th>
             <th>Dates booked</th>
-            <th>Cancel booking</th>
-
+            <th>Delete booking</th>
           </tr>
         </thead>
         <!-- Import artworks from DB -->
+<<<<<<< HEAD
         <!-- <tbody>
           <tr v-for="booking in bookings" :key="booking._artworkID" :booking="booking">
+=======
+        <tbody>
+          <tr v-for="booking in bookings" :key="booking._id" :booking="booking">
+>>>>>>> 3c301ef308e7a7021edb584c324ca5ef0789b6a5
             <td>{{booking.artworkID}}</td>
             <td>{{booking.userID}}</td>
             <td>
               <div id="btnRemove" @click="deleteArtwork(booking, booking._id)">X</div>
-            </td> 
-
+            </td>
           </tr>
+<<<<<<< HEAD
         </tbody> --> -->
+=======
+        </tbody>-->
+>>>>>>> 3c301ef308e7a7021edb584c324ca5ef0789b6a5
       </table>
     </section>
-
-
 
     <section class="addArt">
       <h3>Add new Artwork</h3>
@@ -70,16 +73,12 @@
         <a href="#" class="btnAddArt" @click="createArtwork">Add Artwork</a>
       </section>
     </section>
-
-
   </article>
 </template>
 
 <script>
-
 export default {
   name: "artworks",
-  props: ["artwork"],
   name: "admin",
   beforeMount() {
     this.$store.dispatch("getArtworks");
@@ -127,11 +126,6 @@ export default {
     bookings() {
       return this.$store.state.bookings;
     },
-    filterArtwork: function() {
-      return this.artworks.filter(artwork => {
-        return artwork.title.toLowerCase().match(this.search.toLowerCase());
-      });
-    },
     getActiveUser() {
       return this.$store.state.activeUser;
     }
@@ -147,22 +141,21 @@ export default {
   margin: 0 auto;
   margin-bottom: 1rem;
   color: rgb(101, 90, 255);
-
 }
 
-#btnRemove, #btnEditArt {
-color: white;
-background: #a20000;
-border-radius: 10px;
-display: inline;
-padding: 0px 10px 0px 10px;
-cursor: pointer;
+#btnRemove,
+#btnEditArt {
+  color: white;
+  background: #a20000;
+  border-radius: 10px;
+  display: inline;
+  padding: 0px 10px 0px 10px;
+  cursor: pointer;
 }
 
 #btnEditArt {
-background: #8400ff;
+  background: #8400ff;
 }
-
 
 .form {
   display: grid;

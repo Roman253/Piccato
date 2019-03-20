@@ -23,6 +23,7 @@ export default new Vuex.Store({
         setArtworks(state, artworks) {
             state.artworks = artworks;
         },
+        //choosing artwork in the list 
         selectArtwork(state, artwork) {
             state.artwork = artwork;
         },
@@ -88,12 +89,12 @@ export default new Vuex.Store({
 
             try {
                 let bookings = await Axios.get(`${ctx.state.apiUrl}/bookings`, bookings)
-                .then(response => {
-                    ctx.commit('setBookings', response.data);
-                    console.log(response.data);
-                })
-         
-            }catch (err) {
+                    .then(response => {
+                        ctx.commit('setBookings', response.data);
+                        console.log(response.data);
+                    })
+
+            } catch (err) {
                 console.log(err);
             }
         },
@@ -171,7 +172,8 @@ export default new Vuex.Store({
         setUser(ctx) {
             ctx.commit('setActiveUser', JSON.parse(sessionStorage.getItem('userData')));
         }
-    },    beforeCreate: function () {
+    },
+    beforeCreate: function() {
         this.$store.dispatch("getBookings");
     }
 
