@@ -20,11 +20,10 @@
         </div>
 
       <div class="buybutton" @click="nrOfDates()">
-        <p>Calculate the price</p>
+          <h5>Calculate the price</h5>
       </div>
       <p>Chosen number of days: {{amount}}</p>
-      <article class="price">Your total price: {{ artwork.price * amount }} sek</article>
-      <br>
+        <p>Your total price: {{ artwork.price * amount }} sek</p>
       <a href="#" class="btnbuy" @click="bookArtwork">Confirm</a>
     </section>
 
@@ -95,18 +94,28 @@ export default {
 @import "../scss/components";
 
 #buy {
+  p {
+    margin: 0.4rem;
+    }
+  .buybutton {
+    padding: 0.8rem 1rem;
+    margin-bottom: 1rem;
+  }
   .media {
     display: flex;
     align-items: flex-start;
-    background:rgba(0, 228, 255, 0.6);
+    background: #d9fbff;
     padding: 1em;
     border-radius: 10px;
-    color: white;
+    color: black;
     width: 80%;
     text-align: left;
-    margin: 0 auto;
-    margin-bottom: 10px;
-    margin-top: 10px;
+    margin: 1rem auto;
+    p {
+      color: black;
+    }
+    
+   
   }
   .media-object {
     margin-right: 1rem;
@@ -115,35 +124,36 @@ export default {
   }
   .media-body {
     width: 40%;
-    color: white;
+    color: black;
   }
   .media-heading {
     margin: 1rem 0 0.5em;
     font-size: 1rem;
-    color: white;
+    color: black;
   }
 
   .contentBuy {
     @extend %center;
     flex-direction: column;
-  background: rgba(33, 2, 43, 0.7);
+    background: rgb(33, 2, 43);
     width: 80%;
     margin: 0 auto;
     padding: 10px;
     font-size: 1.3rem;
     margin-top: 1rem;
     margin-bottom: 2rem;
-    color: white;
+    color: black;
   }
 
   .btnbuy {
-    background-color: rgb(0, 30, 162);
-    padding: 5px 16px 10px 16px;
+    background-color: rgba(48, 46, 151, 0.493);
+    padding: 0.8rem 2.8rem;
     color: white;
     text-decoration: none;
     font-size: 1.2rem;
     margin-top: 20px;
     border-radius: 5px;
+    border: 2px solid white;
   }
 
   .btnbuy:hover {
