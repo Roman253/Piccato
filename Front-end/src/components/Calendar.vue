@@ -1,7 +1,7 @@
 <template>
   <div class="maincalendar">
     <div class="calendar">
-      <v-date-picker mode="range" is-inline  v-bind="selectedDate" @input="emitMethod"
+      <v-date-picker mode="range" is-inline  v-model="selectedDate" @input="emitMethod" :disabled-dates='{disabledDates}'
           :min-date="new Date()" is-double-paned :attributes='attributes' show-caps>
       </v-date-picker>
     </div>
@@ -15,8 +15,8 @@ export default {
   data() {
     return {
       selectedDate: {
-        start: '',
-        end: ''
+        start: new Date(),
+        end: new Date()
       }
   }
   },
@@ -27,6 +27,7 @@ export default {
     },
     emitMethod () {
        EventBus.$emit('selectedDates', this.selectedDate);
+       console.log(this.disabledDates)
        console.log('selectedDates');
     }
   },
@@ -44,12 +45,17 @@ export default {
             color: 'white'
           },
           dates: t.selectedDate,
-          customData: t,
+          customData: t
         }));
 
       },
       bookedDates() {
           return this.$store.state.bookings;
+      },
+      disabledDates() {
+        return this.bookedDates.map(t => ({
+            dates: t.selectedDate
+        }))
       }
       }
 }

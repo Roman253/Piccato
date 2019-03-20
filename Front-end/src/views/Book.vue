@@ -1,5 +1,5 @@
 <template>
-  <main id="buy" @mousemove="getEvent">
+  <main id="buy" @mouseover="getEvent">
     <section class="wrapperBuy">
       <section class="contentBuy" v-if="artwork">
         <h3>Choose number of days</h3>
@@ -70,13 +70,12 @@ export default {
       }
     },
     nrOfDates() {
-      // let diff = this.selectedDate.end - this.selectedDate.start;
-      // let amount = Math.round(diff / 86400000);
-      // this.amount = amount;
-      console.log(this.getDates);
+      let diff = this.selectedDate.end - this.selectedDate.start;
+      let amount = Math.round(diff / 86400000);
+      this.amount = amount;
     },
     getEvent(){
-      EventBus.$on('EVENT_NAME', payload => {
+      EventBus.$on('selectedDates', payload => {
         this.selectedDate = payload;
         console.log(payload);
       });
