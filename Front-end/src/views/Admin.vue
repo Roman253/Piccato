@@ -2,8 +2,6 @@
   <article id="admin">
     <h2>Welcome {{ getActiveUser.name }}</h2>
 
-
-
     <h3>Manage Artworks</h3>
     <section class="artworklist">
       <table cellspacing="0">
@@ -12,7 +10,6 @@
             <th>Artwork</th>
             <th>Remove Artwork</th>
             <th>Edit Artwork</th>
-
           </tr>
         </thead>
         <!-- Import artworks from DB -->
@@ -21,9 +18,10 @@
             <td>{{artwork.title}}</td>
             <td>
               <div id="btnRemove" @click="deleteArtwork(artwork, artwork._id)">X</div>
-            </td> 
+            </td>
             <td>
-      <div id="btnEditArt" @click="selectArtwork(artwork)">Edit</div> </td>
+              <div id="btnEditArt" @click="selectArtwork(artwork)">Edit</div>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -38,7 +36,6 @@
             <th>Artwork</th>
             <th>Dates booked</th>
             <th>Cancel booking</th>
-
           </tr>
         </thead>
         <!-- Import artworks from DB -->
@@ -48,14 +45,11 @@
             <td>{{booking.userID}}</td>
             <td>
               <div id="btnRemove" @click="deleteArtwork(booking, booking._id)">X</div>
-            </td> 
-
+            </td>
           </tr>
         </tbody> -->
       </table>
     </section>
-
-
 
     <section class="addArt">
       <h3>Add new Artwork</h3>
@@ -70,8 +64,6 @@
         <a href="#" class="btnAddArt" @click="createArtwork">Add Artwork</a>
       </section>
     </section>
-
-
   </article>
 </template>
 
@@ -148,22 +140,21 @@ export default {
   margin: 0 auto;
   margin-bottom: 1rem;
   color: rgb(101, 90, 255);
-
 }
 
-#btnRemove, #btnEditArt {
-color: white;
-background: #a20000;
-border-radius: 10px;
-display: inline;
-padding: 0px 10px 0px 10px;
-cursor: pointer;
+#btnRemove,
+#btnEditArt {
+  color: white;
+  background: #a20000;
+  border-radius: 10px;
+  display: inline;
+  padding: 0px 10px 0px 10px;
+  cursor: pointer;
 }
 
 #btnEditArt {
-background: #8400ff;
+  background: #8400ff;
 }
-
 
 .form {
   display: grid;

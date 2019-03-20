@@ -23,6 +23,7 @@ export default new Vuex.Store({
         setArtworks(state, artworks) {
             state.artworks = artworks;
         },
+        //choosing artwork in the list 
         selectArtwork(state, artwork) {
             state.artwork = artwork;
         },
