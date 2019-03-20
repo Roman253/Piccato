@@ -80,10 +80,8 @@
 export default {
   name: "artworks",
   name: "admin",
-    components: {
-  BookedItems: BookedItems
 
-  },
+  
   beforeMount() {
     this.$store.dispatch("getArtworks");
   },
