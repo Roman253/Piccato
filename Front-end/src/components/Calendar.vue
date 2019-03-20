@@ -1,7 +1,7 @@
 <template>
   <div class="maincalendar">
     <div class="calendar">
-      <v-date-picker mode="range" is-inline v-model="selectedDate" 
+      <v-date-picker mode="range" is-inline  v-bind="selectedDate" @input="emitMethod"
           :min-date="new Date()" is-double-paned :attributes='attributes' show-caps>
       </v-date-picker>
     </div>
@@ -9,27 +9,31 @@
 </template>
 
 <script>
+import EventBus from '../event-bus';
 export default {
   name: "calendar",
   data() {
     return {
-      selectedValue: new Date(),
       selectedDate: {
-        start: new Date(),
-        end: new Date()
+        start: '',
+        end: ''
       }
-    };
+  }
   },
   methods: {
     search: function() {
       console.log(this.selectedDate.start);
       console.log(this.selectedDate.end);
+    },
+    emitMethod () {
+       EventBus.$emit('selectedDates', this.selectedDate);
+       console.log('selectedDates');
     }
   },
   computed: {
      attributes() {
        return this.bookedDates.map(t => ({
-          key: `t.artworkID`,
+          // key: `t.artworkID`,
           highlight: {
             backgroundColor: 'red',
             borderColor: '#ff6666',
@@ -44,12 +48,11 @@ export default {
         }));
 
       },
-        bookedDates() {
-            return this.$store.state.bookings;
-        }
-    }
-
-  }
+      bookedDates() {
+          return this.$store.state.bookings;
+      }
+      }
+}
 </script>
 
 <style lang="scss">

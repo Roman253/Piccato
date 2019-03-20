@@ -39,15 +39,24 @@
           </tr>
         </thead>
         <!-- Import artworks from DB -->
+<<<<<<< HEAD
+        <!-- <tbody>
+          <tr v-for="booking in bookings" :key="booking._artworkID" :booking="booking">
+=======
         <tbody>
           <tr v-for="booking in bookings" :key="booking._id" :booking="booking">
+>>>>>>> 3c301ef308e7a7021edb584c324ca5ef0789b6a5
             <td>{{booking.artworkID}}</td>
             <td>{{booking.userID}}</td>
             <td>
               <div id="btnRemove" @click="deleteArtwork(booking, booking._id)">X</div>
             </td>
           </tr>
+<<<<<<< HEAD
+        </tbody> --> -->
+=======
         </tbody>-->
+>>>>>>> 3c301ef308e7a7021edb584c324ca5ef0789b6a5
       </table>
     </section>
 
@@ -71,7 +80,6 @@
 export default {
   name: "artworks",
   name: "admin",
-
   beforeMount() {
     this.$store.dispatch("getArtworks");
   },
