@@ -2,7 +2,8 @@
   <transition appear name="fade" mode="in-out">
     <main id="main">
       <section class="content">
-        <a href="#" v-if="this.getActiveUser" @click="checkUser" class="user">Logged in as:
+        <a href="#" v-if="this.getActiveUser" @click="checkUser" class="user">
+          Logged in as:
           <span>{{ getActiveUser.email }}</span>
         </a>
         <a href="#" v-if="this.getActiveUser" @click="logout">

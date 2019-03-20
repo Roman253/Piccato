@@ -1,38 +1,37 @@
 <template>
   <main id="buy">
     <section class="wrapperBuy">
-    <section class="contentBuy" v-if="artwork">
-      <h3>Choose number of days</h3>
-      <calendar class="calendar" alt="calendar"></calendar>
-      <div class="media">
-        <img class="media-object" v-bind:src="artwork.artworkUrl" width="200px">
-        <div class="media-body">
-          <h3 class="media-heading">Title: {{artwork.title}}</h3>
-          <p class="media-p">
-            Artist: {{artwork.artist}}
-            <br>
-            Price: {{artwork.price}}:-/day
-            <br>
-            Description: {{artwork.description}}
-            <br>
-          </p>
+      <section class="contentBuy" v-if="artwork">
+        <h3>Choose number of days</h3>
+        <calendar class="calendar" alt="calendar"></calendar>
+        <div class="media">
+          <img class="media-object" v-bind:src="artwork.artworkUrl" width="200px">
+          <div class="media-body">
+            <h3 class="media-heading">Title: {{artwork.title}}</h3>
+            <p class="media-p">
+              Artist: {{artwork.artist}}
+              <br>
+              Price: {{artwork.price}}:-/day
+              <br>
+              Description: {{artwork.description}}
+              <br>
+            </p>
+          </div>
         </div>
-      </div>
 
-      <div class="buybutton" @click="nrOfDates()">
-        <p>Calculate the price</p>
-      </div>
-      <p>Chosen number of days: {{amount}}</p>
-      <article class="price">Your total price: {{ artwork.price * amount }} sek</article>
-      <br>
-      <a href="#" class="btnbuy" @click="bookArtwork">Confirm</a>
-    </section>
+        <div class="buybutton" @click="nrOfDates()">
+          <p>Calculate the price</p>
+        </div>
+        <p>Chosen number of days: {{amount}}</p>
+        <article class="price">Your total price: {{ artwork.price * amount }} sek</article>
+        <br>
+        <a href="#" class="btnbuy" @click="bookArtwork">Confirm</a>
+      </section>
 
-    <section class="content" v-if="!artwork">
-      <p>No dates selected.</p>
-      <a href="#" class="btn" @click="buy">Go to artwork list</a>
-    </section>
-
+      <section class="content" v-if="!artwork">
+        <p>No dates selected.</p>
+        <a href="#" class="btn" @click="buy">Go to artwork list</a>
+      </section>
     </section>
   </main>
 </template>
@@ -46,7 +45,6 @@ export default {
   },
   data() {
     return {
-      bookedDates,
       amount: 0,
       selectedDate: {
         start: new Date(),
@@ -63,22 +61,13 @@ export default {
     }
   },
   methods: {
-    
-    //get bookedDates for this artwork
     bookArtwork() {
       if (this.activeUser) {
-
-        //if (selectedDate  == bookedDates ) {
-          //The date you have chosen are already booked. from start - end
-         //} else {
-           
         this.$store.dispatch("bookArtwork", {
           artworkID: this.artwork._id,
           userUID: this.activeUser.uid,
           selectedDate: this.selectedDate
         });
-
-      //}
       } else {
         this.$router.push({ name: "login", query: { redirect: "/book" } });
       }
@@ -93,7 +82,6 @@ export default {
 };
 </script>
 
-<!-- -->
 <style lang="scss">
 @import "../scss/main";
 @import "../scss/components";
