@@ -42,7 +42,7 @@
           </tr>
         </thead>
         <!-- Import artworks from DB -->
-        <tbody>
+        <!-- <tbody>
           <tr v-for="booking in bookings" :key="booking._artworkID" :booking="booking">
             <td>{{booking.artworkID}}</td>
             <td>{{booking.userID}}</td>
@@ -51,7 +51,7 @@
             </td> 
 
           </tr>
-        </tbody> -->
+        </tbody> --> -->
       </table>
     </section>
 
@@ -81,10 +81,6 @@ export default {
   name: "artworks",
   props: ["artwork"],
   name: "admin",
-    components: {
-  BookedItems: BookedItems
-
-  },
   beforeMount() {
     this.$store.dispatch("getArtworks");
   },

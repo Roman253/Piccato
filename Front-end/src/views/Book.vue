@@ -1,5 +1,5 @@
 <template>
-  <main id="buy">
+  <main id="buy" @mousemove="getEvent">
     <section class="wrapperBuy">
     <section class="contentBuy" v-if="artwork">
       <h3>Choose number of days</h3>
@@ -28,30 +28,23 @@
       <a href="#" class="btnbuy" @click="bookArtwork">Confirm</a>
     </section>
 
-    <section class="content" v-if="!artwork">
-      <p>No dates selected.</p>
-      <a href="#" class="btn" @click="buy">Go to artwork list</a>
-    </section>
-
     </section>
   </main>
 </template>
 
 <script>
 import Calendar from "../components/Calendar.vue";
+import EventBus from '../event-bus';
 export default {
-  name: "buy",
+  name: "book",
   components: {
     calendar: Calendar
   },
   data() {
     return {
       amount: 0,
-      selectedDate: {
-        start: new Date(),
-        end: new Date()
-      }
-    };
+      selectedDate: {}
+    }
   },
   computed: {
     artwork() {
@@ -59,6 +52,9 @@ export default {
     },
     activeUser() {
       return this.$store.state.activeUser;
+    },
+    getDates() {
+      return Calendar.data.selectedDate;
     }
   },
   methods: {
@@ -66,28 +62,32 @@ export default {
     //get bookedDates for this artwork
     bookArtwork() {
       if (this.activeUser) {
-
-        //if (selectedDate  == bookedDates ) {
-          //The date you have chosen are already booked. from start - end
-         //} else {
-           
         this.$store.dispatch("bookArtwork", {
           artworkID: this.artwork._id,
           userUID: this.activeUser.uid,
           selectedDate: this.selectedDate
         });
-
-      //}
       } else {
         this.$router.push({ name: "login", query: { redirect: "/book" } });
       }
     },
-
     nrOfDates() {
-      let diff = this.selectedDate.end - this.selectedDate.start;
-      let amount = Math.round(diff / 86400000);
-      this.amount = amount;
+      // let diff = this.selectedDate.end - this.selectedDate.start;
+      // let amount = Math.round(diff / 86400000);
+      // this.amount = amount;
+      console.log(this.getDates);
+    },
+    getEvent(){
+      EventBus.$on('EVENT_NAME', payload => {
+        this.selectedDate = payload;
+        console.log(payload);
+      });
     }
+  },
+    beforeUpdate () {
+    
+
+    console.log('Updated');
   }
 };
 </script>

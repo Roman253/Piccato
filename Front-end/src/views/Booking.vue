@@ -14,7 +14,6 @@ export default {
   name: "artworks",
   data() {
     return {
-      artwork: [],
       search: ""
     };
   },
