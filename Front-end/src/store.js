@@ -12,8 +12,7 @@ export default new Vuex.Store({
         apiUrl: 'http://localhost:3000',
         artwork: {},
         artworks: [],
-        booking: {},
-        bookings: [],
+        bookings: null,
         activeUser: '',
         loginError: null,
         thereIsError: false,
@@ -29,6 +28,9 @@ export default new Vuex.Store({
         },
         setActiveUser(state, user) {
             state.activeUser = user;
+        },
+        setBookings(state, bookings) {
+            state.booking = bookings
         },
         toggleRejected(state) {
             state.rejected = !state.rejected;
@@ -82,7 +84,19 @@ export default new Vuex.Store({
                 console.err(err.stack);
             }
         },
+        async getBookings(ctx, bookings) {
 
+            try {
+                let bookings = await Axios.get(`${ctx.state.apiUrl}/bookings`, bookings)
+                    .then(response => {
+                        ctx.commit('setBookings', response.data);
+                        console.log(response.data);
+                    })
+
+            } catch (err) {
+                console.log(err);
+            }
+        },
         //get artwork from the API
         async getArtworks(ctx) {
             let artworks = await Axios.get('http://localhost:3000/artworks');
@@ -101,21 +115,6 @@ export default new Vuex.Store({
                 console.error(err);
             }
         },
-
-
-        //BOOKINGS
-
-
-        //get bookings from the API
-        async getBookings(ctx) {
-            let bookings = await Axios.get('http://localhost:3000/bookings');
-            ctx.commit('setBookings', bookings.data);
-        },
-
-
-
-        //LOGIN
-
         async login(ctx, loginData) {
 
             try {
@@ -172,6 +171,9 @@ export default new Vuex.Store({
         setUser(ctx) {
             ctx.commit('setActiveUser', JSON.parse(sessionStorage.getItem('userData')));
         }
+    },
+    beforeCreate: function() {
+        this.$store.dispatch("getBookings");
     }
 
 })
