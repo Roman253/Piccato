@@ -19,8 +19,8 @@
           :class="{ valid: validPassword }"
         >
         <section id="registerQuestion">
-          <span id="notUser">Not a user?</span>
-          <router-link class="register" to="/registration">Register here</router-link>
+          <span id="notUser">Not a user? </span>
+          <router-link class="register" to="/registration"> Register here</router-link>
         </section>
         <a
           href="#"

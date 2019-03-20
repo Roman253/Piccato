@@ -60,6 +60,8 @@ export default {
 
     h2 {
       font-size: 1.6rem;
+      font-weight: lighter;
+      padding: 0 1rem;
     }
     p {
       text-align: center;
