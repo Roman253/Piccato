@@ -53,8 +53,7 @@ export default {
     }
     
     img {
-      border-radius: 10px;
-      border: solid white 2px;
+      width: 150px;
     }
 
     h2 {
