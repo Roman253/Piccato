@@ -8,9 +8,9 @@ import VCalendar from 'v-calendar'
 import 'v-calendar/lib/v-calendar.min.css'
 
 Vue.prototype.$eventHub = new Vue();
-
 Vue.use(VueAxios, axios)
 Vue.config.productionTip = false
+
 
 new Vue({
     router,

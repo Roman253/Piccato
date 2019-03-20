@@ -1,7 +1,7 @@
 <template>
   <div class="maincalendar">
     <div class="calendar">
-      <v-date-picker mode="range" is-inline  v-model="selectedDate" @input="emitMethod" :disabled-dates='{disabledDates}'
+      <v-date-picker mode="range" is-inline v-model="selectedDate" @input="emitMethod" :disabled-dates='bookedDates'
           :min-date="new Date()" is-double-paned :attributes='attributes' show-caps>
       </v-date-picker>
     </div>
@@ -17,7 +17,8 @@ export default {
       selectedDate: {
         start: new Date(),
         end: new Date()
-      }
+      },
+      bookedDates: []
   }
   },
   methods: {
@@ -27,38 +28,41 @@ export default {
     },
     emitMethod () {
        EventBus.$emit('selectedDates', this.selectedDate);
-       console.log(this.disabledDates)
-       console.log('selectedDates');
     }
   },
   computed: {
      attributes() {
-       return this.bookedDates.map(t => ({
+       return this.bookingsData.map(t => ({
           // key: `t.artworkID`,
           highlight: {
             backgroundColor: 'red',
-            borderColor: '#ff6666',
-            borderWidth: '2px',
+            borderColor: 'black',
+            borderWidth: '1px',
             borderStyle: 'solid',
+            opacity: 0.7,
+            animated: true
           },
           contentStyle: {
-            color: 'white'
+          
           },
-          dates: t.selectedDate,
-          customData: t
+          popover:{
+            label: "These dates are booked by other customers, please select a different one"
+          },
+          dates: t.selectedDate
         }));
-
       },
-      bookedDates() {
+      bookingsData() {
           return this.$store.state.bookings;
-      },
-      disabledDates() {
-        return this.bookedDates.map(t => ({
-            dates: t.selectedDate
-        }))
       }
-      }
-}
+    },
+    mounted() {
+      return this.bookingsData.map(t => 
+        this.bookedDates.push(t.selectedDate) 
+
+      )
+    }
+  }   
+
 </script>
 
 <style lang="scss">

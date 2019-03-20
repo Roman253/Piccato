@@ -2,18 +2,20 @@
   <transition appear name="fade" mode="in-out">
     <main id="main">
       <section class="homeContent">
-        <a href="/home">
+        <router-link to="/">
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/c/c6/IdeaLab_space_cat.svg"
             alt="home"
             width="70px"
           >
-        </a>
+        </router-link>
       </section>
 
       <section class="homeContentText">
-        <a href="/home">
+        <a href="#">
+         <router-link to="/">
           <h4>Piccato</h4>
+          </router-link>
         </a>
       </section>
 

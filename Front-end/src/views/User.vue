@@ -17,7 +17,7 @@
         <tbody>
        <tr v-for="booking in bookings" :key="booking._id" :booking="booking">
             <td>{{booking.artworkID.substring(0,5)}}</td>
-            <td>{{booking.selectedDate.start.substring(0,10)}} <br> {{booking.selectedDate.end.substring(0,10)}}</td>
+            <td>{{booking.selectedDate.start.substring(0,10)}} <span>-</span> {{booking.selectedDate.end.substring(0,10)}}</td>
             <td>
               <div id="btnRemove" @click="deleteBooking(booking, booking._id)">X</div>
             </td>

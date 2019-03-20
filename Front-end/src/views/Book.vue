@@ -1,9 +1,9 @@
 <template>
-  <main id="buy" @mouseover="getEvent">
-    <section class="wrapperBuy">
-      <section class="contentBuy" v-if="artwork">
+  <main id="buy" >
+    <section @mouseover="nrOfDates" class="wrapperBuy">
+      <section @mouseover="getEvent" class="contentBuy" v-if="artwork">
         <h3>Choose number of days</h3>
-        <calendar class="calendar" alt="calendar"></calendar>
+        <calendar   class="calendar" alt="calendar"></calendar>
         <div class="media">
           <img class="media-object" v-bind:src="artwork.artworkUrl" width="200px">
           <div class="media-body">
@@ -18,12 +18,8 @@
             </p>
           </div>
         </div>
-
-      <div class="buybutton" @click="nrOfDates()">
-          <h5>Calculate the price</h5>
-      </div>
       <p>Chosen number of days: {{amount}}</p>
-        <p>Your total price: {{ artwork.price * amount }} sek</p>
+        <p>Your total price: {{ artwork.price * amount }} SEK</p>
       <a href="#" class="btnbuy" @click="bookArtwork">Confirm</a>
     </section>
 
@@ -41,8 +37,8 @@ export default {
   },
   data() {
     return {
-      amount: 0,
-      selectedDate: {}
+      amount: null,
+      selectedDate: null
     }
   },
   computed: {
@@ -69,15 +65,19 @@ export default {
       }
     },
     nrOfDates() {
+      if(this.selectedDate !== null){
       let diff = this.selectedDate.end - this.selectedDate.start;
       let amount = Math.round(diff / 86400000);
       this.amount = amount;
+      }
+
     },
     getEvent(){
       EventBus.$on('selectedDates', payload => {
         this.selectedDate = payload;
-        console.log(payload);
+  
       });
+      this.nrOfDates;
     }
   },
     beforeUpdate () {
