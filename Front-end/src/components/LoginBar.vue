@@ -26,7 +26,7 @@
           <img src="../assets/logout.svg">
         </a>
         <router-link v-if="!this.getActiveUser" to="/login">
-          <img src="../assets/login.svg">
+          <img src="../assets/login.svg" alt="Log in">
         </router-link>
       </section>
     </main>
@@ -77,9 +77,12 @@ export default {
     grid-area: homecontent;
   }
 
+
+
   .homeContentText {
     grid-area: text;
     justify-content: flex-end;
+
   }
 
   .content {

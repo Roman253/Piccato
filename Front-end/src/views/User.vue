@@ -1,139 +1,133 @@
 <template>
   <article id="user">
     <h2>Welcome {{ getActiveUser.name }}</h2>
-     <a href="#" class="btn" @click="$router.push('/booking')">Rent a artwork</a>
 
-    <h3>Manage your bookings</h3>
+    <h3>Manage bookings</h3>
 
     <section class="artworklist">
       <table cellspacing="0">
         <thead>
           <tr>
-            <th>Artwork</th>
-            <th>Dates booked</th>
-            <th>Cancel booking</th>
+            <th>Artwork ID</th>
+            <th>Booked To-From</th>
+            <th>Delete booking</th>
           </tr>
         </thead>
-        <!-- Import bookings from DB -->
+        <!-- Import artworks from DB -->
         <tbody>
-          <tr v-for="artwork in artworks" :key="artwork._title" :artwork="artwork">
-            <td>{{artwork.title}}</td>
-            <td>{{artwork.artist}}</td>
+       <tr v-for="booking in bookings" :key="booking._id" :booking="booking">
+            <td>{{booking.artworkID.substring(0,5)}}</td>
+            <td>{{booking.selectedDate.start.substring(0,10)}} <br> {{booking.selectedDate.end.substring(0,10)}}</td>
             <td>
-              <button @click="artwork; deleteBooking()">X</button>
+              <div id="btnRemove" @click="deleteBooking(booking, booking._id)">X</div>
             </td>
           </tr>
         </tbody>
       </table>
     </section>
-    <a href="#" class="btn" @click="logout">Logout</a>
+
   </article>
 </template>
 
 <script>
 export default {
-  name: "bookings",
-  props: ["bookings"],
+  name: "artworks",
+  name: "admin",
+
   beforeMount() {
     this.$store.dispatch("getArtworks");
   },
 
-  data() {
-    return {
-      artwork: []
-      
-    };
-  },
-
-  computed: {
-    artworks() {
-      return this.$store.state.artwork;
-    },
-    getActiveUser() {
-      return this.$store.state.activeUser;
-    }
-  },
+ 
   methods: {
+
+    async deleteBooking(id) {
+      this.$store.dispatch("deleteBooking", id);
+      await this.$store.dispatch("getBookings");
+    }, 
+
+
     logout() {
       this.$store.dispatch("logout");
       this.$router.push("/login");
     }
   },
-  deleteBooking() {
-    this.$store.dispatch("deleteBooking", this.artwork);
+
+  computed: {
+    artworks() {
+      return this.$store.state.artworks;
+    },
+    bookings() {
+      return this.$store.state.bookings;
+    },
+    getActiveUser() {
+      return this.$store.state.activeUser;
+    }
   }
 };
 </script>
 
 <style lang="scss">
 @import "../scss/main.scss";
-@import "../scss/components.scss";
 
-#user {
-  display: grid;
-  grid-template-columns: 1.5fr;
 
-  .btn {
-    margin: auto;
-    width: 9rem;
-    margin-top: 2rem;
-    @extend %center;
-   // @extend %buttons;
+#btnRemove {
+  color: white;
+  background: #a20000;
+  border-radius: 10px;
+  display: inline;
+  padding: 0px 10px 0px 10px;
+  cursor: pointer;
+}
+
+.artworklist {
+  background: rgba(33, 2, 43, 0.8);
+  border-radius: 3px;
+  padding: 1rem;
+  color: white;
+  width: 50%;
+  margin: 0 auto;
+}
+
+table {
+  width: 100%;
+
+  thead {
+    tr {
+      color: rgb(166, 160, 255);
+      text-transform: uppercase;
+
+      th {
+        border-bottom: 1px solid #fff;
+        padding: 0.5rem 0;
+      }
+    }
   }
 
-  h2 {
-    font-size: 2rem;
-    margin: 0;
+  tbody {
+    tr {
+      td {
+        color: white;
+        padding: 1rem 0;
+        font-size: 1rem;
+        border-bottom: 1px solid rgb(30, 192, 232);
+      }
+    }
   }
+}
+
+@media only screen and (max-width: 400px) {
   .artworklist {
-    background-image:linear-gradient(rgb(47, 248, 248), rgb(91, 217, 255));
-    border-radius: 10px;
-    padding: 1rem;
-    color: black;
-    width: 50%;
-    margin: 0 auto;
+    width: 100%;
   }
 
   table {
-    width: 100%;
-
-    thead {
-      tr {
-        color: rgb(101, 90, 255);
-        text-transform: uppercase;
-
-        th {
-          border-bottom: 1px solid #fff;
-          padding: 0.5rem 0;
-        }
-      }
-    }
-
-    tbody {
-      tr {
-        td {
-          color: black;
-          padding: 1rem 0;
-          font-size: 1rem;
-          border-bottom: 1px solid rgb(30, 192, 232);
-        }
-      }
-    }
+    font-size: 0.7rem;
+    text-align: left;
   }
 
-  @media only screen and (max-width: 400px) {
-    .artworklist {
-      width: 100%;
-    }
-
-    table {
-      font-size: 0.7rem;
-      text-align: left;
-    }
-
-    td {
-      font-size: 0.5rem;
-    }
+  td {
+    font-size: 0.5rem;
   }
 }
 </style>

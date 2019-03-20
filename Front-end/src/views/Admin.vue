@@ -33,32 +33,24 @@
       <table cellspacing="0">
         <thead>
           <tr>
-            <th>Artwork</th>
-            <th>Dates booked</th>
+            <th>User ID</th>
+            <th>Booked To-From</th>
             <th>Delete booking</th>
           </tr>
         </thead>
         <!-- Import artworks from DB -->
-<<<<<<< HEAD
-        <!-- <tbody>
-          <tr v-for="booking in bookings" :key="booking._artworkID" :booking="booking">
-=======
         <tbody>
-          <tr v-for="booking in bookings" :key="booking._id" :booking="booking">
->>>>>>> 3c301ef308e7a7021edb584c324ca5ef0789b6a5
-            <td>{{booking.artworkID}}</td>
-            <td>{{booking.userID}}</td>
+       <tr v-for="booking in bookings" :key="booking._id" :booking="booking">
+            <td>{{booking.userUID.substring(0,5)}}</td>
+            <td>{{booking.selectedDate.start.substring(0,10)}} <br> {{booking.selectedDate.end.substring(0,10)}}</td>
             <td>
-              <div id="btnRemove" @click="deleteArtwork(booking, booking._id)">X</div>
+              <div id="btnRemove" @click="deleteBooking(booking, booking._id)">X</div>
             </td>
           </tr>
-<<<<<<< HEAD
-        </tbody> --> -->
-=======
-        </tbody>-->
->>>>>>> 3c301ef308e7a7021edb584c324ca5ef0789b6a5
+        </tbody>
       </table>
     </section>
+
 
     <section class="addArt">
       <h3>Add new Artwork</h3>
@@ -80,6 +72,7 @@
 export default {
   name: "artworks",
   name: "admin",
+
   beforeMount() {
     this.$store.dispatch("getArtworks");
   },
@@ -112,6 +105,10 @@ export default {
     async deleteArtwork(id) {
       this.$store.dispatch("deleteArtwork", id);
       await this.$store.dispatch("getArtworks");
+    },
+    async deleteBooking(id) {
+      this.$store.dispatch("deleteBooking", id);
+      await this.$store.dispatch("getBookings");
     },
     logout() {
       this.$store.dispatch("logout");

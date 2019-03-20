@@ -7,7 +7,7 @@
       <img
         src="https://upload.wikimedia.org/wikipedia/commons/c/c6/IdeaLab_space_cat.svg"
         alt="logo"
-        width="300px"
+        width="200px"
       >
     </section>
     <section class="infotxt">
