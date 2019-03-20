@@ -6,7 +6,6 @@
       <router-link to="/booking">Art</router-link>
     </div>
     <login-bar alt="login"></login-bar>
-
     <transition appear name="fade">
       <router-view/>
     </transition>

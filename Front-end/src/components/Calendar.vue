@@ -1,19 +1,14 @@
 <template>
   <div class="maincalendar">
-    <h2>Choose dates</h2>
-
-
-
     <div class="calendar">
-            <button class="search-btn" v-on:click="search"> TEST </button>
-
-      <v-date-picker mode="range" v-model="selectedDate" :min-date="new Date()" show-caps></v-date-picker>
+      <v-date-picker mode="range" is-inline v-model="selectedDate" :min-date="new Date()" show-caps></v-date-picker>
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  name: "calendar",
   data() {
     return {
       selectedValue: new Date(),
@@ -44,4 +39,15 @@ export default {
   width: 17%;
   margin: 0 auto;
 }
+
+
+  .calendarDate {
+    margin: 0 auto;
+    margin-bottom: 300px;
+    margin-left: 35%;
+  }
+
+  .popover-container[data-v-1ad2436f] {
+    margin: 0 auto;
+  }
 </style>
