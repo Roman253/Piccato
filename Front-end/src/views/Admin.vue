@@ -8,6 +8,7 @@
         <thead>
           <tr>
             <th>Artwork</th>
+            <th>Artist</th>
             <th>Remove Artwork</th>
             <th>Edit Artwork</th>
           </tr>
@@ -16,6 +17,7 @@
         <tbody>
           <tr v-for="artwork in artworks" :key="artwork._id" :artwork="artwork">
             <td>{{artwork.title}}</td>
+            <td>{{artwork.artist}}</td>
             <td>
               <div id="btnRemove" @click="deleteArtwork(artwork, artwork._id)">X</div>
             </td>
@@ -33,7 +35,7 @@
       <table cellspacing="0">
         <thead>
           <tr>
-            <th>User ID</th>
+            <th>User Email</th>
             <th>Booked To-From</th>
             <th>Delete booking</th>
           </tr>
@@ -41,8 +43,8 @@
         <!-- Import artworks from DB -->
         <tbody>
        <tr v-for="booking in bookings" :key="booking._id" :booking="booking">
-            <td>{{booking.userUID.substring(0,5)}}</td>
-            <td>{{booking.selectedDate.start.substring(0,10)}} <br> {{booking.selectedDate.end.substring(0,10)}}</td>
+            <td>{{booking.user.email}}</td>
+           <td>{{booking.selectedDate.start.substring(0,10)}} <span>-</span> {{booking.selectedDate.end.substring(0,10)}}</td>
             <td>
               <div id="btnRemove" @click="deleteBooking(booking, booking._id)">X</div>
             </td>

@@ -55,9 +55,7 @@ export default new Vuex.Store({
     },
     actions: {
 
-
         //ARTWORK
-
         //get artwork from the API
         async createArtwork(ctx, artwork) {
             try {

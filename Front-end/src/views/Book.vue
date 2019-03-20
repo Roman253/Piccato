@@ -56,8 +56,8 @@ export default {
     bookArtwork() {
       if (this.activeUser) {
         this.$store.dispatch("bookArtwork", {
-          artworkID: this.artwork._id,
-          userUID: this.activeUser.uid,
+          artwork: this.artwork,
+          user: this.activeUser,
           selectedDate: this.selectedDate
         });
       } else {

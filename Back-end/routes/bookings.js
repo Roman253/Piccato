@@ -9,10 +9,12 @@ module.exports.post = async(req, res) => {
     console.log(req.body);
 
     try {
+
+
         // Posts it into the MongoDB
         let resp = await Booking.create({
-            artworkID: req.body.artworkID,
-            userUID: req.body.userUID,
+            artwork: req.body.artwork,
+            user: req.body.user,
             selectedDate: req.body.selectedDate
         });
 

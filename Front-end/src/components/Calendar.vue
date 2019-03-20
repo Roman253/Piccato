@@ -56,11 +56,12 @@ export default {
       }
     },
     mounted() {
+      this.$store.dispatch("getBookings");
       return this.bookingsData.map(t => 
         this.bookedDates.push(t.selectedDate) 
 
       )
-    }
+    },
   }   
 
 </script>
