@@ -48,7 +48,7 @@ export default {
 .contentEdit {
   @extend %center;
   flex-direction: column;
-  background-color: #5bd9ff;
+  background: rgba(33, 2, 43, 0.7);
   width: 50%;
   margin: 0 auto;
   padding: 10px;
@@ -63,7 +63,6 @@ export default {
   margin: 0 auto;
   margin-bottom: 1rem;
   display: grid;
-  background: rgb(91, 217, 255);
   padding: 2rem;
   margin-top: -10px;
 }

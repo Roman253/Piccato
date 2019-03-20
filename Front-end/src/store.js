@@ -110,7 +110,6 @@ export default new Vuex.Store({
         async getBookings(ctx) {
             let bookings = await Axios.get('http://localhost:3000/bookings');
             ctx.commit('setBookings', bookings.data);
-            console.log(booking.data);
         },
 
 

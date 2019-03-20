@@ -17,7 +17,7 @@
         </thead>
         <!-- Import artworks from DB -->
         <tbody>
-          <tr v-for="artwork in artworks" :key="artwork._title" :artwork="artwork">
+          <tr v-for="artwork in artworks" :key="artwork._id" :artwork="artwork">
             <td>{{artwork.title}}</td>
             <td>
               <div id="btnRemove" @click="deleteArtwork(artwork, artwork._id)">X</div>
@@ -43,7 +43,7 @@
         </thead>
         <!-- Import artworks from DB -->
         <tbody>
-          <tr v-for="booking in bookings" :key="booking._artworkID" :booking="booking">
+          <tr v-for="booking in bookings" :key="booking._id" :booking="booking">
             <td>{{booking.artworkID}}</td>
             <td>{{booking.userID}}</td>
             <td>
@@ -78,7 +78,6 @@
 <script>
 export default {
   name: "artworks",
-  props: ["artwork"],
   name: "admin",
   beforeMount() {
     this.$store.dispatch("getArtworks");
