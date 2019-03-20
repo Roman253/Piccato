@@ -43,11 +43,11 @@
         </thead>
         <!-- Import artworks from DB -->
         <tbody>
-          <tr v-for="artwork in artworks" :key="artwork._title" :artwork="artwork">
-            <td>{{artwork.title}}</td>
-            <td>{{artwork.artist}}</td>
+          <tr v-for="booking in bookings" :key="booking._artworkID" :booking="booking">
+            <td>{{booking.artworkID}}</td>
+            <td>{{booking.userID}}</td>
             <td>
-              <div id="btnRemove" @click="deleteArtwork(artwork, artwork._id)">X</div>
+              <div id="btnRemove" @click="deleteArtwork(booking, booking._id)">X</div>
             </td> 
 
           </tr>
@@ -123,6 +123,9 @@ export default {
     artworks() {
       return this.$store.state.artworks;
     },
+    bookings() {
+      return this.$store.state.bookings;
+    },
     filterArtwork: function() {
       return this.artworks.filter(artwork => {
         return artwork.title.toLowerCase().match(this.search.toLowerCase());
@@ -142,6 +145,8 @@ export default {
   width: 50%;
   margin: 0 auto;
   margin-bottom: 1rem;
+  color: rgb(101, 90, 255);
+
 }
 
 #btnRemove, #btnEditArt {
@@ -154,13 +159,13 @@ cursor: pointer;
 }
 
 #btnEditArt {
-background: #0d008c;
+background: #8400ff;
 }
 
 
 .form {
   display: grid;
-  background: rgb(91, 217, 255);
+  background: rgba(33, 2, 43, 0.8);
   padding: 2rem;
   margin-top: -10px;
 }
@@ -196,10 +201,10 @@ background: #0d008c;
 }
 
 .artworklist {
-  background: rgb(91, 217, 255);
+  background: rgba(33, 2, 43, 0.8);
   border-radius: 3px;
   padding: 1rem;
-  color: black;
+  color: white;
   width: 50%;
   margin: 0 auto;
 }
@@ -209,7 +214,7 @@ table {
 
   thead {
     tr {
-      color: rgb(101, 90, 255);
+      color: rgb(166, 160, 255);
       text-transform: uppercase;
 
       th {
@@ -222,7 +227,7 @@ table {
   tbody {
     tr {
       td {
-        color: black;
+        color: white;
         padding: 1rem 0;
         font-size: 1rem;
         border-bottom: 1px solid rgb(30, 192, 232);

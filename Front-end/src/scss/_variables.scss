@@ -1,9 +1,7 @@
 $baseline: 1.8rem;
-
 $green: rgb(39, 155, 101);
 $red: rgb(209, 62, 62);
 $white: #EEF0F2;
-
 %center {
     display: flex;
     justify-content: center;
@@ -26,7 +24,6 @@ $white: #EEF0F2;
     font-size: 1.2rem;
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px;
-
     &.ready {
         background: $green;
         color: rgba($color: #FFF, $alpha: 1);
@@ -34,7 +31,6 @@ $white: #EEF0F2;
 }
 
 %inputs {
-
     padding: 1rem;
     border: none;
     font-size: 1rem;
@@ -42,19 +38,16 @@ $white: #EEF0F2;
     transition: background .2s ease;
     color: black;
     font-weight: bolder;
-
     &:focus {
         outline: none;
         background: rgba($color: $red, $alpha: .6);
     }
-
     &.valid {
         background: rgba($color: $green, $alpha: .4);
     }
 }
 
 // Transition effects
-
 .fade-enter-active,
 .fade-leave-active {
     transition-property: opacity;
@@ -70,7 +63,6 @@ $white: #EEF0F2;
     opacity: 0
 }
 
-
 .slide-enter-active {
     transition: all .7s ease;
 }
@@ -84,6 +76,5 @@ $white: #EEF0F2;
     transform: translateX(10px);
     opacity: 0;
 }
-
 
 // Transition effects
