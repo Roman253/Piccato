@@ -7,7 +7,7 @@
 a {
     &.btn {
         padding: 0.5rem;
-        background: rgba(69, 117, 146, 0.459);
+        background: rgba(69, 117, 146, 0.5);
         @extend %center;
         height: 3rem;
         text-decoration: none;
@@ -15,9 +15,12 @@ a {
         color: white;
         border-radius: 10px;
         border: solid white 2px;
+        cursor: pointer;
+
         &:active {
-            background: #3b94af;
+            background: #105469;
         }
+        
     }
 }
 

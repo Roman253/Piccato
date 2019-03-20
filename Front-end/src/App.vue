@@ -1,9 +1,5 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link>
-      <router-link to="/booking">Art</router-link>
-    </div>
     <login-bar alt="login"></login-bar>
     <transition appear name="fade">
       <router-view/>
@@ -15,10 +11,12 @@
 import LoginBar from "./components/LoginBar.vue";
 export default {
   name: "app",
-  
+
+  //instead of navBar an component to login and go to home
   components: {
     loginBar: LoginBar
   },
+
   //before the page load this function connects to store and gets the API
   beforeMount() {
     this.$store.dispatch("getArtworks");
