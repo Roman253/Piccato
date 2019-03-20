@@ -4,11 +4,15 @@
       <h1>Piccato</h1>
     </section>
     <section>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/c/c6/IdeaLab_space_cat.svg" alt="logo">
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/c/c6/IdeaLab_space_cat.svg"
+        alt="logo"
+        width="300px"
+      >
     </section>
     <section class="infotxt">
       <p>Make your workers happy.
-        <br>This is the Kommunala kattkonstlagret, where you can rent artwork of cats.
+        <br>This is Piccato, where you can rent artwork of cats.
         <br>Login to rent our art today.
       </p>
     </section>
@@ -36,7 +40,6 @@ export default {
 @import "../scss/main.scss";
 @import "../scss/components.scss";
 
-
 #hello {
   display: grid;
   height: 100%;
@@ -44,24 +47,23 @@ export default {
   justify-content: center;
 
   section {
-
     &:last-child {
       display: flex;
       justify-content: center;
       align-items: flex-end;
       margin-bottom: 1rem;
     }
-    
+
     img {
       border-radius: 10px;
-      border: solid white 2px;
     }
 
     h2 {
       font-size: 1.6rem;
     }
+    p {
+      text-align: center;
+    }
   }
 }
-
-
 </style>
