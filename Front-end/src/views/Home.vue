@@ -21,12 +21,12 @@
         <h2>Rent an artwork!</h2>
       </a>
     </section>
-    <!-- // will only show up if your logged 
-    <section>
-      <a href="#" @click="$router.push('/listRentedArt')">
+
+    <section class="bookedart">
+      <a href="#" @click="$router.push('/user')" class="btn">
         <h2>Your booked artwork!</h2>
       </a>
-    </section>-->
+    </section>
   </div>
 </template>
 
@@ -43,14 +43,15 @@ export default {
 #hello {
   display: grid;
   height: 100%;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
   justify-content: center;
+
+  .bookedart {
+    margin-top: 0.5rem;
+  }
 
   section {
     &:last-child {
-      display: flex;
-      justify-content: center;
-      align-items: flex-end;
       margin-bottom: 1rem;
     }
 
@@ -61,10 +62,13 @@ export default {
     h2 {
       font-size: 1.6rem;
       font-weight: lighter;
-      padding: 0 1rem;
     }
+
     p {
       text-align: center;
+    }
+    .btn {
+      width: 100%;
     }
   }
 }
