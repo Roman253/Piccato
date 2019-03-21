@@ -24,6 +24,7 @@ export default {
     artworks() {
       return this.$store.state.artworks;
     },
+    //searchfunction
     filterArtwork: function() {
       return this.artworks.filter(artwork => {
         return artwork.title.toLowerCase().match(this.search.toLowerCase());

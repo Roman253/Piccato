@@ -56,7 +56,16 @@ export default {
       return this.$store.state.artworks;
     },
     bookings() {
-      return this.$store.state.bookings;
+      let bookings = [];
+
+      //for each time activeuser match booking user it gets the info and push it in an array: bookings
+      for (let i = 0; i < this.$store.state.bookings.length; i++) {
+        if (this.$store.state.bookings[i].user.uid == this.$store.state.activeUser.uid) {
+          bookings.push(this.$store.state.bookings[i]);
+        } 
+      }
+      return bookings;
+      
     },
     getActiveUser() {
       return this.$store.state.activeUser;
@@ -64,7 +73,6 @@ export default {
   },
   mounted() {
     this.success = this.$route.query.success;
- 
   },
   destroyed() {
     this.success = false;
@@ -72,7 +80,7 @@ export default {
   async beforeMount() {
     await this.$store.dispatch("getArtworks");
     await this.$store.dispatch("getBookings");
-  },
+  }
 };
 </script>
 
