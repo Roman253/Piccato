@@ -4,15 +4,17 @@
 let Booking = require('../models/booking');
 let Artwork = require('../models/artwork');
 
-module.exports.post = async(req, res) => {
+module.exports.post = async (req, res) => {
 
     console.log(req.body);
 
     try {
+
+
         // Posts it into the MongoDB
         let resp = await Booking.create({
-            artworkID: req.body.artworkID,
-            userUID: req.body.userUID,
+            artwork: req.body.artwork,
+            user: req.body.user,
             selectedDate: req.body.selectedDate
         });
 
@@ -26,7 +28,7 @@ module.exports.post = async(req, res) => {
 };
 
 //GET
-module.exports.get = async(req, res) => {
+module.exports.get = async (req, res) => {
 
     try {
         let bookings = await Booking.find({});
@@ -37,9 +39,11 @@ module.exports.get = async(req, res) => {
     }
 };
 
-module.exports.delete = async(req, res) => {
+module.exports.delete = async (req, res) => {
     try {
-        res.status(200).send(await Booking.deleteOne({ _id: req.params.id }))
+        res.status(200).send(await Booking.deleteOne({
+            _id: req.params.id
+        }))
     } catch (err) {
         res.status(500).send(err.stack);
     }

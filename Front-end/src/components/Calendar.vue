@@ -1,58 +1,67 @@
 <template>
   <div class="maincalendar">
     <div class="calendar">
-      <v-date-picker mode="range" is-inline  v-bind="selectedDate" @input="emitMethod"
-          :min-date="new Date()" is-double-paned :attributes='attributes' show-caps>
-      </v-date-picker>
+      <v-date-picker
+        mode="range"
+        is-inline
+        v-model="selectedDate"
+        @input="emitMethod"
+        :disabled-dates="bookedDates"
+        :min-date="new Date()"
+        :attributes="attributes"
+        show-caps
+      ></v-date-picker>
     </div>
   </div>
 </template>
 
 <script>
-import EventBus from '../event-bus';
+import EventBus from "../event-bus";
 export default {
   name: "calendar",
   data() {
     return {
       selectedDate: {
-        start: '',
-        end: ''
-      }
-  }
+        start: new Date(),
+        end: new Date()
+      },
+      bookedDates: []
+    };
   },
   methods: {
-    search: function() {
-      console.log(this.selectedDate.start);
-      console.log(this.selectedDate.end);
-    },
-    emitMethod () {
-       EventBus.$emit('selectedDates', this.selectedDate);
-       console.log('selectedDates');
+    emitMethod() {
+      EventBus.$emit("selectedDates", this.selectedDate);
     }
   },
   computed: {
-     attributes() {
-       return this.bookedDates.map(t => ({
-          // key: `t.artworkID`,
-          highlight: {
-            backgroundColor: 'red',
-            borderColor: '#ff6666',
-            borderWidth: '2px',
-            borderStyle: 'solid',
-          },
-          contentStyle: {
-            color: 'white'
-          },
-          dates: t.selectedDate,
-          customData: t,
-        }));
-
-      },
-      bookedDates() {
-          return this.$store.state.bookings;
-      }
-      }
-}
+    attributes() {
+      return this.bookingsData.map(t => ({
+        // key: `t.artworkID`,
+        highlight: {
+          backgroundColor: "red",
+          borderColor: "black",
+          borderWidth: "1px",
+          borderStyle: "solid",
+          opacity: 0.7,
+          animated: true
+        },
+        contentStyle: {},
+        popover: {
+          label:
+            "These dates are booked by other customers, please select a different one"
+        },
+        dates: t.selectedDate
+      }));
+    },
+    bookingsData() {
+      return this.$store.state.bookings;
+    }
+  },
+  mounted() {
+    this.$store.dispatch("getBookings");
+    return this.bookingsData.map(t => this.bookedDates.push(t.selectedDate));
+  }
+};
 </script>
 
 <style lang="scss">

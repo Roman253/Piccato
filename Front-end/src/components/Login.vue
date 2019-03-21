@@ -19,8 +19,8 @@
           :class="{ valid: validPassword }"
         >
         <section id="registerQuestion">
-          <span id="notUser">Not a user? </span>
-          <router-link class="register" to="/registration"> Register here</router-link>
+          <span id="notUser">Not a user?</span>
+          <router-link class="register" to="/registration">Register here</router-link>
         </section>
         <a
           href="#"
@@ -41,17 +41,44 @@ export default {
       email: "",
       password: "",
       validUsername: false,
-      validPassword: false
+      validPassword: false,
+      redirect: undefined
     };
   },
   methods: {
-     login() {
-        this.$store.dispatch("login", {
-          email: this.email,
-          password: this.password
-        });
-        this.$router.push(this.$route.query.redirect || '/');
-   },
+    async login() {
+      await this.$store.dispatch("login", {
+        email: this.email,
+        password: this.password
+      });
+
+      if ((await this.activeUser) == null) {
+        if ((await this.checkForError) == false) {
+          let userData = await JSON.parse(sessionStorage.getItem("userData"));
+
+          if (userData.role == "user") {
+            if (this.redirect == undefined) {
+              await this.$router.push("/user");
+    
+            } else {
+     
+              this.$router.push(this.redirect);
+            }
+          } else {
+            if (this.redirect == undefined) {
+              await this.$router.push("/admin");
+          
+            } else {
+       
+              this.$router.push(this.redirect);
+            }
+          }
+        } else {
+    
+          this.$router.push("/login");
+        }
+      }
+    }
   },
   watch: {
     email(val) {
@@ -86,14 +113,20 @@ export default {
       return this.$store.state.activeUser;
     }
   },
+  beforeUpdate() {
+    this.getActiveUser;
+    this.$store.dispatch("deleteErrors");
+  },
   mounted: function() {
     if (sessionStorage.getItem("recentRegister")) {
       this.email += sessionStorage.getItem("recentRegister");
     }
+    this.redirect = this.$route.query.redirect;
   },
   destroyed: function() {
     this.$store.dispatch("deleteErrors");
-  }
+  },
+  created() {}
 };
 </script>
 
@@ -124,7 +157,7 @@ export default {
   }
 
   .error {
-    color: $red;
+    color: $orange;
     font-weight: bold;
     margin: 0.6rem 0rem;
   }

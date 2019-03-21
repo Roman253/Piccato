@@ -3,8 +3,8 @@ let Schema = mongoose.Schema;
 
 // Create schema
 let bookingSchema = new Schema({
-    artworkID: String,
-    userUID: String,
+    artwork: Object,
+    user: Object,
     selectedDate: Object
 });
 
