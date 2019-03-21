@@ -8,7 +8,6 @@
         @input="emitMethod"
         :disabled-dates="bookedDates"
         :min-date="new Date()"
-        is-double-paned
         :attributes="attributes"
         show-caps
       ></v-date-picker>

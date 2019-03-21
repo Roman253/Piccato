@@ -113,6 +113,7 @@ export default {
 
 .registration {
   @extend %center;
+  
   display: grid;
   grid-template-columns: 0.4fr;
 
@@ -122,7 +123,7 @@ export default {
   }
 
   .error {
-    color: $red;
+    color: $orange;
     font-weight: bold;
     margin: 0rem 0rem 0.6rem;
   }

@@ -13,7 +13,7 @@ export default new Vuex.Store({
         artwork: {},
         artworks: [],
         bookings: null,
-        activeUser: '',
+        activeUser: null,
         loginError: null,
         thereIsError: false,
         success: false

@@ -1,5 +1,4 @@
 <template>
-
   <div id="media">
     <section>
       <img
@@ -10,21 +9,19 @@
       >
       <h3 class="media-heading">{{artwork.title}}</h3>
     </section>
-  <transition appear name="fade" mode="in-out">
-    <section class="media-body" v-if="seen">
-
-      <p class="media-p">
-        Artist: {{artwork.artist}}
-        <br>
-        Price: {{artwork.price}}:- /day
-        <br>
-        Description: {{artwork.description}}
-      </p>
-      <a class="btn" @click="selectArtwork(artwork)">Rent this artwork</a>
-    </section>
-      </transition>
+    <transition appear name="fade" mode="in-out">
+      <section class="media-body" v-if="seen">
+        <p class="media-p">
+          Artist: {{artwork.artist}}
+          <br>
+          Price: {{artwork.price}}:- /day
+          <br>
+          Description: {{artwork.description}}
+        </p>
+        <a class="btn" @click="selectArtwork(artwork)">Rent this artwork</a>
+      </section>
+    </transition>
   </div>
-
 </template>
 
 <script>
@@ -59,7 +56,7 @@ export default {
 @import "../scss/components";
 
 #media {
-  max-width: 65%;
+  width: 65%;
   color: black;
   margin: 0 auto;
   margin-bottom: 1rem;
@@ -71,7 +68,7 @@ export default {
   .media-object {
     width: 90%;
     margin-top: 1.5rem;
-    border:20px inset rgba(249, 161, 30, 0.555);
+    border: 20px inset rgba(249, 161, 30, 0.555);
   }
   .media-body {
     padding: 0 0 5% 7%;
@@ -84,22 +81,23 @@ export default {
     padding: 0 0 1.5rem 0rem;
   }
 
-@media only screen and (max-width: 600px) {
-      #media {
-        width: 100%;
+ 
+}
+
+ @media only screen and (max-width: 600px) {
+    #media {
+      width: 80%;
+
+      .media-object {
+        width: 77%;
+        margin-top: 1.5rem;
+        border: 0.6rem inset rgba(249, 161, 30, 0.555);
       }
 
-       .media-object {
-          width: 90%;
-          margin-top: 1.5rem;
-          border:0.6rem inset rgba(249, 161, 30, 0.555);
+      .media-heading {
+        font-size: 2rem;
+      }
+    }
   }
-
-  .media-heading {
-    font-size: 2rem;
-  }
-  }
-  
-}
 </style>
 

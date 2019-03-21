@@ -1,8 +1,7 @@
 <template>
   <article id="admin">
     <h2>Welcome {{ getActiveUser.name }}</h2>
-    <h2 v-if="this.success">Booking successfully created!</h2>
-
+    <h2 class="message" v-if="this.success">Booking successfully created!</h2>
     <h3>Manage Artworks</h3>
     <section class="artworklist">
       <table cellspacing="0">
@@ -37,17 +36,19 @@
         <thead>
           <tr>
             <th>User Email</th>
-            <th>Booked To-From</th>
+            <th>Dates (Start, End)</th>
             <th>Delete booking</th>
           </tr>
         </thead>
         <!-- Import artworks from DB -->
         <tbody>
-       <tr v-for="booking in bookings" :key="booking._id" :booking="booking">
+          <tr v-for="booking in bookings" :key="booking._id" :booking="booking">
             <td>{{booking.user.email}}</td>
-                  {{booking.selectedDate.start.substring(0,10)}}
-              <span> - </span>
+            <td>
+              {{booking.selectedDate.start.substring(0,10)}}
+              <span>-</span>
               {{booking.selectedDate.end.substring(0,10)}}
+            </td>
             <td>
               <div id="btnRemove" @click="deleteBooking(booking, booking._id)">X</div>
             </td>
@@ -55,7 +56,6 @@
         </tbody>
       </table>
     </section>
-
 
     <section class="addArt">
       <h3>Add new Artwork</h3>
@@ -103,7 +103,7 @@ export default {
     },
 
     async deleteArtwork(id) {
-      this.$store.dispatch("deleteArtwork", id);
+      await this.$store.dispatch("deleteArtwork", id);
       await this.$store.dispatch("getArtworks");
     },
     async deleteBooking(id) {
@@ -126,129 +126,195 @@ export default {
     getActiveUser() {
       return this.$store.state.activeUser;
     }
-  },  beforeMount() {
-    this.$store.dispatch("getArtworks");
-    this.$store.dispatch("getBookings");
-  }, mounted() {
-     this.success = this.$route.query.success;
+  },
+  async beforeMount() {
+    await this.$store.dispatch("getArtworks");
+    await this.$store.dispatch("getBookings");
+  },
+  mounted() {
+    this.success = this.$route.query.success;
+  },
+  destroyed() {
+    this.success = false;
   }
 };
 </script>
 
 <style lang="scss">
 @import "../scss/main.scss";
-
-.addArt {
-  width: 50%;
-  margin: 0 auto;
-  margin-bottom: 1rem;
-  color: rgb(101, 90, 255);
-}
-
-#btnRemove,
-#btnEditArt {
-  color: white;
-  background: #a20000;
-  border-radius: 10px;
-  display: inline;
-  padding: 0px 10px 0px 10px;
-  cursor: pointer;
-}
-
-#btnEditArt {
-  background: #8400ff;
-}
-
-.form {
-  display: grid;
-  background: rgba(33, 2, 43, 0.8);
-  padding: 2rem;
-  margin-top: -10px;
-}
-
-#admin input {
-  font-size: 1.1rem;
-  padding: 0.5rem 1rem;
-  color: black;
-  background-color: #dcffff;
-  border: none;
-  border-radius: 100px;
-  margin-top: 1rem;
-}
-
-.btnAddArt {
-  height: 2rem;
-  padding: 10px 0px -5px 0px;
-  margin: 4px 0;
-  margin-top: 1rem;
-  border: none;
-  border-radius: 4px;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  color: #fff;
-  font-size: 21px;
-  font-family: "Merienda One", sans-serif;
-  background: #31578f;
-  text-decoration: none;
-  cursor: pointer;
-}
-.btnAddArt:hover {
-  background-color: rgb(121, 231, 250);
-}
-
-.artworklist {
-  background: rgba(33, 2, 43, 0.8);
-  border-radius: 3px;
-  padding: 1rem;
-  color: white;
-  width: 50%;
-  margin: 0 auto;
-}
-
-table {
+#admin {
   width: 100%;
-
-  thead {
-    tr {
-      color: rgb(166, 160, 255);
-      text-transform: uppercase;
-
-      th {
-        border-bottom: 1px solid #fff;
-        padding: 0.5rem 0;
-      }
-    }
+  filter: drop-shadow(0 0 1rem black);
+  .addArt {
+    width: 50%;
+    margin: 0 auto;
+    margin-bottom: 1rem;
+    color: rgb(101, 90, 255);
   }
 
-  tbody {
-    tr {
-      td {
-        color: white;
-        padding: 1rem 0;
-        font-size: 1rem;
-        border-bottom: 1px solid rgb(30, 192, 232);
+  #btnRemove,
+  #btnEditArt {
+    color: white;
+    background: #a20000;
+    border-radius: 10px;
+    display: inline;
+    padding: 0px 10px 0px 10px;
+    cursor: pointer;
+  }
+
+  #btnEditArt {
+    background: #8400ff;
+  }
+
+      .form {
+    width: auto;
+    display: grid;
+    background: rgba(33, 2, 43, 0.8);
+    padding: 1.3rem;
+
+      input {
+        height: 2rem;
+        margin: 0.4rem;
+        font-size: 1.1rem;
+        font-family: "Sniglet", cursive;
+        padding: 0.5rem;
+      }
+    }
+
+  #admin input {
+    font-size: 1.1rem;
+    padding: 0.5rem 1rem;
+    color: black;
+    background-color: #dcffff;
+    border: none;
+    border-radius: 100px;
+    margin-top: 1rem;
+  }
+
+  .btnAddArt {
+    height: 2rem;
+    padding: 10px 0px -5px 0px;
+    margin: 4px 0;
+    margin-top: 1rem;
+    border: none;
+    border-radius: 4px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #fff;
+    font-size: 21px;
+    font-family: "Merienda One", sans-serif;
+    background: #31578f;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .btnAddArt:hover {
+    background-color: rgb(121, 231, 250);
+  }
+
+  .artworklist {
+    background: rgba(33, 2, 43, 0.8);
+    border-radius: 3px;
+    padding: 1rem;
+    color: white;
+    width: 50%;
+    margin: 0 auto;
+  }
+
+  .message {
+    color: $green;
+    font-size: 2.3rem;
+  }
+
+  h2 {
+    font-size: 2.5rem;
+    color: $orange;
+    filter: drop-shadow(0 0 1rem black);
+  }
+
+  h3 {
+    font-size: 1.8rem;
+  }
+
+  table {
+    width: 100%;
+
+    thead {
+      tr {
+        color: rgb(166, 160, 255);
+        text-transform: uppercase;
+
+        th {
+          border-bottom: 1px solid #fff;
+          padding: 0.5rem 0;
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        td {
+          color: white;
+          padding: 1rem 0;
+          font-size: 1rem;
+          border-bottom: 1px solid rgb(30, 192, 232);
+        }
       }
     }
   }
 }
 
 @media only screen and (max-width: 400px) {
-  .addArt,
-  .artworklist {
-    width: 100%;
-  }
+  #admin {
+    .addArt,
+    .artworklist {
+      width: 80%;
+    }
 
-  table {
-    font-size: 0.7rem;
-    text-align: left;
-  }
+    table {
+      width: 100%;
 
-  td {
-    font-size: 0.5rem;
-  }
+      thead {
+        tr {
+          color: rgb(166, 160, 255);
+          text-transform: uppercase;
 
-  h2 {
-    font-size: 2.4rem;
+          th {
+            width: auto;
+            border-bottom: 1px solid #fff;
+            padding: 0.5rem 0;
+            font-size: 0.8rem;
+          }
+        }
+      }
+
+      tbody {
+        width: 60%;
+        tr {
+          td {
+            color: white;
+            padding: 1rem 0;
+            font-size: 1rem;
+            border-bottom: 1px solid rgb(30, 192, 232);
+          }
+        }
+      }
+    }
+
+    .form {
+      width: auto;
+
+      input {
+        height: 2rem;
+        margin: 0.4rem;
+        font-size: 1.2rem;
+        font-family: "Sniglet", cursive;
+        padding: 0.5rem;
+      }
+    }
+
+    h2 {
+      font-size: 2.4rem;
+    }
   }
 }
 </style>

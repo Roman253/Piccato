@@ -52,20 +52,31 @@ export default {
         password: this.password
       });
 
-      if (this.redirect == undefined) {
+      if ((await this.activeUser) == null) {
         if ((await this.checkForError) == false) {
           let userData = await JSON.parse(sessionStorage.getItem("userData"));
 
-          if ((await userData.role) == "user") {
-            this.$store.dispatch("deleteErrors");
-            this.$router.push("/user");
+          if (userData.role == "user") {
+            if (this.redirect == undefined) {
+              await this.$router.push("/user");
+              console.log("found USer");
+            } else {
+              console.log("found Redirect");
+              this.$router.push(this.redirect);
+            }
           } else {
-            this.$store.dispatch("deleteErrors");
-            this.$router.push("/admin");
+            if (this.redirect == undefined) {
+              await this.$router.push("/admin");
+              console.log("found Admin");
+            } else {
+              console.log("found Redirect");
+              this.$router.push(this.redirect);
+            }
           }
+        } else {
+          console.log("error");
+          this.$router.push("/login");
         }
-      } else {
-        this.$router.push(this.redirect);
       }
     }
   },
@@ -104,6 +115,7 @@ export default {
   },
   beforeUpdate() {
     this.getActiveUser;
+    this.$store.dispatch("deleteErrors");
   },
   mounted: function() {
     if (sessionStorage.getItem("recentRegister")) {
@@ -114,9 +126,7 @@ export default {
   destroyed: function() {
     this.$store.dispatch("deleteErrors");
   },
-  created() {
-    
-  }
+  created() {}
 };
 </script>
 
@@ -147,7 +157,7 @@ export default {
   }
 
   .error {
-    color: $red;
+    color: $orange;
     font-weight: bold;
     margin: 0.6rem 0rem;
   }

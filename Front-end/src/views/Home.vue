@@ -52,6 +52,7 @@ export default {
   height: 100%;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
   justify-content: center;
+  filter: drop-shadow(0 0 0.75rem rgba(12, 12, 12, 0.507));
 
   .bookedart {
     margin-top: 0.5rem;

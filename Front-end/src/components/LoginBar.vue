@@ -64,7 +64,7 @@ export default {
 
 
 <style lang="scss">
-
+@import "../scss/variables";
 #main {
   display: grid;
   grid-template-rows: 1fr;
@@ -102,7 +102,8 @@ export default {
     .user {
       margin: 0.6rem 0.8rem;
       font-weight: bold;
-      color: white;
+      color: $orange;
+      
     }
 
     span {

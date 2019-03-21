@@ -53,14 +53,19 @@ export default {
     }
   },
   methods: {
-    bookArtwork() {
-      if (this.activeUser) {
+    async bookArtwork() {
+      if (await this.activeUser) {
         this.$store.dispatch("bookArtwork", {
           artwork: this.artwork,
           user: this.activeUser,
           selectedDate: this.selectedDate
         });
-      this.$router.push({ path: "/user", query: { success: "true" } });
+        if (await this.activeUser.role == 'admin') {
+           this.$router.push({ path: "/admin", query: { success: "true" } });
+        } else {
+               this.$router.push({ path: "/user", query: { success: "true" } });
+        }
+ 
       } else {
         this.$router.push({ path: "/login", query: { redirect: "/book" } });
       }
@@ -149,7 +154,7 @@ export default {
     margin: 0 auto;
   }
 
-  @media only screen and (max-width: 400px) {
+  @media only screen and (max-width: 600px) {
     .contentBuy {
       width: 80%;
     }
