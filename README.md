@@ -4,8 +4,4 @@ Lab 2 in JavaScript 2 course. We are building a small booking app where the user
 
 https://goo.gl/UmUJk8
 
-# To-do list:
-
-# If we have time:
-
 

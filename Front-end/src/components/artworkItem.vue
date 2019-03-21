@@ -7,19 +7,20 @@
         v-bind:alt="artwork.title"
         @click="seen = !seen"
       >
+      <h3 class="media-heading">{{artwork.title}}</h3>
     </section>
-
-    <section class="media-body" v-if="seen">
-      <h3 class="media-heading">Title: {{artwork.title}}</h3>
-      <p class="media-p">
-        Artist: {{artwork.artist}}
-        <br>
-        Price: {{artwork.price}}:- /day
-        <br>
-        Description: {{artwork.description}}
-      </p>
-      <div class="buybutton" @click="selectArtwork(artwork)">Rent this artwork</div>
-    </section>
+    <transition appear name="fade" mode="in-out">
+      <section class="media-body" v-if="seen">
+        <p class="media-p">
+          Artist: {{artwork.artist}}
+          <br>
+          Price: {{artwork.price}}:- /day
+          <br>
+          Description: {{artwork.description}}
+        </p>
+        <a class="btn" @click="selectArtwork(artwork)">Rent this artwork</a>
+      </section>
+    </transition>
   </div>
 </template>
 
@@ -51,26 +52,49 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../scss/variables";
+@import "../scss/components";
+
 #media {
-  max-width: 620px;
+  width: 50%;
   color: black;
   margin: 0 auto;
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
   box-shadow: 12px 0px 43px 2px #0ff;
-  background: rgb(36, 36, 36);
+  border-radius: 0.3rem;
+  background-color: $DarkOrange;
+  cursor: pointer;
 
   .media-object {
-    width: 90%;
-    padding: 1rem;
+    width: 80%;
+    margin-top: 1.5rem;
+    border: 20px inset rgba(249, 161, 30, 0.555);
   }
   .media-body {
     padding: 0 0 5% 7%;
-    width: 80%;
+    width: 90%;
     color: white;
   }
   .media-heading {
     color: white;
-    margin: 0 0 0.5em;
+    font-size: 3rem;
+    padding: 0 0 1.5rem 0rem;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  #media {
+    width: 80%;
+
+    .media-object {
+      width: 77%;
+      margin-top: 1.5rem;
+      border: 0.6rem inset rgba(249, 161, 30, 0.555);
+    }
+
+    .media-heading {
+      font-size: 2rem;
+    }
   }
 }
 </style>

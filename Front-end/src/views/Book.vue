@@ -1,7 +1,7 @@
 <template>
   <main id="buy">
-    <section class="wrapperBuy">
-      <section class="contentBuy" v-if="artwork">
+    <section @mouseover="nrOfDates" class="wrapperBuy">
+      <section @mouseover="getEvent" class="contentBuy" v-if="artwork">
         <h3>Choose number of days</h3>
         <calendar class="calendar" alt="calendar"></calendar>
         <div class="media">
@@ -18,19 +18,9 @@
             </p>
           </div>
         </div>
-
-        <div class="buybutton" @click="nrOfDates()">
-          <p>Calculate the price</p>
-        </div>
-        <p>Chosen number of days: {{amount}}</p>
-        <article class="price">Your total price: {{ artwork.price * amount }} sek</article>
-        <br>
-        <a href="#" class="btnbuy" @click="bookArtwork">Confirm</a>
-      </section>
-
-      <section class="content" v-if="!artwork">
-        <p>No dates selected.</p>
-        <a href="#" class="btn" @click="buy">Go to artwork list</a>
+        <p>Chosen number of days: {{amount + 1}}</p>
+        <p>Your total price: {{ artwork.price * (amount + 1) }} SEK</p>
+        <a href="#" v-if="this.selectedDate" class="btn" @click="bookArtwork">Book Artwork</a>
       </section>
     </section>
   </main>
@@ -38,18 +28,17 @@
 
 <script>
 import Calendar from "../components/Calendar.vue";
+import EventBus from "../event-bus";
 export default {
-  name: "buy",
+  name: "book",
   components: {
     calendar: Calendar
   },
   data() {
     return {
-      amount: 0,
-      selectedDate: {
-        start: new Date(),
-        end: new Date()
-      }
+      amount: null,
+      selectedDate: null,
+      failPost: false
     };
   },
   computed: {
@@ -58,25 +47,45 @@ export default {
     },
     activeUser() {
       return this.$store.state.activeUser;
+    },
+    getDates() {
+      return Calendar.data.selectedDate;
     }
   },
   methods: {
-    bookArtwork() {
-      if (this.activeUser) {
+    async bookArtwork() {
+      if (await this.activeUser) {
         this.$store.dispatch("bookArtwork", {
-          artworkID: this.artwork._id,
-          userUID: this.activeUser.uid,
+          artwork: this.artwork,
+          user: this.activeUser,
           selectedDate: this.selectedDate
         });
+        if (await this.activeUser.role == 'admin') {
+          
+          this.$store.dispatch("getBookings");
+           this.$router.push({ path: "/admin", query: { success: "true" } });
+
+        } else {
+              this.$store.dispatch("getBookings");
+               this.$router.push({ path: "/user", query: { success: "true" } });
+        }
+ 
       } else {
-        this.$router.push({ name: "login", query: { redirect: "/book" } });
+        this.$router.push({ path: "/login", query: { redirect: "/book" } });
       }
     },
-
     nrOfDates() {
-      let diff = this.selectedDate.end - this.selectedDate.start;
-      let amount = Math.round(diff / 86400000);
-      this.amount = amount;
+      if (this.selectedDate !== null) {
+        let diff = this.selectedDate.end - this.selectedDate.start;
+        let amount = Math.round(diff / 86400000);
+        this.amount = amount;
+      }
+    },
+    getEvent() {
+      EventBus.$on("selectedDates", payload => {
+        this.selectedDate = payload;
+      });
+      this.nrOfDates;
     }
   }
 };
@@ -87,17 +96,27 @@ export default {
 @import "../scss/components";
 
 #buy {
+  width: 100%;
+  p {
+    margin: 0.4rem;
+  }
+  .buybutton {
+    padding: 0.8rem 1rem;
+    margin-bottom: 1rem;
+  }
   .media {
     display: flex;
     align-items: flex-start;
-    background: #d9fbff;
+    background-color: $orange;
     padding: 1em;
     border-radius: 10px;
     color: black;
-    width: 80%;
+    width: 72%;
     text-align: left;
-    margin: 0 auto;
-    margin-bottom: 10px;
+    margin: 1rem auto;
+    p {
+      color: black;
+    }
   }
   .media-object {
     margin-right: 1rem;
@@ -117,8 +136,8 @@ export default {
   .contentBuy {
     @extend %center;
     flex-direction: column;
-    background: rgb(33, 2, 43);
-    width: 80%;
+    background: $DarkOrange;
+    width: 60%;
     margin: 0 auto;
     padding: 10px;
     font-size: 1.3rem;
@@ -127,33 +146,43 @@ export default {
     color: black;
   }
 
-  .btnbuy {
-    background-color: rgb(0, 30, 162);
-    padding: 5px 16px 10px 16px;
+  .btn {
     color: white;
-    text-decoration: none;
-    font-size: 1.2rem;
-    margin-top: 20px;
-    border-radius: 5px;
-  }
-
-  .btnbuy:hover {
-    background-color: rgb(9, 126, 126);
   }
 
   calendar {
-    margin: 0 auto;
-    margin-bottom: 300px;
-    margin-left: 35%;
+    width: 100%;
   }
 
   .popover-container[data-v-1ad2436f] {
     margin: 0 auto;
   }
 
-  @media only screen and (max-width: 400px) {
+  @media only screen and (max-width: 600px) {
     .contentBuy {
       width: 80%;
+    }
+
+    .media {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: $orange;
+
+      img {
+        width: 90%;
+      }
+
+      .media-object {
+        width: 60%;
+      }
+      .media-body {
+        width: 100%;
+      }
+      .media-heading {
+        width: 100%;
+        font-size: 1.4rem;
+      }
     }
   }
 }

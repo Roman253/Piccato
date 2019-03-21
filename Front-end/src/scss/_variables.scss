@@ -2,10 +2,19 @@ $baseline: 1.8rem;
 $green: rgb(39, 155, 101);
 $red: rgb(209, 62, 62);
 $white: #EEF0F2;
+$grey: grey;
+$hover: all 0.2s ease-in;
+$slide:all 0.5s 0.1s cubic-bezier(0.55,0,0.1,1);
+$transparent: rgba(255, 255, 255, 0.986);
+$black-05: rgb(255, 255, 255);
+$DarkOrange:  rgba(51, 47, 47, 0.692);
+$orange: #F9A11E;
+
 %center {
     display: flex;
     justify-content: center;
     align-items: center;
+
 }
 
 %buttons {

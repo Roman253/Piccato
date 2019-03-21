@@ -12,9 +12,8 @@ export default new Vuex.Store({
         apiUrl: 'http://localhost:3000',
         artwork: {},
         artworks: [],
-        booking: {},
-        bookings: [],
-        activeUser: '',
+        bookings: null,
+        activeUser: null,
         loginError: null,
         thereIsError: false,
         success: false
@@ -30,6 +29,9 @@ export default new Vuex.Store({
         },
         setActiveUser(state, user) {
             state.activeUser = user;
+        },
+        setBookings(state, bookings) {
+            state.bookings = bookings
         },
         toggleRejected(state) {
             state.rejected = !state.rejected;
@@ -48,54 +50,44 @@ export default new Vuex.Store({
         },
         success(state, message) {
             state.success = message
-        },
-        setBookings(state, bookings) {
-            state.bookings = bookings;
-        },
+        }
+
     },
     actions: {
 
-
-        //ARTWORK
-
-        //get artwork from the API
         async createArtwork(ctx, artwork) {
             try {
                 await Axios.post("http://localhost:3000/artworks", artwork);
                 ctx.dispatch("getArtworks");
             } catch (err) {
-                // eslint-disable-next-line no-console
-                console.err(err.stack);
+                console.error(err);
+    
             }
         },
 
         async deleteArtwork(ctx, id) {
-            console.log(id._id)
             await Axios.delete(`http://localhost:3000/artworks/${id._id}`);
         },
+
+        async deleteBooking(ctx, id) {
+            await Axios.delete(`http://localhost:3000/bookings/${id._id}`);
+        },
+
 
         async sendEditArtwork(ctx, artwork) {
             try {
                 await Axios.put(`http://localhost:3000/artworks`, artwork);
                 ctx.dispatch("getArtworks");
             } catch (err) {
-                // eslint-disable-next-line no-console
-                console.err(err.stack);
+                console.error(err);
             }
         },
-
-        //get artwork from the API
-        async getArtworks(ctx) {
-            let artworks = await Axios.get('http://localhost:3000/artworks');
-            ctx.commit('setArtworks', artworks.data);
-            //console.log(artwork.data);
-        },
-        async bookArtwork(ctx, bookingData) {
+        async getBookings(ctx) {
 
             try {
-                await Axios.post(`${ctx.state.apiUrl}/bookings`, bookingData)
+                let bookings = await Axios.get(`${ctx.state.apiUrl}/bookings`, bookings)
                     .then(response => {
-                        console.log(response);
+                        ctx.commit('setBookings', response.data);
                     })
 
             } catch (err) {
@@ -104,20 +96,24 @@ export default new Vuex.Store({
         },
 
 
-        //BOOKINGS
-
-
-        //get bookings from the API
-        async getBookings(ctx) {
-            let bookings = await Axios.get('http://localhost:3000/bookings');
-            ctx.commit('setBookings', bookings.data);
-            console.log(booking.data);
+        //get artwork from the API
+        async getArtworks(ctx) {
+            let artworks = await Axios.get('http://localhost:3000/artworks');
+            ctx.commit('setArtworks', artworks.data);
         },
 
 
+        async bookArtwork(ctx, bookingData) {
 
-        //LOGIN
-
+            try {
+                 await Axios.post(`${ctx.state.apiUrl}/bookings`, bookingData)
+                 .then(response => {
+                    console.log(response);
+            })
+            } catch (err) {
+                console.error(err);
+            }
+        },
         async login(ctx, loginData) {
 
             try {
@@ -128,13 +124,13 @@ export default new Vuex.Store({
                         ctx.commit('setActiveUser', response.data);
                         sessionStorage.setItem('currentUser', response.data.email);
                         sessionStorage.setItem('userData', JSON.stringify(response.data));
+                    
 
                     })
 
             } catch (err) {
 
                 ctx.commit('changeError', true);
-                console.error(err.response.data);
                 ctx.commit('setLoginError', err.response.data);
             }
         },
@@ -151,8 +147,6 @@ export default new Vuex.Store({
             try {
                 await Axios.post(`${ctx.state.apiUrl}/users/register`, registrationData)
                     .then(response => {
-                        console.log(response.data);
-                        console.log('Registration successful');
                         router.push('/login');
                         sessionStorage.setItem('recentRegister', response.data.email);
                     })
@@ -163,7 +157,6 @@ export default new Vuex.Store({
                 ctx.commit('setLoginError', err.response.data);
                 ctx.commit('success', false);
                 ctx.commit('setActiveUser', '');
-                console.log(err);
             }
         },
         deleteErrors(ctx) {
@@ -174,6 +167,9 @@ export default new Vuex.Store({
         setUser(ctx) {
             ctx.commit('setActiveUser', JSON.parse(sessionStorage.getItem('userData')));
         }
+    },
+    beforeCreate: function() {
+        this.$store.dispatch("getBookings");
     }
 
 })

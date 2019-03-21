@@ -18,9 +18,10 @@ export default {
   },
 
   //before the page load this function connects to store and gets the API
-  beforeMount() {
+  mounted() {
     this.$store.dispatch("getArtworks");
     this.$store.dispatch("setUser");
+    this.$store.dispatch("getBookings");
   },
   computed: {
     user() {

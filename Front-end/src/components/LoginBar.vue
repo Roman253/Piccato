@@ -1,6 +1,24 @@
 <template>
   <transition appear name="fade" mode="in-out">
     <main id="main">
+      <section class="homeContent">
+        <router-link to="/">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/c/c6/IdeaLab_space_cat.svg"
+            alt="home"
+            width="70px"
+          >
+        </router-link>
+      </section>
+
+      <section class="homeContentText">
+        <a href="#">
+         <router-link to="/">
+          <h4>Piccato</h4>
+          </router-link>
+        </a>
+      </section>
+
       <section class="content">
         <a href="#" v-if="this.getActiveUser" @click="checkUser" class="user">
           Logged in as:
@@ -10,7 +28,7 @@
           <img src="../assets/logout.svg">
         </a>
         <router-link v-if="!this.getActiveUser" to="/login">
-          <img src="../assets/login.svg">
+          <img src="../assets/login.svg" alt="Log in">
         </router-link>
       </section>
     </main>
@@ -18,7 +36,6 @@
 </template>
 
 <script>
-import auth from "../auth.js";
 export default {
   name: "loginbar",
   data() {
@@ -48,11 +65,30 @@ export default {
 
 <style lang="scss">
 @import "../scss/variables";
-
 #main {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 100px 50px 1fr;
+  grid-template-areas: "homecontent text content";
+  margin-top: 0.2rem;
+  filter: drop-shadow(0 0 0.75rem rgba(0, 0, 0, 0.829));
+  .homeContent {
+    grid-area: homecontent;
+  }
+
+
+
+  .homeContentText {
+    grid-area: text;
+    justify-content: flex-end;
+
+  }
+
   .content {
     display: flex;
     justify-content: flex-end;
+    grid-area: content;
+    margin-top: 1rem;
 
     a {
       text-decoration: none;
@@ -66,7 +102,8 @@ export default {
     .user {
       margin: 0.6rem 0.8rem;
       font-weight: bold;
-      color: white;
+      color: $orange;
+      
     }
 
     span {
@@ -77,15 +114,24 @@ export default {
 
 @media only screen and (max-width: 600px) {
   #main {
+    margin-top: 0.2rem;
+
     .content {
+
+        margin-top: 1rem;
       img {
         width: 2.1rem;
-        margin: 0.3rem 0.4rem 0.1rem 0;
+        
       }
 
       .user {
         font-weight: 700;
+        margin: 0;
       }
+    }
+
+    .homeContentText {
+      display: none;
     }
   }
 }
