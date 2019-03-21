@@ -4,7 +4,7 @@
 let Booking = require('../models/booking');
 let Artwork = require('../models/artwork');
 
-module.exports.post = async (req, res) => {
+module.exports.post = async(req, res) => {
 
     console.log(req.body);
 
@@ -28,7 +28,7 @@ module.exports.post = async (req, res) => {
 };
 
 //GET
-module.exports.get = async (req, res) => {
+module.exports.get = async(req, res) => {
 
     try {
         let bookings = await Booking.find({});
@@ -39,7 +39,10 @@ module.exports.get = async (req, res) => {
     }
 };
 
-module.exports.delete = async (req, res) => {
+
+//DELETE a booking
+
+module.exports.delete = async(req, res) => {
     try {
         res.status(200).send(await Booking.deleteOne({
             _id: req.params.id

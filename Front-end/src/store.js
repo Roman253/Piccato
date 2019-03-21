@@ -61,7 +61,7 @@ export default new Vuex.Store({
                 ctx.dispatch("getArtworks");
             } catch (err) {
                 console.error(err);
-    
+
             }
         },
 
@@ -73,7 +73,7 @@ export default new Vuex.Store({
             await Axios.delete(`http://localhost:3000/bookings/${id._id}`);
         },
 
-
+        //Send edited/updated artwork to DB and updating the list
         async sendEditArtwork(ctx, artwork) {
             try {
                 await Axios.put(`http://localhost:3000/artworks`, artwork);
@@ -106,10 +106,10 @@ export default new Vuex.Store({
         async bookArtwork(ctx, bookingData) {
 
             try {
-                 await Axios.post(`${ctx.state.apiUrl}/bookings`, bookingData)
-                 .then(response => {
-                    console.log(response);
-            })
+                await Axios.post(`${ctx.state.apiUrl}/bookings`, bookingData)
+                    .then(response => {
+                        console.log(response);
+                    })
             } catch (err) {
                 console.error(err);
             }
@@ -124,7 +124,7 @@ export default new Vuex.Store({
                         ctx.commit('setActiveUser', response.data);
                         sessionStorage.setItem('currentUser', response.data.email);
                         sessionStorage.setItem('userData', JSON.stringify(response.data));
-                    
+
 
                     })
 

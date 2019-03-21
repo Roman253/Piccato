@@ -2,6 +2,8 @@
   <main id="adminedit">
     <h2>Edit Artwork</h2>
 
+
+<!--Import choosen artwork from previous page (Admin) -->
     <section class="contentEdit" v-if="artwork">
       <h3>{{ artwork.title }}</h3>
       <p class="artist">
@@ -12,6 +14,7 @@
         <img class="media-object" v-bind:src="artwork.artworkUrl" width="300px">
       </p>
 
+<!--Edit choosen artwork and send the updated version to the DB-->
       <section class="editArt">
         <input type="text" v-model="artwork.title">
         <input type="text" v-model="artwork.artist">
@@ -34,6 +37,7 @@ export default {
     }
   },
   methods: {
+    //Updates choosen artwork and send back to admin page so you can see that your added changes worked
     async sendEditArtwork(artwork, id) {
       this.$store.dispatch("sendEditArtwork", this.artwork);
       this.$router.push("/admin");

@@ -1,6 +1,7 @@
 <template>
   <article id="admin">
     <h2>Welcome {{ getActiveUser.name }}</h2>
+    <!--Message if admin made a successful booking-->
     <h2 class="message" v-if="this.success">Booking successfully created!</h2>
     <h3>Manage Artworks</h3>
     <section class="artworklist">
@@ -8,8 +9,7 @@
         <thead>
           <tr>
             <th>Artwork</th>
-            <th>Artist</th>
-            <th>Remove Artwork</th>
+            <th>Delete Artwork</th>
             <th>Edit Artwork</th>
           </tr>
         </thead>
@@ -40,7 +40,7 @@
             <th>Delete booking</th>
           </tr>
         </thead>
-        <!-- Import artworks from DB -->
+        <!-- Import bookings from DB -->
         <tbody>
           <tr v-for="booking in bookings" :key="booking._id" :booking="booking">
             <td>{{booking.user.email}}</td>
@@ -56,6 +56,8 @@
         </tbody>
       </table>
     </section>
+
+   <!-- Add new Artwork to DB -->
 
     <section class="addArt">
       <h3>Add new Artwork</h3>
@@ -80,6 +82,7 @@ export default {
     return {
       artwork: [],
       search: "",
+    //New Artwork data schema
       newArtwork: {
         title: "",
         artworkUrl: "",
@@ -96,7 +99,7 @@ export default {
       this.$store.dispatch("createArtwork", this.newArtwork);
       this.$store.dispatch("getArtworks");
     },
-
+//Picks selected artwork and "take" it to the editpage with the information into inputfields
     selectArtwork(artwork) {
       this.$store.commit("selectArtwork", artwork);
       this.$router.push("/adminedit");
