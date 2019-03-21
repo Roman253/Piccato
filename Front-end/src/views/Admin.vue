@@ -166,20 +166,20 @@ export default {
     background: #8400ff;
   }
 
-      .form {
+  .form {
     width: auto;
     display: grid;
     background: rgba(33, 2, 43, 0.8);
     padding: 1.3rem;
 
-      input {
-        height: 2rem;
-        margin: 0.4rem;
-        font-size: 1.1rem;
-        font-family: "Sniglet", cursive;
-        padding: 0.5rem;
-      }
+    input {
+      height: 2rem;
+      margin: 0.4rem;
+      font-size: 1.1rem;
+      font-family: "Sniglet", cursive;
+      padding: 0.5rem;
     }
+  }
 
   #admin input {
     font-size: 1.1rem;

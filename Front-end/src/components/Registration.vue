@@ -113,7 +113,7 @@ export default {
 
 .registration {
   @extend %center;
-  
+
   display: grid;
   grid-template-columns: 0.4fr;
 

@@ -39,11 +39,6 @@ export default {
       success: false
     };
   },
-  beforeMount() {
-    this.$store.dispatch("getArtworks");
-    this.$store.dispatch("getBookings");
-  },
-
   methods: {
     async deleteBooking(id) {
       await this.$store.dispatch("deleteBooking", id);
@@ -69,10 +64,15 @@ export default {
   },
   mounted() {
     this.success = this.$route.query.success;
+ 
   },
   destroyed() {
     this.success = false;
-  }
+  },
+  async beforeMount() {
+    await this.$store.dispatch("getArtworks");
+    await this.$store.dispatch("getBookings");
+  },
 };
 </script>
 

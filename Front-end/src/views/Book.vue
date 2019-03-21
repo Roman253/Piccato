@@ -61,8 +61,12 @@ export default {
           selectedDate: this.selectedDate
         });
         if (await this.activeUser.role == 'admin') {
+          
+          this.$store.dispatch("getBookings");
            this.$router.push({ path: "/admin", query: { success: "true" } });
+
         } else {
+              this.$store.dispatch("getBookings");
                this.$router.push({ path: "/user", query: { success: "true" } });
         }
  

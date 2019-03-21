@@ -67,7 +67,6 @@ export default {
   margin-top: -10px;
 }
 
-
 #adminedit input {
   font-size: 1.1rem;
   padding: 0.5rem 1rem;

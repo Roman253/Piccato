@@ -59,22 +59,22 @@ export default {
           if (userData.role == "user") {
             if (this.redirect == undefined) {
               await this.$router.push("/user");
-              console.log("found USer");
+    
             } else {
-              console.log("found Redirect");
+     
               this.$router.push(this.redirect);
             }
           } else {
             if (this.redirect == undefined) {
               await this.$router.push("/admin");
-              console.log("found Admin");
+          
             } else {
-              console.log("found Redirect");
+       
               this.$router.push(this.redirect);
             }
           }
         } else {
-          console.log("error");
+    
           this.$router.push("/login");
         }
       }

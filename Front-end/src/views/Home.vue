@@ -9,22 +9,21 @@
         alt="logo"
         width="200px"
       >
-    </section>  
+    </section>
     <section class="bookedart">
       <div class="infotxt">
-  <p>Make your workers happy.
-        <br>This is Piccato, where you can rent artwork of cats.
-        <br>Login to rent our art today.
-      </p>
+        <p>Make your workers happy.
+          <br>This is Piccato, where you can rent artwork of cats.
+          <br>Login to rent our art today.
+        </p>
       </div>
-            
+
       <a href="#" @click="$router.push('/booking')" class="btn">
         <h2>Rent an artwork!</h2>
       </a>
-            <a href="#" @click="$router.push('/user')" v-if="this.activeUser" class="btn">
+      <a href="#" @click="$router.push('/user')" v-if="this.activeUser" class="btn">
         <h2>Your booked artwork!</h2>
       </a>
-
     </section>
   </div>
 </template>
@@ -35,10 +34,10 @@ export default {
   computed: {
     activeUser() {
       return this.$store.state.activeUser;
-    },
+    }
   },
   mounted() {
-    this.activeUser
+    this.activeUser;
   }
 };
 </script>
@@ -88,14 +87,12 @@ export default {
     filter: drop-shadow(0 0 0.75rem rgba(12, 12, 12, 0.507));
   }
 
-  
-@media only screen and (max-width: 600px) {
-  .bookedart {
-
-    .btn {
-      width: 50%;
+  @media only screen and (max-width: 600px) {
+    .bookedart {
+      .btn {
+        width: 50%;
+      }
     }
   }
-}
 }
 </style>

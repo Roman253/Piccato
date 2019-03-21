@@ -80,24 +80,22 @@ export default {
     font-size: 3rem;
     padding: 0 0 1.5rem 0rem;
   }
-
- 
 }
 
- @media only screen and (max-width: 600px) {
-    #media {
-      width: 80%;
+@media only screen and (max-width: 600px) {
+  #media {
+    width: 80%;
 
-      .media-object {
-        width: 77%;
-        margin-top: 1.5rem;
-        border: 0.6rem inset rgba(249, 161, 30, 0.555);
-      }
+    .media-object {
+      width: 77%;
+      margin-top: 1.5rem;
+      border: 0.6rem inset rgba(249, 161, 30, 0.555);
+    }
 
-      .media-heading {
-        font-size: 2rem;
-      }
+    .media-heading {
+      font-size: 2rem;
     }
   }
+}
 </style>
 
