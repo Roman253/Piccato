@@ -35,10 +35,12 @@ let artwork = require('./routes/artworks');
 let users = require('./routes/users');
 let auth = require('./routes/auth');
 
+//post new bookings, get all bookings from DB
 app.route('/bookings')
     .post(booking.post)
     .get(booking.get)
 
+//delete specific booking
 app.route('/bookings/:id')
     .delete(booking.delete)
 
@@ -51,6 +53,7 @@ app.route('/artworks')
 app.route('/artworks/:id')
     .put(artwork.put)
     .delete(artwork.delete)
+
 
 
 app.route('/auth')
