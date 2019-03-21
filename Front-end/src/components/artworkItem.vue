@@ -56,7 +56,7 @@ export default {
 @import "../scss/components";
 
 #media {
-  width: 65%;
+  width: 50%;
   color: black;
   margin: 0 auto;
   margin-bottom: 1rem;
@@ -66,7 +66,7 @@ export default {
   cursor: pointer;
 
   .media-object {
-    width: 90%;
+    width: 80%;
     margin-top: 1.5rem;
     border: 20px inset rgba(249, 161, 30, 0.555);
   }

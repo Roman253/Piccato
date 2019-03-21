@@ -18,8 +18,8 @@
             </p>
           </div>
         </div>
-        <p>Chosen number of days: {{amount}}</p>
-        <p>Your total price: {{ artwork.price * amount }} SEK</p>
+        <p>Chosen number of days: {{amount + 1}}</p>
+        <p>Your total price: {{ artwork.price * (amount + 1) }} SEK</p>
         <a href="#" v-if="this.selectedDate" class="btn" @click="bookArtwork">Book Artwork</a>
       </section>
     </section>
