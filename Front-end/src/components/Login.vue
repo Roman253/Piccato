@@ -19,8 +19,8 @@
           :class="{ valid: validPassword }"
         >
         <section id="registerQuestion">
-          <span id="notUser">Not a user? </span>
-          <router-link class="register" to="/registration"> Register here</router-link>
+          <span id="notUser">Not a user?</span>
+          <router-link class="register" to="/registration">Register here</router-link>
         </section>
         <a
           href="#"
@@ -41,17 +41,33 @@ export default {
       email: "",
       password: "",
       validUsername: false,
-      validPassword: false
+      validPassword: false,
+      redirect: undefined
     };
   },
   methods: {
-     login() {
-        this.$store.dispatch("login", {
-          email: this.email,
-          password: this.password
-        });
-        this.$router.push(this.$route.query.redirect || '/');
-   },
+    async login() {
+      await this.$store.dispatch("login", {
+        email: this.email,
+        password: this.password
+      });
+
+      if (this.redirect == undefined) {
+        if ((await this.checkForError) == false) {
+          let userData = await JSON.parse(sessionStorage.getItem("userData"));
+
+          if ((await userData.role) == "user") {
+            this.$store.dispatch("deleteErrors");
+            this.$router.push("/user");
+          } else {
+            this.$store.dispatch("deleteErrors");
+            this.$router.push("/admin");
+          }
+        }
+      } else {
+        this.$router.push(this.redirect);
+      }
+    }
   },
   watch: {
     email(val) {
@@ -86,13 +102,20 @@ export default {
       return this.$store.state.activeUser;
     }
   },
+  beforeUpdate() {
+    this.getActiveUser;
+  },
   mounted: function() {
     if (sessionStorage.getItem("recentRegister")) {
       this.email += sessionStorage.getItem("recentRegister");
     }
+    this.redirect = this.$route.query.redirect;
   },
   destroyed: function() {
     this.$store.dispatch("deleteErrors");
+  },
+  created() {
+    
   }
 };
 </script>

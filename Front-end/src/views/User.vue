@@ -15,9 +15,13 @@
         </thead>
         <!-- Import artworks from DB -->
         <tbody>
-       <tr v-for="booking in bookings" :key="booking._id" :booking="booking">
-            <td>{{booking.title.substring(0,5)}}</td>
-            <td>{{booking.selectedDate.start.substring(0,10)}} <span>-</span> {{booking.selectedDate.end.substring(0,10)}}</td>
+          <tr v-for="booking in bookings" :key="booking._id" :booking="booking">
+            <td>{{booking.artwork.title}}</td>
+            <td>
+              {{booking.selectedDate.start.substring(0,10)}}
+              <span>-</span>
+              {{booking.selectedDate.end.substring(0,10)}}
+            </td>
             <td>
               <div id="btnRemove" @click="deleteBooking(booking, booking._id)">X</div>
             </td>
@@ -25,27 +29,22 @@
         </tbody>
       </table>
     </section>
-
   </article>
 </template>
 
 <script>
 export default {
-  name: "artworks",
-  name: "admin",
-
+  name: "user",
   beforeMount() {
     this.$store.dispatch("getArtworks");
+    this.$store.dispatch("getBookings");
   },
 
- 
   methods: {
-
     async deleteBooking(id) {
       this.$store.dispatch("deleteBooking", id);
       await this.$store.dispatch("getBookings");
-    }, 
-
+    },
 
     logout() {
       this.$store.dispatch("logout");
@@ -69,7 +68,6 @@ export default {
 
 <style lang="scss">
 @import "../scss/main.scss";
-
 
 #btnRemove {
   color: white;

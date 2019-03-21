@@ -3,36 +3,43 @@
     <section>
       <h1>Piccato</h1>
     </section>
-    <section>
+    <section class="logo">
       <img
         src="https://upload.wikimedia.org/wikipedia/commons/c/c6/IdeaLab_space_cat.svg"
         alt="logo"
         width="200px"
       >
-    </section>
-    <section class="infotxt">
-      <p>Make your workers happy.
+    </section>  
+    <section class="bookedart">
+      <div class="infotxt">
+  <p>Make your workers happy.
         <br>This is Piccato, where you can rent artwork of cats.
         <br>Login to rent our art today.
       </p>
-    </section>
-    <section>
+      </div>
+            
       <a href="#" @click="$router.push('/booking')" class="btn">
         <h2>Rent an artwork!</h2>
       </a>
-    </section>
-
-    <section class="bookedart">
-      <a href="#" @click="$router.push('/user')" class="btn">
+            <a href="#" @click="$router.push('/user')" v-if="this.activeUser" class="btn">
         <h2>Your booked artwork!</h2>
       </a>
+
     </section>
   </div>
 </template>
 
 <script>
 export default {
-  name: "home"
+  name: "home",
+  computed: {
+    activeUser() {
+      return this.$store.state.activeUser;
+    },
+  },
+  mounted() {
+    this.activeUser
+  }
 };
 </script>
 
@@ -48,6 +55,9 @@ export default {
 
   .bookedart {
     margin-top: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   section {
@@ -66,10 +76,25 @@ export default {
 
     p {
       text-align: center;
+      filter: drop-shadow(0 0 0.75rem rgba(12, 12, 12, 0.507));
     }
     .btn {
       width: 100%;
     }
   }
+
+  .logo {
+    filter: drop-shadow(0 0 0.75rem rgba(12, 12, 12, 0.507));
+  }
+
+  
+@media only screen and (max-width: 600px) {
+  .bookedart {
+
+    .btn {
+      width: 50%;
+    }
+  }
+}
 }
 </style>

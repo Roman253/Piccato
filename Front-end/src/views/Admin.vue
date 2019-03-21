@@ -1,6 +1,7 @@
 <template>
   <article id="admin">
     <h2>Welcome {{ getActiveUser.name }}</h2>
+    <h2 v-if="this.success">Booking successfully created!</h2>
 
     <h3>Manage Artworks</h3>
     <section class="artworklist">
@@ -29,7 +30,7 @@
       </table>
     </section>
 
-    <h3>Manage bookings</h3>
+    <h3>Manage User bookings</h3>
 
     <section class="artworklist">
       <table cellspacing="0">
@@ -44,7 +45,9 @@
         <tbody>
        <tr v-for="booking in bookings" :key="booking._id" :booking="booking">
             <td>{{booking.user.email}}</td>
-           <td>{{booking.selectedDate.start.substring(0,10)}} <span>-</span> {{booking.selectedDate.end.substring(0,10)}}</td>
+                  {{booking.selectedDate.start.substring(0,10)}}
+              <span> - </span>
+              {{booking.selectedDate.end.substring(0,10)}}
             <td>
               <div id="btnRemove" @click="deleteBooking(booking, booking._id)">X</div>
             </td>
@@ -72,13 +75,7 @@
 
 <script>
 export default {
-  name: "artworks",
   name: "admin",
-
-  beforeMount() {
-    this.$store.dispatch("getArtworks");
-  },
-
   data() {
     return {
       artwork: [],
@@ -89,7 +86,8 @@ export default {
         artist: "",
         price: "",
         description: ""
-      }
+      },
+      success: false
     };
   },
 
@@ -128,6 +126,11 @@ export default {
     getActiveUser() {
       return this.$store.state.activeUser;
     }
+  },  beforeMount() {
+    this.$store.dispatch("getArtworks");
+    this.$store.dispatch("getBookings");
+  }, mounted() {
+     this.success = this.$route.query.success;
   }
 };
 </script>
@@ -242,6 +245,10 @@ table {
 
   td {
     font-size: 0.5rem;
+  }
+
+  h2 {
+    font-size: 2.4rem;
   }
 }
 </style>

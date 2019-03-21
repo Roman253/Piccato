@@ -36,7 +36,6 @@
 </template>
 
 <script>
-import auth from "../auth.js";
 export default {
   name: "loginbar",
   data() {
@@ -65,16 +64,14 @@ export default {
 
 
 <style lang="scss">
-@import "../scss/variables";
 
 #main {
   display: grid;
   grid-template-rows: 1fr;
   grid-template-columns: 100px 50px 1fr;
   grid-template-areas: "homecontent text content";
-  margin-left: 2rem;
-  margin-top: 1rem;
-
+  margin-top: 0.2rem;
+  filter: drop-shadow(0 0 0.75rem rgba(0, 0, 0, 0.829));
   .homeContent {
     grid-area: homecontent;
   }
@@ -116,14 +113,19 @@ export default {
 
 @media only screen and (max-width: 600px) {
   #main {
+    margin-top: 0.2rem;
+
     .content {
+
+        margin-top: 1rem;
       img {
         width: 2.1rem;
-        margin: 0.3rem 0.4rem 0.1rem 0;
+        
       }
 
       .user {
         font-weight: 700;
+        margin: 0;
       }
     }
 
