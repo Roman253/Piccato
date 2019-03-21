@@ -8,7 +8,7 @@
         <thead>
           <tr>
             <th>Artwork</th>
-            <th>Remove Artwork</th>
+            <th>Delete Artwork</th>
             <th>Edit Artwork</th>
           </tr>
         </thead>
@@ -38,7 +38,7 @@
             <th>Delete booking</th>
           </tr>
         </thead>
-        <!-- Import artworks from DB -->
+        <!-- Import bookings from DB -->
         <tbody>
        <tr v-for="booking in bookings" :key="booking._id" :booking="booking">
             <td>{{booking.userUID.substring(0,5)}}</td>
@@ -51,6 +51,7 @@
       </table>
     </section>
 
+   <!-- Add new Artwork to DB -->
 
     <section class="addArt">
       <h3>Add new Artwork</h3>
